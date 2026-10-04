@@ -14,3 +14,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 - Privacy trims: no Face ID string, no background audio, no barcode scanner, Android storage + overlay permissions blocked.
 - Screen Time (flag `EXPO_PUBLIC_IOS_SCREEN_TIME=true`): adds the `react-native-device-activity` plugin, family-controls entitlement and app group `group.com.gpc.doodleden.screentime`; prebuild creates `ActivityMonitorExtension`, `ShieldAction`, `ShieldConfiguration` targets (`com.gpc.doodleden.<Target>`) and copies them into `targets/` (removed again; T-037 decides whether to commit it).
 - Not done: `react-native-purchases` has no config plugin (none needed). Android tablet landscape lock happens at runtime in T-003. Dev build on device not run here (no simulator/emulator).
+
+## T-003 · Tokens, layout, fonts
+- Files: `src/theme/tokens.ts` (copied from A2), `src/theme/useLayout.ts`, `src/state/sessionStore.ts` (active kid + age mode for `useLayout`), `src/types/models.ts` (AgeMode stub, full file in T-007), `app/_layout.tsx`, `__tests__/theme/useLayout.test.ts`.
+- Works: Fredoka + Nunito load behind the splash (max 3 s); tablet (shortest side ≥ 600) locks landscape, phone portrait; breakpoint unit tests.
