@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Free Draw — iPad</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F2A44}a:hover{color:#EE5A36}
+</style>
+</helmet>
+<div style="width: 1194px; height: 834px; box-sizing: border-box; background: #EEF6F0; font-family: 'Nunito', system-ui, sans-serif; color: #1F2A44; padding: 24px; display: flex; flex-direction: column; gap: 18px">
+
+<div style="display: flex; align-items: center; justify-content: space-between">
+<div style="display: flex; gap: 12px">
+<a href="Main.dc.html" aria-label="Home" style="width: 64px; height: 64px; border-radius: 22px; background: #FFFFFF; border: 3px solid #C9D2E3; display: flex; align-items: center; justify-content: center">
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M4 14L15 4l11 10M7 12v13h16V12" stroke="#1F2A44" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+<button aria-label="Undo" style="width: 64px; height: 64px; border-radius: 22px; background: #FFFFFF; border: 3px solid #C9D2E3; display: flex; align-items: center; justify-content: center">
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M10 8L4 14l6 6M4 14h14a8 8 0 0 1 0 16h-4" stroke="#1F2A44" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<button aria-label="Redo" style="width: 64px; height: 64px; border-radius: 22px; background: #FFFFFF; border: 3px solid #C9D2E3; display: flex; align-items: center; justify-content: center">
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M20 8l6 6-6 6M26 14H12a8 8 0 0 0 0 16h4" stroke="#1F2A44" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border-radius: 28px; padding: 12px 20px; border: 3px solid #D8F1E2">
+<svg width="24" height="24" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="6" fill="#FFB81C"></circle><path d="M13 2v3M13 21v3M2 13h3M21 13h3" stroke="#FFB81C" stroke-width="2.5" stroke-linecap="round"></path></svg>
+<span style="font-weight: 800; font-size: 17px">22 min left</span>
+</div>
+<button style="height: 64px; padding: 0 30px; border-radius: 22px; background: #3BAA6A; border: none; color: #FFFFFF; font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 24px; display: flex; align-items: center; gap: 10px">
+<svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M5 13l6 6 10-12" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+I'm done!
+</button>
+</div>
+
+<div style="display: flex; gap: 18px; flex-grow: 1; min-height: 0">
+
+<div style="width: 104px; background: #FFFFFF; border-radius: 30px; border: 3px solid #D8F1E2; display: flex; flex-direction: column; align-items: center; padding: 12px 0; gap: 8px">
+<button aria-label="Crayon" style="width: 70px; height: 70px; border-radius: 22px; border: 4px solid #EE5A36; background: #FFE0D6; display: flex; align-items: center; justify-content: center">
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M10 32l18-18 4 4-18 18H10z" fill="#EE5A36" stroke="#1F2A44" stroke-width="3" stroke-linejoin="round"></path><path d="M28 14l4-4 4 4-4 4" fill="#FFB81C" stroke="#1F2A44" stroke-width="3" stroke-linejoin="round"></path></svg>
+</button>
+<button aria-label="Marker" style="width: 70px; height: 70px; border-radius: 22px; border: 3px solid transparent; background: #F4F7F5; display: flex; align-items: center; justify-content: center">
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none"><rect x="14" y="6" width="14" height="24" rx="4" fill="#3B8FE0" stroke="#1F2A44" stroke-width="3"></rect><path d="M16 30h10l-2 6h-6z" fill="#1F2A44"></path></svg>
+</button>
+<button aria-label="Watercolor" style="width: 70px; height: 70px; border-radius: 22px; border: 3px solid transparent; background: #F4F7F5; display: flex; align-items: center; justify-content: center">
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M21 6c6 9 10 14 10 20a10 10 0 0 1-20 0c0-6 4-11 10-20z" fill="#8A5CD6" fill-opacity="0.6" stroke="#1F2A44" stroke-width="3"></path></svg>
+</button>
+<button aria-label="Glitter" style="width: 70px; height: 70px; border-radius: 22px; border: 3px solid transparent; background: #F4F7F5; display: flex; align-items: center; justify-content: center">
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M21 6l3 10 10 3-10 3-3 10-3-10-10-3 10-3z" fill="#FFB81C" stroke="#1F2A44" stroke-width="2.5" stroke-linejoin="round"></path><circle cx="33" cy="32" r="3" fill="#E8559A"></circle><circle cx="9" cy="34" r="2.5" fill="#3B8FE0"></circle></svg>
+</button>
+<button aria-label="Neon" style="width: 70px; height: 70px; border-radius: 22px; border: 3px solid transparent; background: #F4F7F5; display: flex; align-items: center; justify-content: center">
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M8 28c6-14 12 6 18-8s8 6 8 6" stroke="#E8559A" stroke-width="7" stroke-linecap="round" stroke-opacity="0.3"></path><path d="M8 28c6-14 12 6 18-8s8 6 8 6" stroke="#E8559A" stroke-width="3" stroke-linecap="round"></path></svg>
+</button>
+<button aria-label="Stamps" style="width: 70px; height: 70px; border-radius: 22px; border: 3px solid transparent; background: #F4F7F5; display: flex; align-items: center; justify-content: center">
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M21 34s-12-7-12-16a6 6 0 0 1 12-2 6 6 0 0 1 12 2c0 9-12 16-12 16z" fill="#EE5A36" stroke="#1F2A44" stroke-width="3" stroke-linejoin="round"></path></svg>
+</button>
+<button aria-label="Eraser" style="width: 70px; height: 70px; border-radius: 22px; border: 3px solid transparent; background: #F4F7F5; display: flex; align-items: center; justify-content: center; margin-top: auto">
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none"><path d="M8 26l14-14 12 12-10 10H14z" fill="#FCDDEB" stroke="#1F2A44" stroke-width="3" stroke-linejoin="round"></path><path d="M16 18l12 12" stroke="#1F2A44" stroke-width="3"></path></svg>
+</button>
+</div>
+
+<div style="flex-grow: 1; background: #FFFFFF; border-radius: 30px; border: 3px solid #D8F1E2; position: relative; overflow: hidden">
+<svg width="100%" height="100%" viewBox="0 0 900 620" fill="none" preserveAspectRatio="xMidYMid meet">
+<circle cx="140" cy="120" r="56" fill="#FFB81C" fill-opacity="0.85"></circle>
+<path d="M140 30v-20M140 230v-20M50 120H30M250 120h-20M76 56L62 42M218 198l-14-14M76 184l-14 14M218 42l-14 14" stroke="#FFB81C" stroke-width="10" stroke-linecap="round"></path>
+<path d="M330 380c40-160 300-160 340 0" stroke="#EE5A36" stroke-width="22" stroke-linecap="round"></path>
+<path d="M360 380c36-120 244-120 280 0" stroke="#FFB81C" stroke-width="22" stroke-linecap="round"></path>
+<path d="M390 380c30-82 190-82 220 0" stroke="#3BAA6A" stroke-width="22" stroke-linecap="round"></path>
+<path d="M420 380c24-46 136-46 160 0" stroke="#3B8FE0" stroke-width="22" stroke-linecap="round"></path>
+<path d="M120 560V420l90-70 90 70v140z" fill="#FFE0D6" stroke="#EE5A36" stroke-width="10" stroke-linejoin="round"></path>
+<rect x="185" y="470" width="50" height="90" rx="6" fill="#8A5CD6" fill-opacity="0.7"></rect>
+<path d="M30 570c120-14 260 10 420-6s300 12 420-4" stroke="#3BAA6A" stroke-width="16" stroke-linecap="round"></path>
+<path d="M720 520c-6-50 4-80 0-120" stroke="#3BAA6A" stroke-width="10" stroke-linecap="round"></path>
+<circle cx="720" cy="380" r="34" fill="#E8559A" fill-opacity="0.8"></circle>
+<circle cx="720" cy="380" r="12" fill="#FFB81C"></circle>
+<path d="M800 200l10 30 30 10-30 10-10 30-10-30-30-10 30-10z" fill="#FFB81C"></path>
+</svg>
+</div>
+
+<div style="width: 104px; background: #FFFFFF; border-radius: 30px; border: 3px solid #D8F1E2; display: flex; flex-direction: column; align-items: center; padding: 16px 0; gap: 18px">
+<span style="font-weight: 800; font-size: 13px; color: #4A5570">SIZE</span>
+<button aria-label="Big brush" style="width: 64px; height: 64px; border-radius: 32px; border: 3px solid #C9D2E3; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><span style="width: 36px; height: 36px; border-radius: 18px; background: #1F2A44"></span></button>
+<button aria-label="Medium brush" style="width: 64px; height: 64px; border-radius: 32px; border: 4px solid #EE5A36; background: #FFE0D6; display: flex; align-items: center; justify-content: center"><span style="width: 22px; height: 22px; border-radius: 11px; background: #1F2A44"></span></button>
+<button aria-label="Small brush" style="width: 64px; height: 64px; border-radius: 32px; border: 3px solid #C9D2E3; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 5px; background: #1F2A44"></span></button>
+<button aria-label="Background color" style="width: 64px; height: 64px; border-radius: 22px; border: 3px solid #C9D2E3; background: #FFFFFF; margin-top: auto; display: flex; align-items: center; justify-content: center">
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="5" y="5" width="22" height="22" rx="6" fill="#DCEBFB" stroke="#1F2A44" stroke-width="3"></rect><path d="M5 20l7-6 6 5 4-3 5 4" stroke="#1F2A44" stroke-width="2.5" stroke-linejoin="round"></path></svg>
+</button>
+</div>
+
+</div>
+
+<div style="background: #FFFFFF; border-radius: 30px; border: 3px solid #D8F1E2; padding: 12px 20px; display: flex; align-items: center; justify-content: center; gap: 16px">
+<button aria-label="Red" style="width: 56px; height: 56px; border-radius: 28px; background: #EE5A36; border: 5px solid #1F2A44"></button>
+<button aria-label="Orange" style="width: 56px; height: 56px; border-radius: 28px; background: #F58A2B; border: 4px solid #FFFFFF"></button>
+<button aria-label="Yellow" style="width: 56px; height: 56px; border-radius: 28px; background: #FFB81C; border: 4px solid #FFFFFF"></button>
+<button aria-label="Green" style="width: 56px; height: 56px; border-radius: 28px; background: #3BAA6A; border: 4px solid #FFFFFF"></button>
+<button aria-label="Blue" style="width: 56px; height: 56px; border-radius: 28px; background: #3B8FE0; border: 4px solid #FFFFFF"></button>
+<button aria-label="Purple" style="width: 56px; height: 56px; border-radius: 28px; background: #8A5CD6; border: 4px solid #FFFFFF"></button>
+<button aria-label="Pink" style="width: 56px; height: 56px; border-radius: 28px; background: #E8559A; border: 4px solid #FFFFFF"></button>
+<button aria-label="Brown" style="width: 56px; height: 56px; border-radius: 28px; background: #9A6A45; border: 4px solid #FFFFFF"></button>
+<button aria-label="Black" style="width: 56px; height: 56px; border-radius: 28px; background: #1F2A44; border: 4px solid #FFFFFF"></button>
+<button aria-label="White" style="width: 56px; height: 56px; border-radius: 28px; background: #FFFFFF; border: 4px solid #C9D2E3"></button>
+<button aria-label="Rainbow" style="width: 56px; height: 56px; border-radius: 28px; border: 4px solid #FFFFFF; background: conic-gradient(#EE5A36, #FFB81C, #3BAA6A, #3B8FE0, #8A5CD6, #EE5A36)"></button>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1194,"height":834}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
