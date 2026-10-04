@@ -1,0 +1,4 @@
+// Kid Home (T-014). Placeholder until its ticket builds it.
+export default function Route() {
+  return null;
+}
