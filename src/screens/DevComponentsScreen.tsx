@@ -8,6 +8,7 @@ import { IconButton } from '@/components/kid/IconButton';
 import { CheckIcon } from '@/components/kid/icons/CheckIcon';
 import { HomeIcon } from '@/components/kid/icons/HomeIcon';
 import { UndoIcon } from '@/components/kid/icons/UndoIcon';
+import { Mascot } from '@/components/kid/Mascot';
 import { PrimaryButton } from '@/components/kid/PrimaryButton';
 import { SpeechBubble } from '@/components/kid/SpeechBubble';
 import { TimePill } from '@/components/kid/TimePill';
@@ -60,6 +61,13 @@ export function DevComponentsScreen() {
           <ColorDot key={c} color={c} selected={i === 0} />
         ))}
         <ColorDot color="rainbow" selected={false} />
+      </View>
+      <Text style={styles.h}>Mascot</Text>
+      <View style={styles.row}>
+        <Mascot mood="idle" />
+        <Mascot mood="happy" />
+        <Mascot mood="sleepy" />
+        <Mascot mood="sleeping" />
       </View>
       <Text style={styles.h}>BrushSizeButton</Text>
       <View style={styles.row}>

@@ -22,3 +22,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-004 · Kid components
 - Files: `src/components/kid/{PressableScale,IconButton,PrimaryButton,TimePill,ActivityTile,SpeechBubble,ToolButton,ColorDot,BrushSizeButton}.tsx`, 24 icons in `src/components/kid/icons/`, `src/screens/DevComponentsScreen.tsx` + `app/dev-components.tsx` (temporary), `src/services/audio.ts` / `voice.ts` API stubs (filled in T-010), `src/types/models.ts` (full A3 copy, early for `BrushType`), `jest.setup.ts`, snapshot tests.
 - Works: shared press feedback (0.94 scale / 120 ms, light haptic, sound); rainbow dot drawn as SVG slices (React Native has no conic gradient); locked tile routes to Parent Gate; Jest uses the worklets resolver so Reanimated runs in tests.
+
+## T-005 · Mascot
+- Files: `src/components/kid/Mascot.tsx` (SVG crayon from the Kid Home mockup), dev screen row, `__tests__/components/mascot.test.tsx`.
+- Works: idle 2 s bob, happy jump loop, sleepy half-closed eyes with a yawn every 4 s, sleeping closed eyes + floating "z z" (Reanimated).
