@@ -1,6 +1,3 @@
-// Sticker Book (T-048). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { StickerBookScreen } from '@/screens/kid/StickerBookScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Sticker Book" />;
-}
+export default StickerBookScreen;

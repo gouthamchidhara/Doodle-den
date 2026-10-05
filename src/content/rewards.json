@@ -1,0 +1,416 @@
+{
+  "rewards": [
+    {
+      "id": "first_drawing",
+      "title": "First drawing!",
+      "event": "ARTWORK_SAVED"
+    },
+    {
+      "id": "five_drawings",
+      "title": "5 drawings",
+      "event": "ARTWORK_SAVED",
+      "bonusStamp": "diamond"
+    },
+    {
+      "id": "twenty_drawings",
+      "title": "20 drawings",
+      "event": "ARTWORK_SAVED",
+      "bonusStamp": "planet"
+    },
+    {
+      "id": "fifty_drawings",
+      "title": "50 drawings",
+      "event": "ARTWORK_SAVED",
+      "bonusStamp": "gift"
+    },
+    {
+      "id": "first_fish",
+      "title": "First fish",
+      "event": "WORLD_ENTITY_ADDED"
+    },
+    {
+      "id": "first_car",
+      "title": "First car",
+      "event": "WORLD_ENTITY_ADDED"
+    },
+    {
+      "id": "first_animal",
+      "title": "First animal",
+      "event": "WORLD_ENTITY_ADDED"
+    },
+    {
+      "id": "aquarium_ten",
+      "title": "10 fish!",
+      "event": "WORLD_ENTITY_ADDED",
+      "bonusStamp": "bubble_stamp"
+    },
+    {
+      "id": "first_paper",
+      "title": "Paper came alive",
+      "event": "WORLD_ENTITY_ADDED"
+    },
+    {
+      "id": "letter_A",
+      "title": "Letter A",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_B",
+      "title": "Letter B",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_C",
+      "title": "Letter C",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_D",
+      "title": "Letter D",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_E",
+      "title": "Letter E",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_F",
+      "title": "Letter F",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_G",
+      "title": "Letter G",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_H",
+      "title": "Letter H",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_I",
+      "title": "Letter I",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_J",
+      "title": "Letter J",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_K",
+      "title": "Letter K",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_L",
+      "title": "Letter L",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_M",
+      "title": "Letter M",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_N",
+      "title": "Letter N",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_O",
+      "title": "Letter O",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_P",
+      "title": "Letter P",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_Q",
+      "title": "Letter Q",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_R",
+      "title": "Letter R",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_S",
+      "title": "Letter S",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_T",
+      "title": "Letter T",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_U",
+      "title": "Letter U",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_V",
+      "title": "Letter V",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_W",
+      "title": "Letter W",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_X",
+      "title": "Letter X",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_Y",
+      "title": "Letter Y",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "letter_Z",
+      "title": "Letter Z",
+      "event": "TRACE_COMPLETED"
+    },
+    {
+      "id": "all_letters",
+      "title": "All the letters!",
+      "event": "TRACE_COMPLETED",
+      "bonusStamp": "pencil"
+    },
+    {
+      "id": "all_numbers",
+      "title": "All the numbers!",
+      "event": "TRACE_COMPLETED",
+      "bonusStamp": "abacus"
+    },
+    {
+      "id": "all_shapes",
+      "title": "All the shapes!",
+      "event": "TRACE_COMPLETED",
+      "bonusStamp": "kite"
+    },
+    {
+      "id": "first_color",
+      "title": "My first color",
+      "event": "COLOR_NAMED"
+    },
+    {
+      "id": "three_colors",
+      "title": "3 new colors",
+      "event": "COLOR_NAMED"
+    },
+    {
+      "id": "ten_colors",
+      "title": "10 new colors",
+      "event": "COLOR_NAMED",
+      "bonusStamp": "palette"
+    },
+    {
+      "id": "first_flipbook",
+      "title": "First flipbook",
+      "event": "FLIPBOOK_SAVED"
+    },
+    {
+      "id": "first_song",
+      "title": "First song",
+      "event": "MUSIC_SAVED"
+    },
+    {
+      "id": "bucket_one",
+      "title": "In the bucket!",
+      "event": "RAMPS_BUCKET"
+    },
+    {
+      "id": "bucket_ten",
+      "title": "10 in the bucket",
+      "event": "RAMPS_BUCKET",
+      "bonusStamp": "lightning"
+    },
+    {
+      "id": "jigsaw_4",
+      "title": "4-piece puzzle",
+      "event": "JIGSAW_DONE"
+    },
+    {
+      "id": "jigsaw_9",
+      "title": "9-piece puzzle",
+      "event": "JIGSAW_DONE"
+    },
+    {
+      "id": "jigsaw_16",
+      "title": "16-piece puzzle",
+      "event": "JIGSAW_DONE"
+    },
+    {
+      "id": "jigsaw_24",
+      "title": "24-piece puzzle",
+      "event": "JIGSAW_DONE",
+      "bonusStamp": "snowflake"
+    },
+    {
+      "id": "first_story",
+      "title": "First story",
+      "event": "STORY_MADE"
+    },
+    {
+      "id": "first_magic",
+      "title": "First magic",
+      "event": "MAGIC_DONE"
+    },
+    {
+      "id": "mascot_friend",
+      "title": "Crayon friend",
+      "event": "GUESS_YES"
+    },
+    {
+      "id": "museum_night",
+      "title": "Museum night",
+      "event": "MUSEUM_OPENED"
+    },
+    {
+      "id": "guided_cat",
+      "title": "I drew a cat",
+      "event": "GUIDED_DONE"
+    },
+    {
+      "id": "guided_house",
+      "title": "I drew a house",
+      "event": "GUIDED_DONE"
+    },
+    {
+      "id": "guided_fish",
+      "title": "I drew a fish",
+      "event": "GUIDED_DONE"
+    }
+  ],
+  "daily": [
+    {
+      "design": 0,
+      "title": "Happy day"
+    },
+    {
+      "design": 1,
+      "title": "Sunny day"
+    },
+    {
+      "design": 2,
+      "title": "Rainbow day"
+    },
+    {
+      "design": 3,
+      "title": "Star day"
+    },
+    {
+      "design": 4,
+      "title": "Hug day"
+    },
+    {
+      "design": 5,
+      "title": "Silly day"
+    },
+    {
+      "design": 6,
+      "title": "Happy day"
+    },
+    {
+      "design": 7,
+      "title": "Sunny day"
+    },
+    {
+      "design": 8,
+      "title": "Rainbow day"
+    },
+    {
+      "design": 9,
+      "title": "Star day"
+    },
+    {
+      "design": 10,
+      "title": "Hug day"
+    },
+    {
+      "design": 11,
+      "title": "Silly day"
+    },
+    {
+      "design": 12,
+      "title": "Happy day"
+    },
+    {
+      "design": 13,
+      "title": "Sunny day"
+    },
+    {
+      "design": 14,
+      "title": "Rainbow day"
+    },
+    {
+      "design": 15,
+      "title": "Star day"
+    },
+    {
+      "design": 16,
+      "title": "Hug day"
+    },
+    {
+      "design": 17,
+      "title": "Silly day"
+    },
+    {
+      "design": 18,
+      "title": "Happy day"
+    },
+    {
+      "design": 19,
+      "title": "Sunny day"
+    },
+    {
+      "design": 20,
+      "title": "Rainbow day"
+    },
+    {
+      "design": 21,
+      "title": "Star day"
+    },
+    {
+      "design": 22,
+      "title": "Hug day"
+    },
+    {
+      "design": 23,
+      "title": "Silly day"
+    },
+    {
+      "design": 24,
+      "title": "Happy day"
+    },
+    {
+      "design": 25,
+      "title": "Sunny day"
+    },
+    {
+      "design": 26,
+      "title": "Rainbow day"
+    },
+    {
+      "design": 27,
+      "title": "Star day"
+    },
+    {
+      "design": 28,
+      "title": "Hug day"
+    },
+    {
+      "design": 29,
+      "title": "Silly day"
+    }
+  ]
+}

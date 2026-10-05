@@ -1,5 +1,6 @@
 // Artwork saving (A5 Saving, A3 File paths): PNG 2048 + thumb 400 + strokes JSON, files first, then the DB row.
 import { getArtwork, saveArtwork as upsertArtwork } from '@/db/repositories/artworkRepo';
+import { checkRewards } from '@/games/rewards/rewardEngine';
 import { artPaths, deleteFiles, writeBase64, writeText } from '@/services/files';
 import type { ActivityKey, StrokeDoc } from '@/types/models';
 import { newId } from '@/utils/ids';
@@ -60,6 +61,7 @@ export async function saveArtworkFiles(input: SaveInput): Promise<string> {
     if (!existing) deleteFiles([paths.png, paths.thumb, paths.strokes, ...extra]);
     throw e;
   }
+  if (!existing && input.activity !== 'flipbook_frame') await checkRewards(input.kidId, 'ARTWORK_SAVED');
   return id;
 }
 

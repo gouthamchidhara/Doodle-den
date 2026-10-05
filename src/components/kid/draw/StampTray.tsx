@@ -1,7 +1,7 @@
-// Picker for the 20 stamps, shown when the stamp tool is selected.
+// Picker for the 20 stamps (+ earned bonus stamps), shown when the stamp tool is selected.
 import { ScrollView, StyleSheet } from 'react-native';
 
-import { STAMPS } from '@/canvas/stamps';
+import { BONUS_STAMPS, STAMPS } from '@/canvas/stamps';
 import { border, colors, radius, space } from '@/theme/tokens';
 
 import { PressableScale } from '../PressableScale';
@@ -11,13 +11,15 @@ import { StampPreview } from './StampPreview';
 export interface StampTrayProps {
   selected: string;
   onSelect: (id: string) => void;
+  bonus?: string[];
 }
 
 // Sideways-scrolling stamp choices.
-export function StampTray({ selected, onSelect }: StampTrayProps) {
+export function StampTray({ selected, onSelect, bonus = [] }: StampTrayProps) {
+  const list = [...STAMPS, ...BONUS_STAMPS.filter((b) => bonus.includes(b.id))];
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row}>
-      {STAMPS.map((s) => (
+      {list.map((s) => (
         <PressableScale
           key={s.id}
           accessibilityLabel={s.label}

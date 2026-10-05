@@ -54,7 +54,7 @@ export function DrawTabletLayout({ session: s, canvas, onDone, onUndo, onRedo, o
       </View>
       <View style={[styles.panel, styles.palette]}>
         {s.tool === 'stamp' ? (
-          <StampTray selected={s.stampId} onSelect={s.setStamp} />
+          <StampTray selected={s.stampId} onSelect={s.setStamp} bonus={s.bonusStamps} />
         ) : (
           <PaletteBar selected={s.color} onSelect={s.setColor} custom={s.custom} />
         )}

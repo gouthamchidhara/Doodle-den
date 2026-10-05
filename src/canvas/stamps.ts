@@ -40,7 +40,21 @@ export const STAMPS: StampDef[] = [
 
 export const STAMP_OUTLINE = I;
 
-// Finds a stamp by id (falls back to the heart).
+// 10 bonus stamps unlocked by rewards (A5 Sticker Book & rewards).
+export const BONUS_STAMPS: StampDef[] = [
+  { id: 'diamond', label: 'Diamond', shapes: [{ d: 'M30 10h40l20 24-40 56L10 34z', fill: colors.sky }, { d: 'M10 34h80L50 90z', fill: colors.tint.sky.fill }] },
+  { id: 'planet', label: 'Planet', shapes: [{ d: circle(50, 50, 28), fill: colors.grape }, { d: 'M6 62c10-14 78-36 88-24 6 8-74 40-88 24zm10-4c6 4 60-14 70-22-12 0-64 16-70 22z', fill: colors.sun }] },
+  { id: 'gift', label: 'Gift', shapes: [{ d: 'M14 40h72v50H14z', fill: colors.tomato }, { d: 'M44 40h12v50H44zM10 30h80v14H10z', fill: colors.sun }] },
+  { id: 'bubble_stamp', label: 'Bubbles', shapes: [{ d: `${circle(38, 56, 26)}${circle(74, 30, 14)}${circle(72, 74, 9)}`, fill: colors.tint.sky.fill }] },
+  { id: 'pencil', label: 'Pencil', shapes: [{ d: 'M20 70L66 24l14 14-46 46H20z', fill: colors.sun }, { d: 'M20 70v14h14z', fill: colors.ink }] },
+  { id: 'abacus', label: 'Counting beads', shapes: [{ d: 'M12 12h76v76H12z', fill: colors.brown }, { d: `${circle(32, 32, 8)}${circle(52, 32, 8)}${circle(42, 52, 8)}${circle(62, 52, 8)}${circle(36, 72, 8)}${circle(66, 72, 8)}`, fill: colors.tomato }] },
+  { id: 'kite', label: 'Kite', shapes: [{ d: 'M50 6l30 34-30 44-30-44z', fill: colors.pink }, { d: 'M48 84h4v12h-4z', fill: I }] },
+  { id: 'palette', label: 'Paint palette', shapes: [{ d: 'M50 10c30 0 44 20 40 38-4 16-22 8-26 18-4 12 6 24-14 24-26 0-42-18-42-40S24 10 50 10z', fill: colors.white }, { d: `${circle(32, 34, 7)}${circle(54, 26, 7)}${circle(72, 38, 7)}`, fill: colors.tomato }, { d: circle(28, 58, 7), fill: colors.sky }] },
+  { id: 'lightning', label: 'Lightning', shapes: [{ d: 'M58 4L18 56h26L36 96l46-56H54z', fill: colors.sun }] },
+  { id: 'snowflake', label: 'Snowflake', shapes: [{ d: 'M46 6h8v88h-8zM10 46h80v8H10zM20 26l6-6 54 54-6 6zM74 20l6 6-54 54-6-6z', fill: colors.sky }] },
+];
+
+// Finds a stamp by id, including bonus stamps (falls back to the heart).
 export function getStamp(id: string | undefined): StampDef {
-  return STAMPS.find((s) => s.id === id) ?? STAMPS[0];
+  return STAMPS.find((s) => s.id === id) ?? BONUS_STAMPS.find((s) => s.id === id) ?? STAMPS[0];
 }

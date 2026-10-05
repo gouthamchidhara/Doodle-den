@@ -39,7 +39,7 @@ export function DrawPhoneLayout({ session: s, canvas, onDone, onUndo, onAskClear
           <IconButton size={52} icon={<TrashIcon />} accessibilityLabel="Hold to start fresh" onLongPress={onAskClear} delayLongPress={CLEAR_HOLD_MS} />
         </View>
         {s.tool === 'stamp' ? (
-          <StampTray selected={s.stampId} onSelect={s.setStamp} />
+          <StampTray selected={s.stampId} onSelect={s.setStamp} bonus={s.bonusStamps} />
         ) : (
           <PaletteBar selected={s.color} onSelect={s.setColor} custom={s.custom} />
         )}

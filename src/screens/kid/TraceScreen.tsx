@@ -11,6 +11,7 @@ import { PressableScale } from '@/components/kid/PressableScale';
 import { StarRow } from '@/components/kid/StarRow';
 import { traceItems, traceWord, type TraceKind, type TracePath } from '@/content/tracePaths';
 import { getProgress, setSkill } from '@/db/repositories/progressRepo';
+import { checkRewards } from '@/games/rewards/rewardEngine';
 import { TraceBoard } from '@/games/trace/TraceBoard';
 import { TOLERANCE_PX } from '@/games/trace/traceEngine';
 import { playSound } from '@/services/audio';
@@ -65,7 +66,10 @@ export function TraceScreen() {
     const key = traceSkill(current.id);
     if (kidId && stars > (best[key] ?? 0)) {
       setBest((b) => ({ ...b, [key]: stars }));
-      setSkill(kidId, key, stars).catch((e: unknown) => console.warn('[trace] save failed', e));
+      const id = current.id;
+      setSkill(kidId, key, stars)
+        .then(() => checkRewards(kidId, 'TRACE_COMPLETED', { traceId: id }))
+        .catch((e: unknown) => console.warn('[trace] save failed', e));
     }
   };
 

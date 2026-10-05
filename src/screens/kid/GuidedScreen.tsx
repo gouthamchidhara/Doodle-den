@@ -18,6 +18,7 @@ import { PrimaryButton } from '@/components/kid/PrimaryButton';
 import { GUIDED_LESSONS, guidedSkill, type GuidedLesson } from '@/content/guidedLessons';
 import { getProgress, setSkill } from '@/db/repositories/progressRepo';
 import { HandHint } from '@/games/guided/HandHint';
+import { checkRewards } from '@/games/rewards/rewardEngine';
 import { handPoints } from '@/games/guided/handPoints';
 import { playSound } from '@/services/audio';
 import { say } from '@/services/voice';
@@ -71,7 +72,10 @@ export function GuidedScreen() {
     if (!lesson) return;
     const id = await s.finish();
     if (id) playSound('save-sparkle');
-    if (kidId) await setSkill(kidId, guidedSkill(lesson.id), 1).catch((e: unknown) => console.warn('[guided] progress save failed', e));
+    if (kidId) {
+      await setSkill(kidId, guidedSkill(lesson.id), 1).catch((e: unknown) => console.warn('[guided] progress save failed', e));
+      await checkRewards(kidId, 'GUIDED_DONE', { lessonId: lesson.id });
+    }
     setFinished((f) => new Set(f).add(guidedSkill(lesson.id)));
     setDone(true);
   };

@@ -13,6 +13,7 @@ import { SparkleBurst } from '@/components/kid/SparkleBurst';
 import { SpeechBubble } from '@/components/kid/SpeechBubble';
 import { addCustomColor, listCustomColors } from '@/db/repositories/colorRepo';
 import { isNewColor, MAX_BLOBS, mixBlobs, POTS, type Blob } from '@/games/mixing/mixEngine';
+import { checkRewards } from '@/games/rewards/rewardEngine';
 import { playSound } from '@/services/audio';
 import { say } from '@/services/voice';
 import { useSessionStore } from '@/state/sessionStore';
@@ -82,6 +83,7 @@ export function MixingLabScreen() {
       setCustom((c) => [...c, saved]);
       setBubble(`${name}!`);
       playSound('cheer');
+      await checkRewards(kidId, 'COLOR_NAMED');
     }
     setNaming(null);
   };

@@ -2,6 +2,7 @@
 import { exportPngBase64 } from '@/canvas/exportPng';
 import { saveArtworkFiles } from '@/canvas/saveArtwork';
 import { saveFlipbook } from '@/db/repositories/flipbookRepo';
+import { checkRewards } from '@/games/rewards/rewardEngine';
 import { newId } from '@/utils/ids';
 
 import type { FlipbookDraft, Fps } from './flipbookModel';
@@ -29,5 +30,6 @@ export async function saveFlipbookDraft(kidId: string, draft: FlipbookDraft, fps
   const id = flipbookId ?? newId();
   const now = Date.now();
   await saveFlipbook({ id, kidId, frameIds, fps, createdAt: createdAt ?? now, updatedAt: now });
+  if (!flipbookId) await checkRewards(kidId, 'FLIPBOOK_SAVED');
   return { id, frameIds };
 }
