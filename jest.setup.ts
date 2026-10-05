@@ -52,3 +52,15 @@ jest.mock('expo-file-system', () => {
   const m = require('./__tests__/helpers/mockFs') as typeof import('./__tests__/helpers/mockFs');
   return { File: m.File, Directory: m.Directory, Paths: m.Paths };
 });
+
+jest.mock('expo-speech-recognition', () => ({
+  ExpoSpeechRecognitionModule: {
+    start: jest.fn(),
+    stop: jest.fn(),
+    abort: jest.fn(),
+    requestPermissionsAsync: jest.fn(() => Promise.resolve({ granted: true })),
+    isRecognitionAvailable: jest.fn(() => true),
+    supportsOnDeviceRecognition: jest.fn(() => true),
+  },
+  useSpeechRecognitionEvent: jest.fn(),
+}));

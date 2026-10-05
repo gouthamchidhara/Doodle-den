@@ -1,6 +1,3 @@
-// Mixing Lab (T-043). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { MixingLabScreen } from '@/screens/kid/MixingLabScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Mixing Lab" />;
-}
+export default MixingLabScreen;
