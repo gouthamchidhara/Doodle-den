@@ -7,16 +7,11 @@ import { ParentButton } from '@/components/parent/ParentButton';
 import { ParentCard } from '@/components/parent/ParentCard';
 import { OnboardingFrame } from '@/components/parent/OnboardingFrame';
 import { SettingRow } from '@/components/parent/SettingRow';
+import { GUIDED_ACCESS_STEPS } from '@/content/deviceLock';
 import { isPinned, startPinning, stopPinning } from '@/lock/devicePinning';
 import { colors, fonts, fontSize } from '@/theme/tokens';
 
 import { useOnboardingStep } from './useOnboardingStep';
-
-const IOS_STEPS = [
-  'Open Settings → Accessibility → Guided Access and turn it on.',
-  'Set a passcode only you know.',
-  'In the app, triple-click the side (or Home) button to start.',
-];
 
 // Platform-specific tips; Android can pin the app right here.
 export function DeviceLockTipsScreen() {
@@ -35,7 +30,7 @@ export function DeviceLockTipsScreen() {
     <OnboardingFrame title="Keep play inside the app" onBack={() => router.back()} onNext={() => router.push('/onboarding/finish')}>
       {Platform.OS === 'ios' ? (
         <ParentCard title="Turn on Guided Access">
-          {IOS_STEPS.map((s, i) => (
+          {GUIDED_ACCESS_STEPS.map((s, i) => (
             <View key={s} style={styles.step}>
               <Text style={styles.num}>{i + 1}.</Text>
               <Text style={styles.text}>{s}</Text>

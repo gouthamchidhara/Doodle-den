@@ -121,3 +121,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 - Files: `app/locked.tsx`, `src/screens/LockScreen.tsx`, `src/screens/lock/{lockText.ts,UnlockSheet.tsx}`, `src/components/kid/{NightSky,OffScreenIdeaCard}.tsx`, `src/content/offScreenIdeas.ts`, `canvasStore.lastAutosaveAt`, `__tests__/screens/lockScreen.test.tsx`.
 - Works: night sky + moon + sleeping mascot, headline per reason, "Great art today, {nickname}!", "saved in My Gallery" chip when an autosave ran in the last 60 s, 3 rotating off-screen ideas (hourly), "Back in n minutes / Back tomorrow / Back at 7:00 AM", lullaby at 0.3 for 60 s, Android back blocked. Hold 1 s on "Grown-ups: hold to unlock" → Parent Gate → unlock sheet (+15, +30, End for today) → `parentUnlock` → Kid Home.
 - Off-screen idea icons reuse existing icons until custom art arrives (T-103).
+
+## T-036 · Device lock parent screen
+- Files: `app/parent/device-lock.tsx`, `src/screens/parent/DeviceLockScreen.tsx`, `src/components/parent/ParentScreen.tsx` (shared parent frame), `src/content/deviceLock.ts` (Guided Access steps, also used by onboarding), `src/lock/screenTime.ts` (flag check), `__tests__/screens/deviceLock.test.tsx`.
+- Works: Android toggle "Keep my child in the app" starts/stops pinning (only reachable after the Parent Gate, since the parent zone is guarded). iOS shows whether Guided Access is on (refreshed when the app returns to the foreground), the 3 steps and Open Settings. "Extra iOS lock" row shows only when `EXPO_PUBLIC_IOS_SCREEN_TIME=true`.

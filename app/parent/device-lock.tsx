@@ -1,6 +1,3 @@
-// Device lock (T-036). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { DeviceLockScreen } from '@/screens/parent/DeviceLockScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Device lock" />;
-}
+export default DeviceLockScreen;
