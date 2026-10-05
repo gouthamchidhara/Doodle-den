@@ -1,0 +1,1528 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`kid components ActivityTile snapshot with badge 1`] = `
+<View
+  accessibilityLabel="Aquarium"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": false,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <View
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      }
+    }
+    jestInlineStyle={
+      [
+        [
+          {
+            "alignItems": "center",
+            "borderRadius": 36,
+            "borderWidth": 4,
+            "gap": 12,
+            "justifyContent": "center",
+            "paddingHorizontal": 12,
+          },
+          {
+            "backgroundColor": "#DCEBFB",
+            "borderColor": "#B5D3F5",
+            "height": 248,
+            "opacity": 1,
+          },
+        ],
+      ]
+    }
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 36,
+          "borderWidth": 4,
+          "gap": 12,
+          "justifyContent": "center",
+          "paddingHorizontal": 12,
+        },
+        {
+          "backgroundColor": "#DCEBFB",
+          "borderColor": "#B5D3F5",
+          "height": 248,
+          "opacity": 1,
+        },
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "#EE5A36",
+          "borderRadius": 18,
+          "paddingHorizontal": 12,
+          "paddingVertical": 4,
+          "position": "absolute",
+          "right": 18,
+          "top": 18,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "Nunito_800ExtraBold",
+            "fontSize": 13,
+          }
+        }
+      >
+        NEW
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "height": 120,
+          "width": 120,
+        }
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight={30}
+        bbWidth={30}
+        fill="none"
+        focusable={false}
+        height={30}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": 30,
+              "width": 30,
+            },
+          ]
+        }
+        vbHeight={30}
+        vbWidth={30}
+        width={30}
+      >
+        <RNSVGGroup
+          fill={null}
+          propList={
+            [
+              "fill",
+            ]
+          }
+        >
+          <RNSVGPath
+            d="M4 14L15 4l11 10M7 12v13h16V12"
+            fill={
+              {
+                "payload": 4278190080,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={
+              {
+                "payload": 4280232516,
+                "type": 0,
+              }
+            }
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth={3}
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+    <Text
+      numberOfLines={1}
+      style={
+        [
+          {
+            "color": "#1F2A44",
+            "fontFamily": "Fredoka_600SemiBold",
+          },
+          {
+            "fontSize": 30,
+          },
+        ]
+      }
+    >
+      Aquarium
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`kid components IconButton snapshot + press 1`] = `
+<View
+  accessibilityLabel="Home"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": false,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <View
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      }
+    }
+    jestInlineStyle={
+      [
+        [
+          {
+            "alignItems": "center",
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#C9D2E3",
+            "borderRadius": 22,
+            "borderWidth": 3,
+            "justifyContent": "center",
+          },
+          {
+            "height": 64,
+            "width": 64,
+          },
+        ],
+      ]
+    }
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#C9D2E3",
+          "borderRadius": 22,
+          "borderWidth": 3,
+          "justifyContent": "center",
+        },
+        {
+          "height": 64,
+          "width": 64,
+        },
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      ]
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={30}
+      bbWidth={30}
+      fill="none"
+      focusable={false}
+      height={30}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "flex": 0,
+            "height": 30,
+            "width": 30,
+          },
+        ]
+      }
+      vbHeight={30}
+      vbWidth={30}
+      width={30}
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          [
+            "fill",
+          ]
+        }
+      >
+        <RNSVGPath
+          d="M4 14L15 4l11 10M7 12v13h16V12"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4280232516,
+              "type": 0,
+            }
+          }
+          strokeLinecap={1}
+          strokeLinejoin={1}
+          strokeWidth={3}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</View>
+`;
+
+exports[`kid components PrimaryButton snapshot 1`] = `
+<View
+  accessibilityLabel="I'm done!"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": false,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <View
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      }
+    }
+    jestInlineStyle={
+      [
+        [
+          {
+            "alignItems": "center",
+            "borderRadius": 22,
+            "flexDirection": "row",
+            "gap": 8,
+            "justifyContent": "center",
+            "paddingHorizontal": 32,
+          },
+          {
+            "backgroundColor": "#3BAA6A",
+            "height": 64,
+            "opacity": 1,
+          },
+        ],
+      ]
+    }
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 22,
+          "flexDirection": "row",
+          "gap": 8,
+          "justifyContent": "center",
+          "paddingHorizontal": 32,
+        },
+        {
+          "backgroundColor": "#3BAA6A",
+          "height": 64,
+          "opacity": 1,
+        },
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#FFFFFF",
+          "fontFamily": "Fredoka_600SemiBold",
+          "fontSize": 24,
+        }
+      }
+    >
+      I'm done!
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`kid components SpeechBubble, ToolButton, ColorDot, BrushSizeButton snapshots 1`] = `
+<View
+  accessibilityRole="text"
+  style={
+    [
+      {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#D8F1E2",
+        "borderRadius": 24,
+        "borderWidth": 3,
+        "paddingHorizontal": 24,
+        "paddingVertical": 16,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#1F2A44",
+        "fontFamily": "Fredoka_500Medium",
+        "fontSize": 22,
+      }
+    }
+  >
+    Hi!
+  </Text>
+</View>
+`;
+
+exports[`kid components SpeechBubble, ToolButton, ColorDot, BrushSizeButton snapshots 2`] = `
+<View
+  accessibilityLabel="Crayon"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": true,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <View
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      }
+    }
+    jestInlineStyle={
+      [
+        [
+          {
+            "alignItems": "center",
+            "borderRadius": 22,
+            "justifyContent": "center",
+          },
+          {
+            "height": 70,
+            "width": 70,
+          },
+          {
+            "backgroundColor": "#FFE0D6",
+            "borderColor": "#EE5A36",
+            "borderWidth": 4,
+          },
+        ],
+      ]
+    }
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 22,
+          "justifyContent": "center",
+        },
+        {
+          "height": 70,
+          "width": 70,
+        },
+        {
+          "backgroundColor": "#FFE0D6",
+          "borderColor": "#EE5A36",
+          "borderWidth": 4,
+        },
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      ]
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={42}
+      bbWidth={42}
+      fill="none"
+      focusable={false}
+      height={42}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "flex": 0,
+            "height": 42,
+            "width": 42,
+          },
+        ]
+      }
+      vbHeight={42}
+      vbWidth={42}
+      width={42}
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          [
+            "fill",
+          ]
+        }
+      >
+        <RNSVGPath
+          d="M10 32l18-18 4 4-18 18H10z"
+          fill={
+            {
+              "payload": 4293810742,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4280232516,
+              "type": 0,
+            }
+          }
+          strokeLinejoin={1}
+          strokeWidth={3}
+        />
+        <RNSVGPath
+          d="M28 14l4-4 4 4-4 4"
+          fill={
+            {
+              "payload": 4294948892,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4280232516,
+              "type": 0,
+            }
+          }
+          strokeLinejoin={1}
+          strokeWidth={3}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</View>
+`;
+
+exports[`kid components SpeechBubble, ToolButton, ColorDot, BrushSizeButton snapshots 3`] = `
+<View
+  accessibilityLabel="Eraser"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": false,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <View
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      }
+    }
+    jestInlineStyle={
+      [
+        [
+          {
+            "alignItems": "center",
+            "borderRadius": 22,
+            "justifyContent": "center",
+          },
+          {
+            "height": 70,
+            "width": 70,
+          },
+          {
+            "backgroundColor": "#F4F7F5",
+            "borderColor": "transparent",
+            "borderWidth": 3,
+          },
+        ],
+      ]
+    }
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 22,
+          "justifyContent": "center",
+        },
+        {
+          "height": 70,
+          "width": 70,
+        },
+        {
+          "backgroundColor": "#F4F7F5",
+          "borderColor": "transparent",
+          "borderWidth": 3,
+        },
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      ]
+    }
+  >
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={42}
+      bbWidth={42}
+      fill="none"
+      focusable={false}
+      height={42}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "flex": 0,
+            "height": 42,
+            "width": 42,
+          },
+        ]
+      }
+      vbHeight={42}
+      vbWidth={42}
+      width={42}
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          [
+            "fill",
+          ]
+        }
+      >
+        <RNSVGPath
+          d="M8 26l14-14 12 12-10 10H14z"
+          fill={
+            {
+              "payload": 4294761963,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeLinejoin",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4280232516,
+              "type": 0,
+            }
+          }
+          strokeLinejoin={1}
+          strokeWidth={3}
+        />
+        <RNSVGPath
+          d="M16 18l12 12"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+              "strokeWidth",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4280232516,
+              "type": 0,
+            }
+          }
+          strokeWidth={3}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</View>
+`;
+
+exports[`kid components SpeechBubble, ToolButton, ColorDot, BrushSizeButton snapshots 4`] = `
+<View
+  accessibilityLabel="tomato"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": true,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <View
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      }
+    }
+    jestInlineStyle={
+      [
+        [
+          {
+            "borderRadius": 999,
+            "overflow": "hidden",
+          },
+          {
+            "backgroundColor": "#EE5A36",
+            "borderColor": "#1F2A44",
+            "borderWidth": 5,
+            "height": 56,
+            "width": 56,
+          },
+        ],
+      ]
+    }
+    style={
+      [
+        {
+          "borderRadius": 999,
+          "overflow": "hidden",
+        },
+        {
+          "backgroundColor": "#EE5A36",
+          "borderColor": "#1F2A44",
+          "borderWidth": 5,
+          "height": 56,
+          "width": 56,
+        },
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`kid components SpeechBubble, ToolButton, ColorDot, BrushSizeButton snapshots 5`] = `
+<View
+  accessibilityLabel="Rainbow"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": false,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <View
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      }
+    }
+    jestInlineStyle={
+      [
+        [
+          {
+            "borderRadius": 999,
+            "overflow": "hidden",
+          },
+          {
+            "backgroundColor": "#FFFFFF",
+            "borderColor": "#FFFFFF",
+            "borderWidth": 4,
+            "height": 56,
+            "width": 56,
+          },
+        ],
+      ]
+    }
+    style={
+      [
+        {
+          "borderRadius": 999,
+          "overflow": "hidden",
+        },
+        {
+          "backgroundColor": "#FFFFFF",
+          "borderColor": "#FFFFFF",
+          "borderWidth": 4,
+          "height": 56,
+          "width": 56,
+        },
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight="100%"
+        bbWidth="100%"
+        focusable={false}
+        height="100%"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          [
+            {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            {
+              "flex": 0,
+              "height": "100%",
+              "width": "100%",
+            },
+          ]
+        }
+        vbHeight={100}
+        vbWidth={100}
+        width="100%"
+      >
+        <RNSVGGroup
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+        >
+          <RNSVGPath
+            d="M50 50 L50 0 A50 50 0 0 1 93.30127018922192 25 Z"
+            fill={
+              {
+                "payload": 4293810742,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M50 50 L93.30127018922192 25 A50 50 0 0 1 93.30127018922194 75 Z"
+            fill={
+              {
+                "payload": 4294281771,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M50 50 L93.30127018922194 75 A50 50 0 0 1 50 100 Z"
+            fill={
+              {
+                "payload": 4294948892,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M50 50 L50 100 A50 50 0 0 1 6.698729810778076 75.00000000000001 Z"
+            fill={
+              {
+                "payload": 4282100330,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M50 50 L6.698729810778076 75.00000000000001 A50 50 0 0 1 6.698729810778069 24.999999999999993 Z"
+            fill={
+              {
+                "payload": 4282093536,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M50 50 L6.698729810778069 24.999999999999993 A50 50 0 0 1 49.99999999999999 0 Z"
+            fill={
+              {
+                "payload": 4287257814,
+                "type": 0,
+              }
+            }
+            propList={
+              [
+                "fill",
+              ]
+            }
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`kid components SpeechBubble, ToolButton, ColorDot, BrushSizeButton snapshots 6`] = `
+<View
+  accessibilityLabel="Medium brush"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": true,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <View
+    collapsable={false}
+    jestAnimatedProps={
+      {
+        "value": {},
+      }
+    }
+    jestAnimatedStyle={
+      {
+        "value": {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      }
+    }
+    jestInlineStyle={
+      [
+        [
+          {
+            "alignItems": "center",
+            "borderRadius": 999,
+            "height": 64,
+            "justifyContent": "center",
+            "width": 64,
+          },
+          {
+            "backgroundColor": "#FFE0D6",
+            "borderColor": "#EE5A36",
+            "borderWidth": 4,
+          },
+        ],
+      ]
+    }
+    style={
+      [
+        {
+          "alignItems": "center",
+          "borderRadius": 999,
+          "height": 64,
+          "justifyContent": "center",
+          "width": 64,
+        },
+        {
+          "backgroundColor": "#FFE0D6",
+          "borderColor": "#EE5A36",
+          "borderWidth": 4,
+        },
+        {
+          "transform": [
+            {
+              "scale": 1,
+            },
+          ],
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "#1F2A44",
+          "borderRadius": 999,
+          "height": 22,
+          "width": 22,
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`kid components TimePill text never shows seconds and goes sleepy under 5 min 1`] = `
+<View
+  accessibilityLabel="25 min of play left"
+  accessibilityRole="text"
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#D8F1E2",
+      "borderRadius": 28,
+      "borderWidth": 3,
+      "flexDirection": "row",
+      "gap": 8,
+      "paddingHorizontal": 16,
+      "paddingVertical": 12,
+    }
+  }
+>
+  <RNSVGSvgView
+    align="xMidYMid"
+    bbHeight={26}
+    bbWidth={26}
+    fill="none"
+    focusable={false}
+    height={26}
+    meetOrSlice={0}
+    minX={0}
+    minY={0}
+    style={
+      [
+        {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        {
+          "flex": 0,
+          "height": 26,
+          "width": 26,
+        },
+      ]
+    }
+    vbHeight={26}
+    vbWidth={26}
+    width={26}
+  >
+    <RNSVGGroup
+      fill={null}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    >
+      <RNSVGCircle
+        cx={13}
+        cy={13}
+        fill={
+          {
+            "payload": 4294948892,
+            "type": 0,
+          }
+        }
+        propList={
+          [
+            "fill",
+          ]
+        }
+        r={6}
+      />
+      <RNSVGPath
+        d="M13 2v3M13 21v3M2 13h3M21 13h3M5 5l2 2M19 19l2 2M5 21l2-2M19 7l2-2"
+        fill={
+          {
+            "payload": 4278190080,
+            "type": 0,
+          }
+        }
+        propList={
+          [
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+          ]
+        }
+        stroke={
+          {
+            "payload": 4294948892,
+            "type": 0,
+          }
+        }
+        strokeLinecap={1}
+        strokeWidth={2.5}
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>
+  <Text
+    style={
+      {
+        "color": "#1F2A44",
+        "fontFamily": "Nunito_800ExtraBold",
+        "fontSize": 18,
+      }
+    }
+  >
+    25 min of play left
+  </Text>
+</View>
+`;
+
+exports[`kid components TimePill text never shows seconds and goes sleepy under 5 min 2`] = `
+<View
+  accessibilityLabel="Getting sleepy…"
+  accessibilityRole="text"
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#D8F1E2",
+      "borderRadius": 28,
+      "borderWidth": 3,
+      "flexDirection": "row",
+      "gap": 8,
+      "paddingHorizontal": 16,
+      "paddingVertical": 12,
+    }
+  }
+>
+  <RNSVGSvgView
+    align="xMidYMid"
+    bbHeight={26}
+    bbWidth={26}
+    fill="none"
+    focusable={false}
+    height={26}
+    meetOrSlice={0}
+    minX={0}
+    minY={0}
+    style={
+      [
+        {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        {
+          "flex": 0,
+          "height": 26,
+          "width": 26,
+        },
+      ]
+    }
+    vbHeight={26}
+    vbWidth={26}
+    width={26}
+  >
+    <RNSVGGroup
+      fill={null}
+      propList={
+        [
+          "fill",
+        ]
+      }
+    >
+      <RNSVGPath
+        d="M15 3a10 10 0 1 0 9 13 8 8 0 1 1-9-13z"
+        fill={
+          {
+            "payload": 4294961059,
+            "type": 0,
+          }
+        }
+        propList={
+          [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinejoin",
+          ]
+        }
+        stroke={
+          {
+            "payload": 4280232516,
+            "type": 0,
+          }
+        }
+        strokeLinejoin={1}
+        strokeWidth={2}
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>
+  <Text
+    style={
+      {
+        "color": "#1F2A44",
+        "fontFamily": "Nunito_800ExtraBold",
+        "fontSize": 18,
+      }
+    }
+  >
+    Getting sleepy…
+  </Text>
+</View>
+`;

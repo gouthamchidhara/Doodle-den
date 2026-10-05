@@ -4,4 +4,7 @@ process.env.TZ = 'America/Chicago';
 module.exports = {
   preset: 'jest-expo',
   testPathIgnorePatterns: ['/node_modules/', '/supabase/'],
+  setupFiles: ['<rootDir>/jest.setup.ts'],
+  // Worklets ships a resolver that skips its native-only files under Jest.
+  resolver: 'react-native-worklets/jest/resolver.js',
 };

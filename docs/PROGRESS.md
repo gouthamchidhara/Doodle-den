@@ -18,3 +18,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-003 · Tokens, layout, fonts
 - Files: `src/theme/tokens.ts` (copied from A2), `src/theme/useLayout.ts`, `src/state/sessionStore.ts` (active kid + age mode for `useLayout`), `src/types/models.ts` (AgeMode stub, full file in T-007), `app/_layout.tsx`, `__tests__/theme/useLayout.test.ts`.
 - Works: Fredoka + Nunito load behind the splash (max 3 s); tablet (shortest side ≥ 600) locks landscape, phone portrait; breakpoint unit tests.
+
+## T-004 · Kid components
+- Files: `src/components/kid/{PressableScale,IconButton,PrimaryButton,TimePill,ActivityTile,SpeechBubble,ToolButton,ColorDot,BrushSizeButton}.tsx`, 24 icons in `src/components/kid/icons/`, `src/screens/DevComponentsScreen.tsx` + `app/dev-components.tsx` (temporary), `src/services/audio.ts` / `voice.ts` API stubs (filled in T-010), `src/types/models.ts` (full A3 copy, early for `BrushType`), `jest.setup.ts`, snapshot tests.
+- Works: shared press feedback (0.94 scale / 120 ms, light haptic, sound); rainbow dot drawn as SVG slices (React Native has no conic gradient); locked tile routes to Parent Gate; Jest uses the worklets resolver so Reanimated runs in tests.
