@@ -15,6 +15,7 @@ export interface SaveInput {
   exportPng: (longEdge: number) => Promise<string>;
   durationSec: number;
   title?: string | null;
+  extraFiles?: (artworkId: string) => Promise<string[]>;
 }
 
 // Saves (or overwrites) an artwork; returns its id. Throws when nothing could be saved.
@@ -26,9 +27,17 @@ export async function saveArtworkFiles(input: SaveInput): Promise<string> {
   const thumb = await input.exportPng(THUMB_LONG_EDGE);
   if (!png || !thumb) throw new Error('export failed');
 
+  const hasStrokes = !!input.doc && input.doc.strokes.length > 0;
   writeBase64(paths.png, png);
   writeBase64(paths.thumb, thumb);
-  if (input.doc) writeText(paths.strokes, JSON.stringify(input.doc));
+  if (hasStrokes) writeText(paths.strokes, JSON.stringify(input.doc));
+  let extra: string[] = [];
+  try {
+    extra = input.extraFiles ? await input.extraFiles(id) : [];
+  } catch (e) {
+    if (!existing) deleteFiles([paths.png, paths.thumb, paths.strokes]);
+    throw e;
+  }
 
   const now = Date.now();
   try {
@@ -39,7 +48,7 @@ export async function saveArtworkFiles(input: SaveInput): Promise<string> {
       title: input.title ?? existing?.title ?? null,
       pngPath: paths.png,
       thumbPath: paths.thumb,
-      strokesPath: input.doc ? paths.strokes : null,
+      strokesPath: hasStrokes ? paths.strokes : (existing?.strokesPath ?? null),
       durationSec: Math.max(existing?.durationSec ?? 0, Math.round(input.durationSec)),
       createdAt: existing?.createdAt ?? now,
       updatedAt: now,
@@ -48,7 +57,7 @@ export async function saveArtworkFiles(input: SaveInput): Promise<string> {
       trashedAt: existing?.trashedAt ?? null,
     });
   } catch (e) {
-    if (!existing) deleteFiles([paths.png, paths.thumb, paths.strokes]);
+    if (!existing) deleteFiles([paths.png, paths.thumb, paths.strokes, ...extra]);
     throw e;
   }
   return id;

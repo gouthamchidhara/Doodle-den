@@ -143,7 +143,7 @@ export function DrawingCanvas(props: DrawingCanvasProps) {
               {finished ? <Picture picture={finished} /> : null}
               {livePic ? <Picture picture={livePic} /> : null}
             </Group>
-            {overlay ? <Image image={overlay} {...full} fit="fill" /> : null}
+            {overlay ? <Image image={overlay} {...full} fit="fill" blendMode="multiply" /> : null}
             {ghost?.image ? <Image image={ghost.image} {...full} fit="contain" opacity={ghost.opacity} /> : null}
             {ghostPath ? (
               <Path path={ghostPath} style="stroke" strokeWidth={10 * unit} strokeCap="round" strokeJoin="round" color={resolveColor('grape')} opacity={ghost?.opacity ?? 0.35}>

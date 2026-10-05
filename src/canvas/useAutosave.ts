@@ -20,14 +20,18 @@ export interface AutosaveOpts {
   exporter?: (doc: StrokeDoc, longEdge: number) => Promise<string>;
   artworkId?: string | null;
   onSaved?: (id: string) => void;
+  version?: number;
+  hasContent?: () => boolean;
+  extraFiles?: (artworkId: string) => Promise<string[]>;
 }
 
 // Returns save() for explicit saves ("I'm done!"), reset() for a new drawing, and the current artwork id getter.
 export function useAutosave(o: AutosaveOpts) {
   const opts = useRef(o);
-  const state = useRef<{ id: string | null; savedDoc: StrokeDoc | null; startedAt: number; busy: Promise<string | null> | null }>({
+  const state = useRef<{ id: string | null; savedDoc: StrokeDoc | null; savedVersion: number; startedAt: number; busy: Promise<string | null> | null }>({
     id: o.artworkId ?? null,
     savedDoc: o.doc,
+    savedVersion: o.version ?? 0,
     startedAt: 0,
     busy: null,
   });
@@ -38,16 +42,18 @@ export function useAutosave(o: AutosaveOpts) {
   const save = useCallback(async (force = false): Promise<string | null> => {
     const s = state.current;
     if (s.busy) await s.busy;
-    const { kidId, activity, doc, exporter = defaultExporter } = opts.current;
-    if (!kidId || doc.strokes.length === 0) return s.id;
+    const { kidId, activity, doc, exporter = defaultExporter, version = 0, hasContent, extraFiles } = opts.current;
+    const content = hasContent ? hasContent() : doc.strokes.length > 0;
+    if (!kidId || !content) return s.id;
     const exp = (longEdge: number) => exporter(doc, longEdge);
-    if (!force && doc === s.savedDoc) return s.id;
+    if (!force && doc === s.savedDoc && version === s.savedVersion) return s.id;
     if (s.startedAt === 0) s.startedAt = Date.now();
     const run = (async () => {
       try {
-        const id = await saveArtworkFiles({ kidId, activity, artworkId: s.id, doc, exportPng: exp, durationSec: (Date.now() - s.startedAt) / 1000 });
+        const id = await saveArtworkFiles({ kidId, activity, artworkId: s.id, doc, exportPng: exp, durationSec: (Date.now() - s.startedAt) / 1000, extraFiles });
         s.id = id;
         s.savedDoc = doc;
+        s.savedVersion = version;
         opts.current.onSaved?.(id);
         return id;
       } catch (e) {
@@ -62,7 +68,7 @@ export function useAutosave(o: AutosaveOpts) {
   }, []);
 
   const reset = useCallback((artworkId: string | null = null, doc: StrokeDoc | null = null) => {
-    state.current = { id: artworkId, savedDoc: doc, startedAt: 0, busy: null };
+    state.current = { id: artworkId, savedDoc: doc, savedVersion: opts.current.version ?? 0, startedAt: 0, busy: null };
   }, []);
 
   const markStarted = useCallback(() => {

@@ -24,6 +24,10 @@ export interface DrawingSessionOpts {
   artworkId?: string | null;
   background?: StrokeDoc['background'];
   exporter?: (doc: StrokeDoc, longEdge: number) => Promise<string>;
+  version?: number;
+  hasContent?: () => boolean;
+  extraFiles?: (artworkId: string) => Promise<string[]>;
+  onSaved?: (artworkId: string) => void;
 }
 
 // Everything a drawing screen needs besides layout.
@@ -38,7 +42,17 @@ export function useDrawingSession(o: DrawingSessionOpts) {
   const [doc, setDoc] = useState<StrokeDoc>(() => emptyDoc(1, o.background ?? 'white'));
   const [history, setHistory] = useState({ canUndo: false, canRedo: false });
   const [custom, setCustom] = useState<CustomColor[]>([]);
-  const autosave = useAutosave({ kidId, activity: o.activity, doc, exporter: o.exporter, artworkId: o.artworkId });
+  const autosave = useAutosave({
+    kidId,
+    activity: o.activity,
+    doc,
+    exporter: o.exporter,
+    artworkId: o.artworkId,
+    version: o.version,
+    hasContent: o.hasContent,
+    extraFiles: o.extraFiles,
+    onSaved: o.onSaved,
+  });
   const { reset, save, markStarted } = autosave;
 
   useEffect(() => {
@@ -76,7 +90,7 @@ export function useDrawingSession(o: DrawingSessionOpts) {
   }, [doc, save, reset]);
 
   // "I'm done!": saves now; returns the artwork id (null when nothing drawn).
-  const finish = useCallback(async () => (doc.strokes.length > 0 ? save(true) : null), [doc, save]);
+  const finish = useCallback(async () => save(true), [save]);
 
   // Fresh page after "New drawing".
   const newDrawing = useCallback(() => {

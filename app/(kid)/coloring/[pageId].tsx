@@ -1,6 +1,3 @@
-// Coloring page (T-040). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { ColoringScreen } from '@/screens/kid/ColoringScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Coloring page" />;
-}
+export default ColoringScreen;

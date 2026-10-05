@@ -1,5 +1,5 @@
 // Offscreen PNG export of a stroke document (A5 Saving: 2048 px long edge, thumb 400).
-import { ImageFormat, Skia, type SkImage } from '@shopify/react-native-skia';
+import { BlendMode, ImageFormat, Skia, type SkImage } from '@shopify/react-native-skia';
 
 import type { StrokeDoc } from '@/types/models';
 
@@ -33,6 +33,7 @@ export function renderDocImage(doc: StrokeDoc, longEdge: number, opts: ExportOpt
   drawStrokes(canvas, doc.strokes, { width, height, unit: canvasUnit(width, height), symmetry: opts.symmetry });
   if (opts.overlay) {
     const p = Skia.Paint();
+    p.setBlendMode(BlendMode.Multiply);
     canvas.drawImageRect(opts.overlay, Skia.XYWHRect(0, 0, opts.overlay.width(), opts.overlay.height()), rect, p);
   }
   surface.flush();

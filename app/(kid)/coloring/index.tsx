@@ -1,6 +1,3 @@
-// Coloring page picker (T-040). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { ColoringPickerScreen } from '@/screens/kid/ColoringPickerScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Coloring page picker" />;
-}
+export default ColoringPickerScreen;
