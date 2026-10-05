@@ -26,3 +26,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-005 · Mascot
 - Files: `src/components/kid/Mascot.tsx` (SVG crayon from the Kid Home mockup), dev screen row, `__tests__/components/mascot.test.tsx`.
 - Works: idle 2 s bob, happy jump loop, sleepy half-closed eyes with a yawn every 4 s, sleeping closed eyes + floating "z z" (Reanimated).
+
+## T-006 · Parent components
+- Files: `src/components/parent/{ParentCard,SettingRow,StatRing,WeekBars,ParentButton}.tsx`, dev screen section, `__tests__/components/parentComponents.test.tsx`.
+- Works: ring/bar math unit-tested; rows have 44 pt+ targets; snapshots.

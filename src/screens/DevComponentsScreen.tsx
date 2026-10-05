@@ -13,6 +13,11 @@ import { PrimaryButton } from '@/components/kid/PrimaryButton';
 import { SpeechBubble } from '@/components/kid/SpeechBubble';
 import { TimePill } from '@/components/kid/TimePill';
 import { ToolButton } from '@/components/kid/ToolButton';
+import { ParentButton } from '@/components/parent/ParentButton';
+import { ParentCard } from '@/components/parent/ParentCard';
+import { SettingRow } from '@/components/parent/SettingRow';
+import { StatRing } from '@/components/parent/StatRing';
+import { WeekBars } from '@/components/parent/WeekBars';
 import { colors, drawingPalette, fonts, fontSize, space } from '@/theme/tokens';
 
 // Renders all component states in labelled rows.
@@ -75,6 +80,23 @@ export function DevComponentsScreen() {
         <BrushSizeButton size="M" selected />
         <BrushSizeButton size="S" selected={false} />
       </View>
+      <Text style={styles.h}>Parent components</Text>
+      <View style={styles.parent}>
+        <ParentCard title="Today">
+          <StatRing used={32} limit={45} />
+        </ParentCard>
+        <ParentCard title="Play time this week">
+          <WeekBars
+            days={['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((label, i) => ({ label, minutes: [46, 52, 30, 48, 38, 0, 0][i], isToday: i === 4 }))}
+          />
+        </ParentCard>
+        <ParentCard>
+          <SettingRow label="Daily limit" value="45 min" onPress={() => undefined} />
+          <SettingRow label="Extra 2 min" toggle={{ value: true, onChange: () => undefined }} last />
+        </ParentCard>
+        <ParentButton label="Primary" />
+        <ParentButton label="Secondary" variant="secondary" />
+      </View>
     </ScrollView>
   );
 }
@@ -85,4 +107,5 @@ const styles = StyleSheet.create({
   h: { fontFamily: fonts.bodyHeavy, fontSize: fontSize.label, color: colors.inkMuted, marginTop: space.lg },
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: space.md, alignItems: 'center' },
   tile: { width: 260 },
+  parent: { width: 390, gap: space.lg, backgroundColor: colors.bgParent, padding: space.lg },
 });

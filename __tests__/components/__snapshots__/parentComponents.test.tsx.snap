@@ -1,0 +1,678 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parent components SettingRow press + snapshot 1`] = `
+<View
+  accessibilityLabel="Daily limit: 45 min"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+>
+  <View
+    style={
+      [
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "gap": 12,
+          "justifyContent": "space-between",
+          "minHeight": 46,
+        },
+        {
+          "borderBottomColor": "#EEF1F5",
+          "borderBottomWidth": 1,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#1F2A44",
+          "flexShrink": 1,
+          "fontFamily": "Nunito_700Bold",
+          "fontSize": 15,
+        }
+      }
+    >
+      Daily limit
+    </Text>
+    <Text
+      style={
+        {
+          "color": "#2F6FB5",
+          "fontFamily": "Nunito_800ExtraBold",
+          "fontSize": 15,
+        }
+      }
+    >
+      45 min
+       ›
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`parent components snapshots 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#FFFFFF",
+      "borderColor": "#E1E5EE",
+      "borderRadius": 22,
+      "borderWidth": 1,
+      "gap": 12,
+      "padding": 18,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "#1F2A44",
+          "fontFamily": "Nunito_800ExtraBold",
+          "fontSize": 16,
+        }
+      }
+    >
+      Play time this week
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "alignItems": "flex-end",
+        "flexDirection": "row",
+        "height": 74,
+        "justifyContent": "space-between",
+        "paddingHorizontal": 4,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="M: 46 minutes"
+      style={
+        {
+          "alignItems": "center",
+          "gap": 6,
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderRadius": 8,
+              "width": 28,
+            },
+            {
+              "backgroundColor": "#B5D3F5",
+              "height": 46,
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {
+              "color": "#4A5570",
+              "fontFamily": "Nunito_800ExtraBold",
+              "fontSize": 12,
+            },
+            false,
+          ]
+        }
+      >
+        M
+      </Text>
+    </View>
+    <View
+      accessibilityLabel="T: 52 minutes"
+      style={
+        {
+          "alignItems": "center",
+          "gap": 6,
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderRadius": 8,
+              "width": 28,
+            },
+            {
+              "backgroundColor": "#B5D3F5",
+              "height": 52,
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {
+              "color": "#4A5570",
+              "fontFamily": "Nunito_800ExtraBold",
+              "fontSize": 12,
+            },
+            false,
+          ]
+        }
+      >
+        T
+      </Text>
+    </View>
+    <View
+      accessibilityLabel="W: 30 minutes"
+      style={
+        {
+          "alignItems": "center",
+          "gap": 6,
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderRadius": 8,
+              "width": 28,
+            },
+            {
+              "backgroundColor": "#B5D3F5",
+              "height": 30,
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {
+              "color": "#4A5570",
+              "fontFamily": "Nunito_800ExtraBold",
+              "fontSize": 12,
+            },
+            false,
+          ]
+        }
+      >
+        W
+      </Text>
+    </View>
+    <View
+      accessibilityLabel="T: 48 minutes"
+      style={
+        {
+          "alignItems": "center",
+          "gap": 6,
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderRadius": 8,
+              "width": 28,
+            },
+            {
+              "backgroundColor": "#B5D3F5",
+              "height": 48,
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {
+              "color": "#4A5570",
+              "fontFamily": "Nunito_800ExtraBold",
+              "fontSize": 12,
+            },
+            false,
+          ]
+        }
+      >
+        T
+      </Text>
+    </View>
+    <View
+      accessibilityLabel="F: 38 minutes"
+      style={
+        {
+          "alignItems": "center",
+          "gap": 6,
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderRadius": 8,
+              "width": 28,
+            },
+            {
+              "backgroundColor": "#3B8FE0",
+              "height": 38,
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {
+              "color": "#4A5570",
+              "fontFamily": "Nunito_800ExtraBold",
+              "fontSize": 12,
+            },
+            {
+              "color": "#1F2A44",
+            },
+          ]
+        }
+      >
+        F
+      </Text>
+    </View>
+    <View
+      accessibilityLabel="S: 0 minutes"
+      style={
+        {
+          "alignItems": "center",
+          "gap": 6,
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderRadius": 8,
+              "width": 28,
+            },
+            {
+              "backgroundColor": "#E1E5EE",
+              "height": 4,
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {
+              "color": "#4A5570",
+              "fontFamily": "Nunito_800ExtraBold",
+              "fontSize": 12,
+            },
+            false,
+          ]
+        }
+      >
+        S
+      </Text>
+    </View>
+    <View
+      accessibilityLabel="S: 0 minutes"
+      style={
+        {
+          "alignItems": "center",
+          "gap": 6,
+        }
+      }
+    >
+      <View
+        style={
+          [
+            {
+              "borderRadius": 8,
+              "width": 28,
+            },
+            {
+              "backgroundColor": "#E1E5EE",
+              "height": 4,
+            },
+          ]
+        }
+      />
+      <Text
+        style={
+          [
+            {
+              "color": "#4A5570",
+              "fontFamily": "Nunito_800ExtraBold",
+              "fontSize": 12,
+            },
+            false,
+          ]
+        }
+      >
+        S
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`parent components snapshots 2`] = `
+<RNSVGSvgView
+  accessibilityLabel="32 of 45 minutes"
+  bbHeight={88}
+  bbWidth={88}
+  focusable={false}
+  height={88}
+  style={
+    [
+      {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      {
+        "flex": 0,
+        "height": 88,
+        "width": 88,
+      },
+    ]
+  }
+  width={88}
+>
+  <RNSVGGroup
+    fill={
+      {
+        "payload": 4278190080,
+        "type": 0,
+      }
+    }
+  >
+    <RNSVGCircle
+      cx={44}
+      cy={44}
+      fill={null}
+      propList={
+        [
+          "fill",
+          "stroke",
+          "strokeWidth",
+        ]
+      }
+      r={38}
+      stroke={
+        {
+          "payload": 4292994542,
+          "type": 0,
+        }
+      }
+      strokeWidth={12}
+    />
+    <RNSVGCircle
+      cx={44}
+      cy={44}
+      fill={null}
+      matrix={
+        [
+          6.123233995736766e-17,
+          -1,
+          1,
+          6.123233995736766e-17,
+          0,
+          88,
+        ]
+      }
+      propList={
+        [
+          "fill",
+          "stroke",
+          "strokeWidth",
+          "strokeDasharray",
+          "strokeLinecap",
+        ]
+      }
+      r={38}
+      stroke={
+        {
+          "payload": 4282100330,
+          "type": 0,
+        }
+      }
+      strokeDasharray={
+        [
+          "169.78562963400836",
+          "238.76104167282426",
+        ]
+      }
+      strokeLinecap={1}
+      strokeWidth={12}
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;
+
+exports[`parent components snapshots 3`] = `
+<View
+  accessibilityLabel="Next"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    [
+      {
+        "alignItems": "center",
+        "borderRadius": 14,
+        "height": 48,
+        "justifyContent": "center",
+        "paddingHorizontal": 16,
+      },
+      {
+        "backgroundColor": "#1F2A44",
+      },
+      {
+        "opacity": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "fontFamily": "Nunito_800ExtraBold",
+          "fontSize": 15,
+        },
+        {
+          "color": "#FFFFFF",
+        },
+      ]
+    }
+  >
+    Next
+  </Text>
+</View>
+`;
+
+exports[`parent components snapshots 4`] = `
+<View
+  accessibilityLabel="Back"
+  accessibilityRole="button"
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": false,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    [
+      {
+        "alignItems": "center",
+        "borderRadius": 14,
+        "height": 48,
+        "justifyContent": "center",
+        "paddingHorizontal": 16,
+      },
+      {
+        "backgroundColor": "#FFFFFF",
+        "borderColor": "#C9D2E3",
+        "borderWidth": 1,
+      },
+      {
+        "opacity": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "fontFamily": "Nunito_800ExtraBold",
+          "fontSize": 15,
+        },
+        {
+          "color": "#1F2A44",
+        },
+      ]
+    }
+  >
+    Back
+  </Text>
+</View>
+`;
+
+exports[`parent components snapshots 5`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "gap": 12,
+        "justifyContent": "space-between",
+        "minHeight": 46,
+      },
+      {
+        "borderBottomColor": "#EEF1F5",
+        "borderBottomWidth": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#1F2A44",
+        "flexShrink": 1,
+        "fontFamily": "Nunito_700Bold",
+        "fontSize": 15,
+      }
+    }
+  >
+    Extra 2 min
+  </Text>
+  <RCTSwitch
+    accessibilityLabel="Extra 2 min"
+    accessibilityRole="switch"
+    onChange={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    onTintColor="#3BAA6A"
+    style={
+      {
+        "alignSelf": "flex-start",
+      }
+    }
+    tintColor="#E1E5EE"
+    value={true}
+  />
+</View>
+`;
