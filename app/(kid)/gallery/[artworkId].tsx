@@ -1,6 +1,3 @@
-// My Gallery detail (T-047). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { GalleryDetailScreen } from '@/screens/kid/GalleryDetailScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="My Gallery detail" />;
-}
+export default GalleryDetailScreen;
