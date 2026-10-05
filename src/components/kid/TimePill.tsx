@@ -12,9 +12,9 @@ export interface TimePillProps {
 
 const SLEEPY_UNDER_MIN = 5;
 
-// Text shown in the pill for a number of whole minutes left.
+// Text shown in the pill for the minutes left (fractional; shown rounded up as A4 asks).
 export function timePillText(minutesLeft: number): string {
-  return minutesLeft < SLEEPY_UNDER_MIN ? 'Getting sleepy…' : `${Math.floor(minutesLeft)} min of play left`;
+  return minutesLeft < SLEEPY_UNDER_MIN ? 'Getting sleepy…' : `${Math.ceil(minutesLeft)} min of play left`;
 }
 
 // White pill with a sun (or moon when sleepy) and the time text.

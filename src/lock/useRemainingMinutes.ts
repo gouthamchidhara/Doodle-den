@@ -1,18 +1,8 @@
-// Minutes of play left for the time pill. Reads the lock store once T-033 wires it; until then shows the daily limit.
-import { useEffect, useState } from 'react';
+// Minutes of play left for the time pill, from the running lock state (A4 getRemaining); the pill rounds up.
+import { useLockStore } from './lockStore';
 
-import { getRules } from '@/db/repositories/rulesRepo';
-import { useSessionStore } from '@/state/sessionStore';
-
-// Whole minutes left today (null while loading).
+// Minutes left as a fraction (null until the lock state is loaded).
 export function useRemainingMinutes(): number | null {
-  const kidId = useSessionStore((s) => s.activeKidId);
-  const [minutes, setMinutes] = useState<number | null>(null);
-  useEffect(() => {
-    if (!kidId) return;
-    getRules(kidId)
-      .then((r) => setMinutes(Math.min(r.dailyLimitMin, r.sessionLimitMin)))
-      .catch(() => undefined);
-  }, [kidId]);
-  return minutes;
+  const sec = useLockStore((s) => s.remainingSec);
+  return sec === null ? null : sec / 60;
 }

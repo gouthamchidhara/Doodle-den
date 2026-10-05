@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import { LockGate } from '@/lock/LockGate';
 import { preloadSounds } from '@/services/audio';
 import { colors } from '@/theme/tokens';
 import { isTabletSize } from '@/theme/useLayout';
@@ -48,6 +49,7 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bgKid } }} />
+      <LockGate />
     </GestureHandlerRootView>
   );
 }
