@@ -24,7 +24,6 @@ export type SoundName =
   | 'magic-loop'
   | 'beep';
 
-/* eslint-disable @typescript-eslint/no-require-imports */
 const SOURCES: Record<SoundName, number> = {
   tap: require('../../assets/sounds/tap.m4a'),
   'tool-select': require('../../assets/sounds/tool-select.m4a'),
@@ -48,7 +47,6 @@ const SOURCES: Record<SoundName, number> = {
   'magic-loop': require('../../assets/sounds/magic-loop.m4a'),
   beep: require('../../assets/sounds/beep.m4a'),
 };
-/* eslint-enable @typescript-eslint/no-require-imports */
 
 const players = new Map<SoundName, AudioPlayer>();
 let masterVolume = 1;
