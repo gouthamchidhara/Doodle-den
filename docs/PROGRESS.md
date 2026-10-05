@@ -69,3 +69,17 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-020 · Stroke model
 - Files: `src/canvas/strokeModel.ts`, `__tests__/canvas/strokeModel.test.ts`.
 - Works (all unit-tested, no Skia): normalize/denormalize, 2 px thinning, pressure width (0.6 + p·0.8), quadratic midpoint smoothing to path commands, stroke/doc bounds, FNV hash + mulberry32 seeded random, polyline length, evenly spaced samples (glitter/stamps), rainbow hue formula.
+
+## T-021 · DrawingCanvas core
+- Files: `src/canvas/DrawingCanvas.tsx`, `src/canvas/useStrokeInput.ts`, `src/canvas/strokeTracker.ts`, `src/canvas/renderStroke.ts`, `src/canvas/exportPng.ts`, `src/canvas/replay.ts`, `src/canvas/brushes/brushSpecs.ts`, `src/canvas/color.ts`.
+- Works: controlled `doc`; one-finger pan (`minDistance 0`, `maxPointers 1`), stylus pressure, 2 px thinning; layers Fill → underlay → stroke layer (cached finished-stroke Picture + live-stroke Picture, re-rendered at most once per frame) → overlay → ghost; ref handle `undo/redo/clear/exportPng/replay/canUndo/canRedo`; kaleidoscope symmetry 1/2/4/8; offscreen PNG export at any long edge.
+- Deviation: A5 widths are treated as px at a 900 px long-edge reference canvas (`canvasUnit`) so 2048 px exports look like the screen. Device fps check (300 strokes on iPad/budget Android) still to run on hardware.
+
+## T-022 · Brushes
+- Files: `src/canvas/renderStroke.ts`, `src/canvas/brushes/brushSpecs.ts`, `src/canvas/color.ts`.
+- Works: crayon (discrete path effect), marker, watercolor (35 % + blur 3), glitter (60 % base + seeded stars every 14 px, so replay is identical), neon (blurred glow + white-mixed core), rainbow color (hue by distance, seeded start), eraser (`BlendMode.Clear` inside the stroke layer, never erases the background).
+
+## T-023 · Stamps, undo/redo, clear
+- Files: `src/canvas/stamps.ts`, `src/canvas/history.ts`, `__tests__/canvas/engine.test.ts`.
+- Works: 20 stamps placed along the stroke at 1.2 × size spacing; undo/redo with 50-step limit, redo cleared by a new stroke; `shouldSaveBeforeClear` (3+ strokes) used by hold-to-clear in T-025. Tests cover history, replay timing, colors, brush table, stamps.
+- Deviation: stamps are vector placeholder shapes in code instead of `assets/stamps/*.png`; owner can swap art later (T-103).
