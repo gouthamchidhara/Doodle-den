@@ -1,4 +1,5 @@
 // Kid profiles (A3). Nicknames only — never real names, birthdays or photos.
+import { deleteKidArt } from '@/services/files';
 import type { AgeMode, KidProfile } from '@/types/models';
 import { newId } from '@/utils/ids';
 
@@ -71,9 +72,10 @@ export async function updateKid(id: string, patch: Partial<Pick<KidProfile, 'nic
   return next;
 }
 
-// Deletes a kid and (by cascade) all their rows; the caller deletes the art folder.
+// Deletes a kid, (by cascade) all their rows, and their art folder.
 export async function deleteKid(id: string): Promise<void> {
   const db = await getDb();
   await db.run('DELETE FROM kid_profile WHERE id = ?', [id]);
   await enqueueSync(db, 'kid_profile', id, 'delete');
+  deleteKidArt(id);
 }

@@ -83,3 +83,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 - Files: `src/canvas/stamps.ts`, `src/canvas/history.ts`, `__tests__/canvas/engine.test.ts`.
 - Works: 20 stamps placed along the stroke at 1.2 × size spacing; undo/redo with 50-step limit, redo cleared by a new stroke; `shouldSaveBeforeClear` (3+ strokes) used by hold-to-clear in T-025. Tests cover history, replay timing, colors, brush table, stamps.
 - Deviation: stamps are vector placeholder shapes in code instead of `assets/stamps/*.png`; owner can swap art later (T-103).
+
+## T-024 · Saving
+- Files: `src/canvas/saveArtwork.ts` (`saveArtworkFiles`, `parseStrokeDoc`), `src/canvas/useAutosave.ts`, `src/state/canvasStore.ts` (tool/color/size/stamp + open-drawing saver registry, `saveAllOpenDrawings()` for lock `AUTOSAVE`), `src/services/files.ts` (expo-file-system wrapper, paths per A3), in-memory file-system mock `__tests__/helpers/mockFs.ts` (global in `jest.setup.ts`), `__tests__/canvas/saveArtwork.test.ts`.
+- Works: PNG 2048 + thumb 400 + strokes JSON written first, then the `artwork` row; later saves overwrite the same files and keep `created_at`; failed first insert deletes the files (tested); autosave every 10 s when changed, on app background/inactive, on lock AUTOSAVE (registry) and on unmount; deleting a kid deletes `art/<kidId>/`. `replay()` lives on the canvas handle (T-021).
+- Note: autosave exports from the stroke doc directly (not the on-screen ref) so the leave-screen save works after unmount. Force-quit check is a device test.

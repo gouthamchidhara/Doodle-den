@@ -46,3 +46,9 @@ jest.mock('expo-router', () => {
     Slot: () => null,
   };
 });
+
+jest.mock('expo-file-system', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const m = require('./__tests__/helpers/mockFs') as typeof import('./__tests__/helpers/mockFs');
+  return { File: m.File, Directory: m.Directory, Paths: m.Paths };
+});
