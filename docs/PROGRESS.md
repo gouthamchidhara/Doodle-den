@@ -30,3 +30,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-006 · Parent components
 - Files: `src/components/parent/{ParentCard,SettingRow,StatRing,WeekBars,ParentButton}.tsx`, dev screen section, `__tests__/components/parentComponents.test.tsx`.
 - Works: ring/bar math unit-tested; rows have 44 pt+ targets; snapshots.
+
+## T-007 · SQLite + core repositories
+- Files: `src/db/{types,database,migrations,syncQueue}.ts`, `src/db/repositories/{kid,rules,usage,artwork,progress,reward,color,meta}Repo.ts`, `src/utils/ids.ts`, `src/utils/time.ts` (`shiftDayKey`), `__tests__/helpers/nodeDb.ts`, `__tests__/db/coreRepos.test.ts`.
+- Works: migrations 1 + 2 stored verbatim from A3, applied per `PRAGMA user_version` (PRAGMA lines run outside the transaction), idempotent; every repository function tested against a real in-memory SQLite (Node 22 built-in `node:sqlite`, no extra package); synced tables write `sync_queue`; rules saved within A3 ranges.
+- Notes: `artworkRepo` returns `ArtworkRecord` (= `Artwork` + `familyShared`, `stickerPath` from migration 2) so `models.ts` stays an exact copy.

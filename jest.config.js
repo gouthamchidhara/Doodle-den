@@ -3,6 +3,7 @@ process.env.TZ = 'America/Chicago';
 
 module.exports = {
   preset: 'jest-expo',
+  testMatch: ['**/__tests__/**/*.test.[jt]s?(x)'],
   testPathIgnorePatterns: ['/node_modules/', '/supabase/'],
   setupFiles: ['<rootDir>/jest.setup.ts'],
   // Worklets ships a resolver that skips its native-only files under Jest.
