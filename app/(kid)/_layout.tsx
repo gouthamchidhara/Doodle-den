@@ -1,6 +1,14 @@
-// Kid shell: time pill, wind-down overlay (T-034). Placeholder until its ticket builds it.
+// Kid shell: screens plus the wind-down overlay on top.
 import { Stack } from 'expo-router';
+import { View } from 'react-native';
 
-export default function Layout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+import { WindDownOverlay } from '@/components/kid/WindDownOverlay';
+
+export default function KidLayout() {
+  return (
+    <View style={{ flex: 1 }}>
+      <Stack screenOptions={{ headerShown: false }} />
+      <WindDownOverlay />
+    </View>
+  );
 }
