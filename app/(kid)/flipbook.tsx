@@ -1,6 +1,3 @@
-// Flipbook Studio (T-046). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { FlipbookScreen } from '@/screens/kid/FlipbookScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Flipbook Studio" />;
-}
+export default FlipbookScreen;
