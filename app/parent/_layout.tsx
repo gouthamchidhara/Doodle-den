@@ -1,6 +1,6 @@
-// Parent zone layout + gate guard (T-013). Placeholder until its ticket builds it.
-import { Stack } from 'expo-router';
+// Parent zone layout: redirects to the gate unless unlocked; leaving the zone re-locks it (T-013).
+import { ParentZoneLayout } from '@/screens/parent/ParentZoneLayout';
 
 export default function Layout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return <ParentZoneLayout />;
 }

@@ -1,6 +1,6 @@
-// Profile picker (T-013). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+// Profile picker route (T-013).
+import { ProfilePickerScreen } from '@/screens/ProfilePickerScreen';
 
 export default function Route() {
-  return <PlaceholderScreen title="Profile picker" />;
+  return <ProfilePickerScreen />;
 }

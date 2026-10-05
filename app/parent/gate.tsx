@@ -1,6 +1,6 @@
-// Parent Gate (T-013). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+// Parent Gate route (T-013).
+import { ParentGateScreen } from '@/screens/parent/ParentGateScreen';
 
 export default function Route() {
-  return <PlaceholderScreen title="Gate" />;
+  return <ParentGateScreen />;
 }
