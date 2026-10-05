@@ -1,4 +1,6 @@
 // Kid Home (T-014). Placeholder until its ticket builds it.
+import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+
 export default function Route() {
-  return null;
+  return <PlaceholderScreen title="Home" />;
 }

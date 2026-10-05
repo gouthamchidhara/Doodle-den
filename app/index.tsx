@@ -1,6 +1,6 @@
-// Entry route: redirects to onboarding / profiles / kid home in T-011. Blank screen for now.
-import { View } from 'react-native';
+// Entry route: waits for DB + lock state, then redirects (A5 App start & routing).
+import { StartupScreen } from '@/screens/StartupScreen';
 
 export default function Index() {
-  return <View style={{ flex: 1 }} />;
+  return <StartupScreen />;
 }

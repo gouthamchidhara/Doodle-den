@@ -1,4 +1,6 @@
 // Kid shell: time pill, wind-down overlay (T-034). Placeholder until its ticket builds it.
-export default function Route() {
-  return null;
+import { Stack } from 'expo-router';
+
+export default function Layout() {
+  return <Stack screenOptions={{ headerShown: false }} />;
 }
