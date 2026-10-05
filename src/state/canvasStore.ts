@@ -11,6 +11,7 @@ interface CanvasState {
   size: 'S' | 'M' | 'L';
   stampId: string;
   savers: Saver[];
+  lastAutosaveAt: number | null;
   setTool: (t: BrushType) => void;
   setColor: (c: string) => void;
   setSize: (s: 'S' | 'M' | 'L') => void;
@@ -24,6 +25,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
   size: 'M',
   stampId: 'heart',
   savers: [],
+  lastAutosaveAt: null,
   setTool: (tool) => set({ tool }),
   setColor: (color) => set({ color }),
   setSize: (size) => set({ size }),
@@ -36,7 +38,9 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
 
 // Saves every open drawing (lock AUTOSAVE, app background). Never throws.
 export async function saveAllOpenDrawings(): Promise<void> {
-  for (const s of useCanvasStore.getState().savers) {
+  const savers = useCanvasStore.getState().savers;
+  if (savers.length > 0) useCanvasStore.setState({ lastAutosaveAt: Date.now() });
+  for (const s of savers) {
     try {
       await s();
     } catch (e) {

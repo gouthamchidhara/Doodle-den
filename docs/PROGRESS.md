@@ -116,3 +116,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-034 · Wind-down overlay
 - Files: `src/components/kid/WindDownOverlay.tsx`, `app/(kid)/_layout.tsx`, `__tests__/components/windDown.test.tsx`.
 - Works: WARN_5 → sun banner with sleepy mascot, "Getting sleepy… finish your drawing soon!", yawn + voice, 10 % dim over 2 s, hides after 6 s. WARN_1 → same banner, stays; on drawing screens "Finish my drawing" (Big) / moon button (Little) → `requestFinishDrawing`; granted → "OK! 2 more minutes.", denied → button hides. BREAK → stretch bubble for 10 s. Everything uses `pointerEvents="none"/"box-none"`, so drawing is never blocked. Extension limit comes from the engine (once per session by default).
+
+## T-035 · Lock screen + parent unlock
+- Files: `app/locked.tsx`, `src/screens/LockScreen.tsx`, `src/screens/lock/{lockText.ts,UnlockSheet.tsx}`, `src/components/kid/{NightSky,OffScreenIdeaCard}.tsx`, `src/content/offScreenIdeas.ts`, `canvasStore.lastAutosaveAt`, `__tests__/screens/lockScreen.test.tsx`.
+- Works: night sky + moon + sleeping mascot, headline per reason, "Great art today, {nickname}!", "saved in My Gallery" chip when an autosave ran in the last 60 s, 3 rotating off-screen ideas (hourly), "Back in n minutes / Back tomorrow / Back at 7:00 AM", lullaby at 0.3 for 60 s, Android back blocked. Hold 1 s on "Grown-ups: hold to unlock" → Parent Gate → unlock sheet (+15, +30, End for today) → `parentUnlock` → Kid Home.
+- Off-screen idea icons reuse existing icons until custom art arrives (T-103).

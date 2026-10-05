@@ -1,6 +1,3 @@
-// Lock screen (T-035). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { LockScreen } from '@/screens/LockScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Lock screen" />;
-}
+export default LockScreen;
