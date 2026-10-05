@@ -39,3 +39,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-008 · v1 feature repositories
 - Files: `src/db/repositories/{world,voice,flipbook,music,jigsaw,museum,story,aiResult}Repo.ts`, `src/types/feature.ts`, `src/db/json.ts`, `__tests__/db/featureRepos.test.ts`.
 - Works: list/get/save/delete for each; jigsaw keeps the best time; JSON columns parsed defensively.
+
+## T-009 · ids, time, hash, PIN service
+- Files: `src/utils/{ids,time,hash}.ts`, `src/services/pinService.ts`, `__tests__/utils/time.test.ts`, `__tests__/services/pinService.test.ts`, `__tests__/helpers/mockNative.ts`.
+- Works: `localDayKey`, `nextLocalMidnight`, `isInBedtime` (incl. across midnight), `nextBedtimeEnd`, `isoWeekKey`; PIN stored as SHA-256(salt + pin) with a 16-byte salt in secure-store; 3 wrong in a row → 60 s cooldown in `dd.gate.failures`; all tested.
