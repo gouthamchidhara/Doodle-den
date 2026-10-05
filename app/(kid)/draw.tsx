@@ -1,6 +1,3 @@
-// Free Draw (T-025). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { DrawScreen } from '@/screens/kid/DrawScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Free Draw" />;
-}
+export default DrawScreen;

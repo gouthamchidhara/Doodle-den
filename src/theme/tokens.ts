@@ -100,3 +100,9 @@ export const motion = {
   tileEnterMs: 260,
   windDownDimMs: 2000, // sky dims over 2 s at warning
 } as const;
+
+// Added in build (not in A2): translucent ink layers for sheets and the wind-down dim.
+export const overlays = {
+  scrim: 'rgba(31, 42, 68, 0.45)',
+  windDownDim: 'rgba(31, 42, 68, 0.10)',
+} as const;
