@@ -6,6 +6,7 @@ import { saveAllOpenDrawings } from '@/state/canvasStore';
 
 import { lockController } from './lockRuntime';
 import { useLockStore } from './lockStore';
+import { applyScreenTimeMonitoring, removeShield, shieldNow } from './screenTime';
 import { useLockTimer } from './useLockTimer';
 
 // Route groups a locked kid may still see.
@@ -32,6 +33,11 @@ export function LockGate() {
       },
       goHome: () => {
         if (route.current[0] === 'locked') router.replace('/home');
+      },
+      shield: {
+        lock: shieldNow,
+        unlock: removeShield,
+        reapply: (rules, extra) => void applyScreenTimeMonitoring(rules, extra),
       },
     });
   }, []);

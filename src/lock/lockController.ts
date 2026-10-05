@@ -17,6 +17,7 @@ export interface LockEffects {
   autosave: () => Promise<void>;
   goLocked: () => void;
   goHome: () => void;
+  shield?: { lock: () => void; unlock: () => void; reapply: (rules: TimeRules, extraTodaySec: number) => void };
 }
 
 interface Running {
@@ -140,6 +141,7 @@ export class LockController {
     useLockStore.getState().set(r.state, r.rules);
     await saveLockState(r.state);
     await this.handle(out.events);
+    if (option === 'plus15' || option === 'plus30') this.effects.shield?.reapply(r.rules, r.state.extraTodaySec);
   }
 
   // Rules saved in the parent zone: reload and re-check limits.
@@ -153,6 +155,7 @@ export class LockController {
     useLockStore.getState().set(r.state, r.rules);
     await saveLockState(r.state);
     await this.handle(out.events);
+    this.effects.shield?.reapply(next, r.state.extraTodaySec);
   }
 
   // Stops tracking (profile switch / delete).
@@ -175,7 +178,12 @@ export class LockController {
       await incrementSessions(r.kidId, r.state.dayKey).catch((e: unknown) => console.warn('[lock] session count failed', e));
     }
     if (events.includes('AUTOSAVE')) await withTimeout(this.effects.autosave(), AUTOSAVE_TIMEOUT_MS);
-    if (events.includes('LOCK')) this.effects.goLocked();
-    else if (events.includes('UNLOCK')) this.effects.goHome();
+    if (events.includes('LOCK')) {
+      this.effects.shield?.lock();
+      this.effects.goLocked();
+    } else if (events.includes('UNLOCK')) {
+      this.effects.shield?.unlock();
+      this.effects.goHome();
+    }
   }
 }
