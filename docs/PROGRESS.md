@@ -35,3 +35,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 - Files: `src/db/{types,database,migrations,syncQueue}.ts`, `src/db/repositories/{kid,rules,usage,artwork,progress,reward,color,meta}Repo.ts`, `src/utils/ids.ts`, `src/utils/time.ts` (`shiftDayKey`), `__tests__/helpers/nodeDb.ts`, `__tests__/db/coreRepos.test.ts`.
 - Works: migrations 1 + 2 stored verbatim from A3, applied per `PRAGMA user_version` (PRAGMA lines run outside the transaction), idempotent; every repository function tested against a real in-memory SQLite (Node 22 built-in `node:sqlite`, no extra package); synced tables write `sync_queue`; rules saved within A3 ranges.
 - Notes: `artworkRepo` returns `ArtworkRecord` (= `Artwork` + `familyShared`, `stickerPath` from migration 2) so `models.ts` stays an exact copy.
+
+## T-008 · v1 feature repositories
+- Files: `src/db/repositories/{world,voice,flipbook,music,jigsaw,museum,story,aiResult}Repo.ts`, `src/types/feature.ts`, `src/db/json.ts`, `__tests__/db/featureRepos.test.ts`.
+- Works: list/get/save/delete for each; jigsaw keeps the best time; JSON columns parsed defensively.
