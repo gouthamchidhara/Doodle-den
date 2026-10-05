@@ -65,3 +65,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-014 · Kid Home
 - Files: `app/(kid)/home.tsx`, `src/screens/kid/HomeScreen.tsx`, `src/components/kid/ShelfTabs.tsx`, `src/content/activities.ts` (all 22 tiles: shelf, tint, route, Big-only, AR, Magic), `src/content/dailyIdea.ts`, 27 tile/shelf illustrations in `src/components/kid/icons/*Art.tsx` (8 copied from the mockup), `src/state/useActiveKid.ts`, stubs `src/lock/useRemainingMinutes.ts` (T-033), `src/services/useAiStatus.ts` (T-078), `src/games/arwall/arSupport.ts` (false until viro), `__tests__/screens/home.test.tsx`.
 - Works: header (avatar + "Hi, {nickname}!", time pill, Grown-ups → gate), 5 shelves with spoken names, tablet 4 columns / phone 2 columns, Little mode hides Big-only tiles, AR Wall hidden without AR, Magic tiles padlocked until consent (→ gate → Magic settings) and dimmed with a cloud when offline, shelf remembered per kid in `app_meta`, daily idea rotates by local day and opens its activity. Avatar tap switches profile through the gate when there is more than one kid.
+
+## T-020 · Stroke model
+- Files: `src/canvas/strokeModel.ts`, `__tests__/canvas/strokeModel.test.ts`.
+- Works (all unit-tested, no Skia): normalize/denormalize, 2 px thinning, pressure width (0.6 + p·0.8), quadratic midpoint smoothing to path commands, stroke/doc bounds, FNV hash + mulberry32 seeded random, polyline length, evenly spaced samples (glitter/stamps), rainbow hue formula.
