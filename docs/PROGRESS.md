@@ -152,3 +152,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-044 · Kaleidoscope
 - Files: `src/screens/kid/KaleidoscopeScreen.tsx`, `app/(kid)/kaleidoscope.tsx`, `src/components/kid/SymmetryButton.tsx`, `src/canvas/symmetry.ts` (shared by the renderer), `__tests__/canvas/symmetry.test.ts`, `__tests__/screens/kaleidoscope.test.tsx`.
 - Works: square canvas, 2 (mirror) / 4 / 8 segment buttons, black ↔ white background in Big mode, all brushes except stamps, sizes, palette, undo, done sheet. Saves as `kaleidoscope` with the symmetry baked into the PNG; `app_meta.kaleido_sym_<artworkId>` keeps the segment count for replay. Tests check mirror, 90° and 45° copies.
+
+## T-045 · Guided Drawing
+- Files: `src/content/{guidedLessons.json,guidedLessons.ts}` (+ 15 voice lines), `src/games/guided/{handPoints.ts,HandHint.tsx}`, `src/components/kid/LessonCard.tsx`, `src/screens/kid/GuidedScreen.tsx`, `app/(kid)/guided.tsx`, `__tests__/screens/guided.test.tsx`.
+- Works: lesson grid (finished lessons show stars); each step shows the dashed ghost path at 0.35 on a square canvas, a hand travels once along it (Skia contour measure), and the step's voice line plays; the kid draws freely (no accuracy check). "Next" moves on; the last step says "Now color it!" and opens tools + full palette. Done → saves as `guided`, sets `progress.guided_<id>`; the lesson's sticker is granted by the reward engine in T-048.

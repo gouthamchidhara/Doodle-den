@@ -208,5 +208,20 @@
   "offscreen_9": "Help make a snack!",
   "offscreen_10": "Hug your stuffed animal!",
   "offscreen_11": "Sing a song!",
-  "offscreen_12": "Do a puzzle!"
+  "offscreen_12": "Do a puzzle!",
+  "guided_cat_1": "Draw a big circle for the head.",
+  "guided_cat_2": "Add two pointy ears.",
+  "guided_cat_3": "Give it eyes and a little nose.",
+  "guided_cat_4": "Draw a round body.",
+  "guided_cat_5": "Add a curly tail.",
+  "guided_house_1": "Draw a big square.",
+  "guided_house_2": "Put a pointy roof on top.",
+  "guided_house_3": "Add a door.",
+  "guided_house_4": "Draw two windows.",
+  "guided_house_5": "Add a sun in the sky.",
+  "guided_fish_1": "Draw a long oval for the body.",
+  "guided_fish_2": "Add a triangle tail.",
+  "guided_fish_3": "Give it an eye.",
+  "guided_fish_4": "Draw a fin on top.",
+  "guided_fish_5": "Make some bubbles."
 }

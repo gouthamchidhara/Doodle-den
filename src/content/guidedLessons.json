@@ -1,0 +1,113 @@
+[
+  {
+    "id": "cat",
+    "title": "Cat",
+    "sticker": "guided_cat",
+    "steps": [
+      {
+        "pathSvg": "M0.5 0.18A0.17 0.17 0 1 1 0.5 0.18",
+        "voice": "guided_cat_1",
+        "text": "Draw a big circle for the head."
+      },
+      {
+        "pathSvg": "M0.37 0.24L0.36 0.08L0.47 0.19M0.63 0.24L0.64 0.08L0.53 0.19",
+        "voice": "guided_cat_2",
+        "text": "Add two pointy ears."
+      },
+      {
+        "pathSvg": "M0.44 0.305A0.025 0.025 0 1 1 0.44 0.305M0.56 0.305A0.025 0.025 0 1 1 0.56 0.305M0.48 0.41L0.52 0.41L0.5 0.44L0.48 0.41",
+        "voice": "guided_cat_3",
+        "text": "Give it eyes and a little nose."
+      },
+      {
+        "pathSvg": "M0.5 0.52A0.2 0.2 0 1 1 0.5 0.52",
+        "voice": "guided_cat_4",
+        "text": "Draw a round body."
+      },
+      {
+        "pathSvg": "M0.7 0.78C0.86 0.74 0.86 0.56 0.78 0.56",
+        "voice": "guided_cat_5",
+        "text": "Add a curly tail."
+      },
+      {
+        "pathSvg": "",
+        "voice": "mascot_now_color",
+        "text": "Now color it!"
+      }
+    ]
+  },
+  {
+    "id": "house",
+    "title": "House",
+    "sticker": "guided_house",
+    "steps": [
+      {
+        "pathSvg": "M0.25 0.45L0.75 0.45L0.75 0.88L0.25 0.88L0.25 0.45",
+        "voice": "guided_house_1",
+        "text": "Draw a big square."
+      },
+      {
+        "pathSvg": "M0.2 0.47L0.5 0.18L0.8 0.47",
+        "voice": "guided_house_2",
+        "text": "Put a pointy roof on top."
+      },
+      {
+        "pathSvg": "M0.44 0.88L0.44 0.68L0.56 0.68L0.56 0.88",
+        "voice": "guided_house_3",
+        "text": "Add a door."
+      },
+      {
+        "pathSvg": "M0.3 0.53L0.4 0.53L0.4 0.62L0.3 0.62L0.3 0.53M0.6 0.53L0.7 0.53L0.7 0.62L0.6 0.62L0.6 0.53",
+        "voice": "guided_house_4",
+        "text": "Draw two windows."
+      },
+      {
+        "pathSvg": "M0.82 0.07A0.07 0.07 0 1 1 0.82 0.07",
+        "voice": "guided_house_5",
+        "text": "Add a sun in the sky."
+      },
+      {
+        "pathSvg": "",
+        "voice": "mascot_now_color",
+        "text": "Now color it!"
+      }
+    ]
+  },
+  {
+    "id": "fish",
+    "title": "Fish",
+    "sticker": "guided_fish",
+    "steps": [
+      {
+        "pathSvg": "M0.45 0.34A0.25 0.16 0 1 1 0.45 0.34",
+        "voice": "guided_fish_1",
+        "text": "Draw a long oval for the body."
+      },
+      {
+        "pathSvg": "M0.7 0.5L0.88 0.36L0.88 0.64L0.7 0.5",
+        "voice": "guided_fish_2",
+        "text": "Add a triangle tail."
+      },
+      {
+        "pathSvg": "M0.32 0.43A0.03 0.03 0 1 1 0.32 0.43",
+        "voice": "guided_fish_3",
+        "text": "Give it an eye."
+      },
+      {
+        "pathSvg": "M0.45 0.34Q0.5 0.24 0.58 0.36",
+        "voice": "guided_fish_4",
+        "text": "Draw a fin on top."
+      },
+      {
+        "pathSvg": "M0.2 0.22A0.03 0.03 0 1 1 0.2 0.22M0.15 0.13A0.02 0.02 0 1 1 0.15 0.13",
+        "voice": "guided_fish_5",
+        "text": "Make some bubbles."
+      },
+      {
+        "pathSvg": "",
+        "voice": "mascot_now_color",
+        "text": "Now color it!"
+      }
+    ]
+  }
+]
