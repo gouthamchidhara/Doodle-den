@@ -1,4 +1,4 @@
-// On-device speech → short color name for Big mode (A5 Naming mic). Blocklist-checked, max 20 chars.
+// On-device speech → a short name (colors: max 20 chars, creatures: max 12). Blocklist-checked.
 import { ExpoSpeechRecognitionModule, useSpeechRecognitionEvent } from 'expo-speech-recognition';
 import { useState } from 'react';
 
@@ -6,21 +6,21 @@ import { isTextAllowed } from '@/content/blocklist';
 import { MAX_SPOKEN_NAME } from '@/content/colorNames';
 
 // Cleans a transcript into a Title Case name; null when blocked or empty.
-export function cleanSpokenName(text: string): string | null {
-  const t = text.replace(/[^a-zA-Z ]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, MAX_SPOKEN_NAME).trim();
+export function cleanSpokenName(text: string, max = MAX_SPOKEN_NAME): string | null {
+  const t = text.replace(/[^a-zA-Z ]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max).trim();
   if (!t || !isTextAllowed(t)) return null;
   return t.replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 // Listening state and the last accepted name.
-export function useSpeechName() {
+export function useSpeechName(max = MAX_SPOKEN_NAME) {
   const [listening, setListening] = useState(false);
   const [name, setName] = useState<string | null>(null);
   const [blocked, setBlocked] = useState(false);
 
   useSpeechRecognitionEvent('result', (e) => {
     if (!e.isFinal) return;
-    const n = cleanSpokenName(e.results[0]?.transcript ?? '');
+    const n = cleanSpokenName(e.results[0]?.transcript ?? '', max);
     setBlocked(n === null);
     setName(n);
   });

@@ -4,7 +4,7 @@ export const FEATURES = {
   magicSketch: false, // T-081
   stickers: false, // T-059
   voices: false, // T-055
-  worlds: false, // T-050
+  worlds: false, // T-050 (the gallery "Put in a world" sheet ships with T-053, once all three worlds exist)
 } as const;
 
 export type FeatureKey = keyof typeof FEATURES;
