@@ -1,0 +1,282 @@
+{
+  "0": {
+    "word": "zero bubbles",
+    "voice": "number_0"
+  },
+  "1": {
+    "word": "one sun",
+    "voice": "number_1"
+  },
+  "2": {
+    "word": "two eyes",
+    "voice": "number_2"
+  },
+  "3": {
+    "word": "three little fish",
+    "voice": "number_3"
+  },
+  "4": {
+    "word": "four wheels",
+    "voice": "number_4"
+  },
+  "5": {
+    "word": "five fingers",
+    "voice": "number_5"
+  },
+  "6": {
+    "word": "six legs on a bug",
+    "voice": "number_6"
+  },
+  "7": {
+    "word": "seven colors in a rainbow",
+    "voice": "number_7"
+  },
+  "8": {
+    "word": "eight octopus arms",
+    "voice": "number_8"
+  },
+  "9": {
+    "word": "nine planets",
+    "voice": "number_9"
+  },
+  "A": {
+    "word": "apple",
+    "voice": "letter_A"
+  },
+  "a": {
+    "word": "apple",
+    "voice": "letter_a"
+  },
+  "B": {
+    "word": "ball",
+    "voice": "letter_B"
+  },
+  "b": {
+    "word": "ball",
+    "voice": "letter_b"
+  },
+  "C": {
+    "word": "cat",
+    "voice": "letter_C"
+  },
+  "c": {
+    "word": "cat",
+    "voice": "letter_c"
+  },
+  "D": {
+    "word": "dog",
+    "voice": "letter_D"
+  },
+  "d": {
+    "word": "dog",
+    "voice": "letter_d"
+  },
+  "E": {
+    "word": "egg",
+    "voice": "letter_E"
+  },
+  "e": {
+    "word": "egg",
+    "voice": "letter_e"
+  },
+  "F": {
+    "word": "fish",
+    "voice": "letter_F"
+  },
+  "f": {
+    "word": "fish",
+    "voice": "letter_f"
+  },
+  "G": {
+    "word": "goat",
+    "voice": "letter_G"
+  },
+  "g": {
+    "word": "goat",
+    "voice": "letter_g"
+  },
+  "H": {
+    "word": "hat",
+    "voice": "letter_H"
+  },
+  "h": {
+    "word": "hat",
+    "voice": "letter_h"
+  },
+  "I": {
+    "word": "igloo",
+    "voice": "letter_I"
+  },
+  "i": {
+    "word": "igloo",
+    "voice": "letter_i"
+  },
+  "J": {
+    "word": "jam",
+    "voice": "letter_J"
+  },
+  "j": {
+    "word": "jam",
+    "voice": "letter_j"
+  },
+  "K": {
+    "word": "kite",
+    "voice": "letter_K"
+  },
+  "k": {
+    "word": "kite",
+    "voice": "letter_k"
+  },
+  "L": {
+    "word": "lion",
+    "voice": "letter_L"
+  },
+  "l": {
+    "word": "lion",
+    "voice": "letter_l"
+  },
+  "M": {
+    "word": "moon",
+    "voice": "letter_M"
+  },
+  "m": {
+    "word": "moon",
+    "voice": "letter_m"
+  },
+  "N": {
+    "word": "nest",
+    "voice": "letter_N"
+  },
+  "n": {
+    "word": "nest",
+    "voice": "letter_n"
+  },
+  "O": {
+    "word": "owl",
+    "voice": "letter_O"
+  },
+  "o": {
+    "word": "owl",
+    "voice": "letter_o"
+  },
+  "P": {
+    "word": "pig",
+    "voice": "letter_P"
+  },
+  "p": {
+    "word": "pig",
+    "voice": "letter_p"
+  },
+  "Q": {
+    "word": "queen",
+    "voice": "letter_Q"
+  },
+  "q": {
+    "word": "queen",
+    "voice": "letter_q"
+  },
+  "R": {
+    "word": "rainbow",
+    "voice": "letter_R"
+  },
+  "r": {
+    "word": "rainbow",
+    "voice": "letter_r"
+  },
+  "S": {
+    "word": "sun",
+    "voice": "letter_S"
+  },
+  "s": {
+    "word": "sun",
+    "voice": "letter_s"
+  },
+  "T": {
+    "word": "tree",
+    "voice": "letter_T"
+  },
+  "t": {
+    "word": "tree",
+    "voice": "letter_t"
+  },
+  "U": {
+    "word": "umbrella",
+    "voice": "letter_U"
+  },
+  "u": {
+    "word": "umbrella",
+    "voice": "letter_u"
+  },
+  "V": {
+    "word": "van",
+    "voice": "letter_V"
+  },
+  "v": {
+    "word": "van",
+    "voice": "letter_v"
+  },
+  "W": {
+    "word": "whale",
+    "voice": "letter_W"
+  },
+  "w": {
+    "word": "whale",
+    "voice": "letter_w"
+  },
+  "X": {
+    "word": "fox",
+    "voice": "letter_X"
+  },
+  "x": {
+    "word": "fox",
+    "voice": "letter_x"
+  },
+  "Y": {
+    "word": "yo-yo",
+    "voice": "letter_Y"
+  },
+  "y": {
+    "word": "yo-yo",
+    "voice": "letter_y"
+  },
+  "Z": {
+    "word": "zebra",
+    "voice": "letter_Z"
+  },
+  "z": {
+    "word": "zebra",
+    "voice": "letter_z"
+  },
+  "circle": {
+    "word": "circle",
+    "voice": "shape_circle"
+  },
+  "square": {
+    "word": "square",
+    "voice": "shape_square"
+  },
+  "triangle": {
+    "word": "triangle",
+    "voice": "shape_triangle"
+  },
+  "star": {
+    "word": "star",
+    "voice": "shape_star"
+  },
+  "heart": {
+    "word": "heart",
+    "voice": "shape_heart"
+  },
+  "line": {
+    "word": "line",
+    "voice": "shape_line"
+  },
+  "zigzag": {
+    "word": "zigzag",
+    "voice": "shape_zigzag"
+  },
+  "spiral": {
+    "word": "spiral",
+    "voice": "shape_spiral"
+  }
+}

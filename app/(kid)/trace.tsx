@@ -1,6 +1,3 @@
-// Trace & Learn (T-042). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { TraceScreen } from '@/screens/kid/TraceScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Trace & Learn" />;
-}
+export default TraceScreen;
