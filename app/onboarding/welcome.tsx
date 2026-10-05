@@ -1,6 +1,6 @@
-// Onboarding: welcome (T-012). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+// Onboarding route: welcome (T-012).
+import { WelcomeScreen } from '@/screens/onboarding/WelcomeScreen';
 
 export default function Route() {
-  return <PlaceholderScreen title="Welcome" />;
+  return <WelcomeScreen />;
 }

@@ -13,7 +13,7 @@ export interface StartupState {
   activeKid: KidProfile | null;
 }
 
-const ONBOARDING_STEPS = ['welcome', 'create-pin', 'add-kid', 'time-rules', 'device-lock-tips', 'finish'];
+const ONBOARDING_STEPS: readonly string[] = ['welcome', 'create-pin', 'add-kid', 'time-rules', 'device-lock-tips', 'finish'];
 
 // Pure routing decision from the startup state (rules 2-5).
 export function decideStartRoute(s: StartupState): StartRoute {

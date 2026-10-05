@@ -1,6 +1,6 @@
-// Onboarding: add kid profile (T-012). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+// Onboarding route: add-kid (T-012).
+import { AddKidScreen } from '@/screens/onboarding/AddKidScreen';
 
 export default function Route() {
-  return <PlaceholderScreen title="Add kid profile" />;
+  return <AddKidScreen />;
 }

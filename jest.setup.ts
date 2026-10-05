@@ -30,3 +30,19 @@ jest.mock('expo-audio', () => ({
   RecordingPresets: { HIGH_QUALITY: {} },
 }));
 jest.mock('expo-speech', () => ({ speak: jest.fn(), stop: jest.fn(() => Promise.resolve()) }));
+
+jest.mock('expo-router', () => {
+  const router = { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => true), navigate: jest.fn(), dismissAll: jest.fn() };
+  return {
+    router,
+    useRouter: () => router,
+    useLocalSearchParams: jest.fn(() => ({})),
+    useSegments: jest.fn(() => []),
+    usePathname: jest.fn(() => '/'),
+    useFocusEffect: jest.fn(),
+    Redirect: () => null,
+    Link: ({ children }: { children: unknown }) => children,
+    Stack: Object.assign(() => null, { Screen: () => null }),
+    Slot: () => null,
+  };
+});

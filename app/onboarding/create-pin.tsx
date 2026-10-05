@@ -1,6 +1,6 @@
-// Onboarding: create parent PIN (T-012). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+// Onboarding route: create-pin (T-012).
+import { CreatePinScreen } from '@/screens/onboarding/CreatePinScreen';
 
 export default function Route() {
-  return <PlaceholderScreen title="Create parent PIN" />;
+  return <CreatePinScreen />;
 }

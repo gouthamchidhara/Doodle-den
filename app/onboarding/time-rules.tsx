@@ -1,6 +1,6 @@
-// Onboarding: time rules (T-012). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+// Onboarding route: time-rules (T-012).
+import { TimeRulesScreen } from '@/screens/onboarding/TimeRulesScreen';
 
 export default function Route() {
-  return <PlaceholderScreen title="Time rules" />;
+  return <TimeRulesScreen />;
 }

@@ -1,6 +1,6 @@
-// Onboarding: device lock tips (T-012). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+// Onboarding route: device-lock-tips (T-012).
+import { DeviceLockTipsScreen } from '@/screens/onboarding/DeviceLockTipsScreen';
 
 export default function Route() {
-  return <PlaceholderScreen title="Device lock tips" />;
+  return <DeviceLockTipsScreen />;
 }

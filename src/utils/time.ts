@@ -62,3 +62,17 @@ export function isoWeekKey(wallMs: number): string {
   const week = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
   return `${d.getUTCFullYear()}-W${pad(week)}`;
 }
+
+// 'HH:MM' for minutes since midnight (wraps past 24 h).
+export function toHHMM(minutes: number): string {
+  const m = ((Math.round(minutes) % 1440) + 1440) % 1440;
+  return `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
+}
+
+// Friendly 12-hour label for 'HH:MM', e.g. '7:30 pm'.
+export function formatClock(hhmm: string): string {
+  const total = parseHHMM(hhmm);
+  const h24 = Math.floor(total / 60);
+  const h = h24 % 12 === 0 ? 12 : h24 % 12;
+  return `${h}:${pad(total % 60)} ${h24 < 12 ? 'am' : 'pm'}`;
+}

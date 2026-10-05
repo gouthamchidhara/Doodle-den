@@ -52,3 +52,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-011 · Routes + startup routing
 - Files: every route in `app/**` now renders `src/screens/PlaceholderScreen.tsx` (title + Home); group layouts use a header-less Stack; `app/index.tsx` → `src/screens/StartupScreen.tsx`; `src/services/startup.ts` (`loadStartupState`, `decideStartRoute`); `src/screens/startupLockCheck.ts` (stub until T-033); `__tests__/services/startup.test.ts`.
 - Works: rules 1-5 tested on seeded DB states (fresh → onboarding, resume saved onboarding step, locked → /locked, >1 kid and no active kid → /profiles, else /home; a single kid becomes active automatically). Android bundle builds.
+
+## T-012 · Onboarding
+- Files: `app/onboarding/{_layout,welcome,create-pin,add-kid,time-rules,device-lock-tips,finish}.tsx`, `src/screens/onboarding/*`, `src/services/onboarding.ts`, `src/components/parent/{PinPad,Stepper,OnboardingFrame,TimeRulesForm}.tsx`, `src/components/kid/Avatar.tsx` + `src/content/avatars.ts` (8 animals), `src/lock/devicePinning.ts` (stub until T-031), `src/content/app.ts`, router mock in `jest.setup.ts`, `__tests__/screens/onboarding.test.tsx`.
+- Works: welcome → PIN twice (mismatch shakes, "PINs don't match") → nickname (max 12) / avatar / age → rules (defaults 45/20, bedtime 19:30–07:00) → device-lock tips (iOS Guided Access steps + Open Settings; Android pin toggle) → finish ("Skip for now"). Each screen saves `onboarding_step`; a killed app resumes there; onboarding screens bounce to "/" once done.
+- Added `app/onboarding/finish.tsx` for the spec's "(end)" step. The "Create a parent account" button lands with T-071.
