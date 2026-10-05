@@ -1,0 +1,5 @@
+{
+  "platforms": ["apple", "android"],
+  "apple": { "modules": ["LockNativeModule"] },
+  "android": { "modules": ["expo.modules.locknative.LockNativeModule"] }
+}

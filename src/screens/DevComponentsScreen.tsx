@@ -20,6 +20,8 @@ import { StatRing } from '@/components/parent/StatRing';
 import { WeekBars } from '@/components/parent/WeekBars';
 import { colors, drawingPalette, fonts, fontSize, space } from '@/theme/tokens';
 
+import { LockNativeDebug } from './LockNativeDebug';
+
 // Renders all component states in labelled rows.
 export function DevComponentsScreen() {
   return (
@@ -80,6 +82,8 @@ export function DevComponentsScreen() {
         <BrushSizeButton size="M" selected />
         <BrushSizeButton size="S" selected={false} />
       </View>
+      <Text style={styles.h}>Lock native</Text>
+      <LockNativeDebug />
       <Text style={styles.h}>Parent components</Text>
       <View style={styles.parent}>
         <ParentCard title="Today">
