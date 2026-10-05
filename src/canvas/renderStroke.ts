@@ -16,6 +16,7 @@ import type { Stroke } from '@/types/models';
 import { BRUSHES, GLITTER_SPACING, NEON_CORE_WHITE_MIX, NEON_GLOW_OPACITY, STAMP_SPACING_FACTOR, brushWidth } from './brushes/brushSpecs';
 import { hslToHex, mixWithWhite, resolveColor } from './color';
 import { getStamp } from './stamps';
+import { rotationAngles } from './symmetry';
 import { denormalize, polylineLength, pressureWidth, rainbowHue, samplesAlong, seededRandom, smoothPath, type Pt } from './strokeModel';
 
 export interface RenderOpts {
@@ -190,9 +191,9 @@ export function drawStroke(canvas: SkCanvas, s: Stroke, o: RenderOpts): void {
     canvas.restore();
     return;
   }
-  for (let i = 0; i < n; i += 1) {
+  for (const deg of rotationAngles(n)) {
     canvas.save();
-    canvas.rotate((360 / n) * i, cx, cy);
+    canvas.rotate(deg, cx, cy);
     drawOne(canvas, s, o);
     canvas.restore();
   }

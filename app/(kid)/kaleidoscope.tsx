@@ -1,6 +1,3 @@
-// Kaleidoscope (T-044). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { KaleidoscopeScreen } from '@/screens/kid/KaleidoscopeScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Kaleidoscope" />;
-}
+export default KaleidoscopeScreen;
