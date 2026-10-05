@@ -5,3 +5,28 @@ jest.mock('expo-haptics', () => ({
   ImpactFeedbackStyle: { Light: 'light', Medium: 'medium', Heavy: 'heavy' },
   NotificationFeedbackType: { Success: 'success', Warning: 'warning', Error: 'error' },
 }));
+
+const mockAudioPlayer = () => ({
+  play: jest.fn(),
+  pause: jest.fn(),
+  remove: jest.fn(),
+  release: jest.fn(),
+  seekTo: jest.fn(() => Promise.resolve()),
+  setPlaybackRate: jest.fn(),
+  addListener: jest.fn(() => ({ remove: jest.fn() })),
+  volume: 1,
+  loop: false,
+  shouldCorrectPitch: true,
+  playing: false,
+});
+jest.mock('expo-audio', () => ({
+  createAudioPlayer: jest.fn(() => mockAudioPlayer()),
+  setAudioModeAsync: jest.fn(() => Promise.resolve()),
+  useAudioPlayer: jest.fn(() => mockAudioPlayer()),
+  useAudioRecorder: jest.fn(() => ({ prepareToRecordAsync: jest.fn(), record: jest.fn(), stop: jest.fn(), uri: null })),
+  useAudioRecorderState: jest.fn(() => ({ isRecording: false, durationMillis: 0 })),
+  requestRecordingPermissionsAsync: jest.fn(() => Promise.resolve({ granted: true })),
+  getRecordingPermissionsAsync: jest.fn(() => Promise.resolve({ granted: false })),
+  RecordingPresets: { HIGH_QUALITY: {} },
+}));
+jest.mock('expo-speech', () => ({ speak: jest.fn(), stop: jest.fn(() => Promise.resolve()) }));

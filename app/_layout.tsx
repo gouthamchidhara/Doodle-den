@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import { preloadSounds } from '@/services/audio';
 import { colors } from '@/theme/tokens';
 import { isTabletSize } from '@/theme/useLayout';
 
@@ -33,6 +34,7 @@ export default function RootLayout() {
     ScreenOrientation.lockAsync(lock).catch((error: unknown) =>
       console.warn('[layout] orientation lock failed', error),
     );
+    preloadSounds().catch((error: unknown) => console.warn('[layout] preload sounds failed', error));
     const timer = setTimeout(() => SplashScreen.hideAsync().catch(() => undefined), SPLASH_MAX_MS);
     return () => clearTimeout(timer);
   }, []);

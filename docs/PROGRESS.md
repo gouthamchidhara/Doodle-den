@@ -43,3 +43,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-009 · ids, time, hash, PIN service
 - Files: `src/utils/{ids,time,hash}.ts`, `src/services/pinService.ts`, `__tests__/utils/time.test.ts`, `__tests__/services/pinService.test.ts`, `__tests__/helpers/mockNative.ts`.
 - Works: `localDayKey`, `nextLocalMidnight`, `isInBedtime` (incl. across midnight), `nextBedtimeEnd`, `isoWeekKey`; PIN stored as SHA-256(salt + pin) with a 16-byte salt in secure-store; 3 wrong in a row → 60 s cooldown in `dd.gate.failures`; all tested.
+
+## T-010 · Audio + voice
+- Files: `src/services/audio.ts` (preload, `playSound`, `loopSound`, `playClip`, master volume), `src/services/voice.ts` (`say(key)`, `sayText`), `src/content/voiceFiles.ts` (recorded-file map, empty), `src/content/voiceLines.json` (210 lines: intros, mascot + AI messages, letters/numbers/shapes, 40 coach ideas, 30 daily ideas, 12 off-screen ideas), `coachIdeas.json`, `dailyIdeas.json`, `offScreenIdeas.json`, 21 silent placeholder `.m4a` files in `assets/sounds/` (lullaby 20 s), global audio/speech mocks in `jest.setup.ts`, tests.
+- Works: `say('intro_draw')` speaks via expo-speech (rate 0.9, pitch 1.1) when no file exists; recorded files win when added to `voiceFiles.ts` (React Native needs static `require`, so a file must be registered there). Sounds preload at app start.
+- Content note: daily ideas, off-screen ideas and example words are first drafts for the owner to review (listed again in T-103).

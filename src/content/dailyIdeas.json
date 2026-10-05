@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "text": "Draw a rainbow fish and send it to the aquarium!",
+    "activity": "aquarium",
+    "voice": "idea_1"
+  },
+  {
+    "id": 2,
+    "text": "Draw a super fast car!",
+    "activity": "racetrack",
+    "voice": "idea_2"
+  },
+  {
+    "id": 3,
+    "text": "Draw an animal with a funny hat!",
+    "activity": "zoo",
+    "voice": "idea_3"
+  },
+  {
+    "id": 4,
+    "text": "Make a brand new color!",
+    "activity": "mixing",
+    "voice": "idea_4"
+  },
+  {
+    "id": 5,
+    "text": "Draw your favorite food!",
+    "activity": "draw",
+    "voice": "idea_5"
+  },
+  {
+    "id": 6,
+    "text": "Make a twirly kaleidoscope!",
+    "activity": "kaleidoscope",
+    "voice": "idea_6"
+  },
+  {
+    "id": 7,
+    "text": "Trace the letter of your name!",
+    "activity": "trace",
+    "voice": "idea_7"
+  },
+  {
+    "id": 8,
+    "text": "Color a page with glitter!",
+    "activity": "coloring",
+    "voice": "idea_8"
+  },
+  {
+    "id": 9,
+    "text": "Draw a big slide for the balls!",
+    "activity": "ramps",
+    "voice": "idea_9"
+  },
+  {
+    "id": 10,
+    "text": "Paint a song with lots of colors!",
+    "activity": "music",
+    "voice": "idea_10"
+  },
+  {
+    "id": 11,
+    "text": "Draw a house for a mouse!",
+    "activity": "draw",
+    "voice": "idea_11"
+  },
+  {
+    "id": 12,
+    "text": "Make a puzzle from your drawing!",
+    "activity": "jigsaw",
+    "voice": "idea_12"
+  },
+  {
+    "id": 13,
+    "text": "Draw a fish with stripes!",
+    "activity": "aquarium",
+    "voice": "idea_13"
+  },
+  {
+    "id": 14,
+    "text": "Draw a monster that loves hugs!",
+    "activity": "draw",
+    "voice": "idea_14"
+  },
+  {
+    "id": 15,
+    "text": "Draw a car with big wheels!",
+    "activity": "racetrack",
+    "voice": "idea_15"
+  },
+  {
+    "id": 16,
+    "text": "Draw a bird for the zoo!",
+    "activity": "zoo",
+    "voice": "idea_16"
+  },
+  {
+    "id": 17,
+    "text": "Mix a color for the sky!",
+    "activity": "mixing",
+    "voice": "idea_17"
+  },
+  {
+    "id": 18,
+    "text": "Draw your best friend!",
+    "activity": "draw",
+    "voice": "idea_18"
+  },
+  {
+    "id": 19,
+    "text": "Make a flower kaleidoscope!",
+    "activity": "kaleidoscope",
+    "voice": "idea_19"
+  },
+  {
+    "id": 20,
+    "text": "Trace a star!",
+    "activity": "trace",
+    "voice": "idea_20"
+  },
+  {
+    "id": 21,
+    "text": "Color a page in your favorite color!",
+    "activity": "coloring",
+    "voice": "idea_21"
+  },
+  {
+    "id": 22,
+    "text": "Draw a bumpy ramp!",
+    "activity": "ramps",
+    "voice": "idea_22"
+  },
+  {
+    "id": 23,
+    "text": "Paint a happy song!",
+    "activity": "music",
+    "voice": "idea_23"
+  },
+  {
+    "id": 24,
+    "text": "Draw a rocket to the moon!",
+    "activity": "draw",
+    "voice": "idea_24"
+  },
+  {
+    "id": 25,
+    "text": "Draw a fish with a big smile!",
+    "activity": "aquarium",
+    "voice": "idea_25"
+  },
+  {
+    "id": 26,
+    "text": "Draw a race car with flames!",
+    "activity": "racetrack",
+    "voice": "idea_26"
+  },
+  {
+    "id": 27,
+    "text": "Draw a giraffe with a long neck!",
+    "activity": "zoo",
+    "voice": "idea_27"
+  },
+  {
+    "id": 28,
+    "text": "Open your art museum!",
+    "activity": "museum",
+    "voice": "idea_28"
+  },
+  {
+    "id": 29,
+    "text": "Draw the weather today!",
+    "activity": "draw",
+    "voice": "idea_29"
+  },
+  {
+    "id": 30,
+    "text": "Make a sparkly picture with glitter!",
+    "activity": "draw",
+    "voice": "idea_30"
+  }
+]
