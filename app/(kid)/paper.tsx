@@ -1,6 +1,3 @@
-// Paper Comes Alive (T-054). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { PaperScreen } from '@/screens/kid/PaperScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Paper Comes Alive" />;
-}
+export default PaperScreen;

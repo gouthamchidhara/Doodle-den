@@ -13,10 +13,11 @@ import { colors, fonts, fontSize, space, touch } from '@/theme/tokens';
 
 import { forgotPin } from './forgotPin';
 
-// Where to go after unlocking; only parent routes and the profile picker are allowed.
+// Where to go after unlocking: parent routes, the profile picker, the lock screen, or a kid screen asking for a permission.
 export function safeNext(next: string | string[] | undefined): string {
   const n = Array.isArray(next) ? next[0] : next;
-  if (n && (n.startsWith('/parent') || n === '/profiles' || n.startsWith('/locked')) && n !== '/parent/gate') return n;
+  const kidPermission = ['/paper', '/gallery/', '/aquarium', '/zoo', '/racetrack'].some((p) => n?.startsWith(p) && n.includes('granted=1'));
+  if (n && (n.startsWith('/parent') || n === '/profiles' || n.startsWith('/locked') || kidPermission) && n !== '/parent/gate') return n;
   return '/parent';
 }
 
