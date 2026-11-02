@@ -1,6 +1,3 @@
-// Racetrack (T-052). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { RacetrackScreen } from '@/screens/kid/RacetrackScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Racetrack" />;
-}
+export default RacetrackScreen;
