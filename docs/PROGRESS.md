@@ -182,3 +182,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-052 · Racetrack
 - Files: `src/games/worlds/racetrack/{track.ts,carMotion.ts,RacetrackBackground.tsx}`, `src/screens/kid/RacetrackScreen.tsx`, `app/(kid)/racetrack.tsx`, `__tests__/games/carMotion.test.ts`.
 - Works: top-down grass, gray stadium oval with white dashes, checkered start line, stands; cars follow the center line at 80–160 px/s, rotated to the direction (kept upright on the left-going straight), one lane each. Go!: 1 s countdown, 3 laps from the start line at 120–160 px/s, each car parks at the line after its 3rd lap so every car finishes; when the slowest arrives: confetti, cheer, "Great job!" — no winner shown; then everyone cruises on. Tests: closed continuous track, all 8 cars finish and park, lanes do not overlap.
+
+## T-053 · Zoo
+- Files: `src/games/worlds/zoo/{animalMotion.ts,ZooBackground.tsx}`, `src/screens/kid/ZooScreen.tsx`, `app/(kid)/zoo.tsx`, `__tests__/games/animalMotion.test.ts`; world engine gained a back-to-front `drawOrder`.
+- Works: sky, sun, fence, trees, pond, grass with three ground lines; animals spread over the lines (scale 0.7 / 0.85 / 1.0), walk left/right with seeded speed, stop 1–3 s with a little hop, bob while walking; drawn back line first so nearer animals overlap farther ones cleanly; Snack drops a treat and everyone hops over side by side for 6 s. Max 16 on screen.
+- Gallery "Put in a world" is now on (`features.worlds`): pick Aquarium / Zoo / Racetrack → creature with a random name → that world opens with the entrance.

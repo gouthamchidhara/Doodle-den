@@ -1,13 +1,13 @@
 // The live scene: background + creatures moved by the world's motion worklet on the UI thread.
-import { useState, type ReactNode } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { useFrameCallback, type SharedValue } from 'react-native-reanimated';
+import { useState, type ReactNode } from "react";
+import { StyleSheet, View } from "react-native";
+import { useFrameCallback, type SharedValue } from "react-native-reanimated";
 
-import { playVoiceClip } from '@/games/voice/playVoice';
-import { playSound, type SoundName } from '@/services/audio';
+import { playVoiceClip } from "@/games/voice/playVoice";
+import { playSound, type SoundName } from "@/services/audio";
 
-import { Sprite } from './Sprite';
-import type { Creature, MotionFn } from './types';
+import { Sprite } from "./Sprite";
+import type { Creature, MotionFn } from "./types";
 
 export const SPRITE_H_FRACTION = 0.16; // A5: 14–18% of screen height
 const NAME_MS = 2000;
@@ -24,10 +24,24 @@ export interface WorldSceneProps {
   screenH: number;
   onLongPress: (c: Creature) => void;
   onSize?: (w: number, h: number) => void;
+  drawOrder?: (count: number) => number[];
 }
 
 // Scene component.
-export function WorldScene({ creatures, motion, background, foreground, sound, ext, clock, enteringId, screenH, onLongPress, onSize }: WorldSceneProps) {
+export function WorldScene({
+  creatures,
+  motion,
+  background,
+  foreground,
+  sound,
+  ext,
+  clock,
+  enteringId,
+  screenH,
+  onLongPress,
+  onSize,
+  drawOrder,
+}: WorldSceneProps) {
   const [size, setSize] = useState({ w: 0, h: 0 });
   const [named, setNamed] = useState<string | null>(null);
   useFrameCallback((f) => {
@@ -38,7 +52,10 @@ export function WorldScene({ creatures, motion, background, foreground, sound, e
     playSound(sound);
     setNamed(c.entity.id);
     setTimeout(() => setNamed((n) => (n === c.entity.id ? null : n)), NAME_MS);
-    if (c.entity.voiceClipId) playVoiceClip(c.entity.voiceClipId).catch((e: unknown) => console.warn('[world] voice failed', e));
+    if (c.entity.voiceClipId)
+      playVoiceClip(c.entity.voiceClipId).catch((e: unknown) =>
+        console.warn("[world] voice failed", e),
+      );
   };
 
   return (
@@ -52,24 +69,30 @@ export function WorldScene({ creatures, motion, background, foreground, sound, e
     >
       {size.w > 0 ? background(size.w, size.h) : null}
       {size.w > 0
-        ? creatures.map((c, i) => (
-            <Sprite
-              key={c.entity.id}
-              creature={c}
-              index={i}
-              count={creatures.length}
-              clock={clock}
-              ext={ext}
-              motion={motion}
-              width={size.w}
-              height={size.h}
-              spriteH={screenH * SPRITE_H_FRACTION}
-              showName={named === c.entity.id}
-              entering={enteringId === c.entity.id}
-              onTap={tap}
-              onLongPress={onLongPress}
-            />
-          ))
+        ? (drawOrder
+            ? drawOrder(creatures.length)
+            : creatures.map((_, i) => i)
+          ).map((i) => {
+            const c = creatures[i];
+            return (
+              <Sprite
+                key={c.entity.id}
+                creature={c}
+                index={i}
+                count={creatures.length}
+                clock={clock}
+                ext={ext}
+                motion={motion}
+                width={size.w}
+                height={size.h}
+                spriteH={screenH * SPRITE_H_FRACTION}
+                showName={named === c.entity.id}
+                entering={enteringId === c.entity.id}
+                onTap={tap}
+                onLongPress={onLongPress}
+              />
+            );
+          })
         : null}
       {size.w > 0 && foreground ? foreground(size.w, size.h) : null}
     </View>
@@ -77,5 +100,5 @@ export function WorldScene({ creatures, motion, background, foreground, sound, e
 }
 
 const styles = StyleSheet.create({
-  scene: { flex: 1, overflow: 'hidden' },
+  scene: { flex: 1, overflow: "hidden" },
 });

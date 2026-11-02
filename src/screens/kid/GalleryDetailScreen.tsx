@@ -12,10 +12,13 @@ import { TrashIcon } from '@/components/kid/icons/TrashIcon';
 import { WandIcon } from '@/components/kid/icons/WandIcon';
 import { CrayonIcon } from '@/components/kid/icons/CrayonIcon';
 import { AquariumArt } from '@/components/kid/icons/AquariumArt';
+import { ChoiceBubble } from '@/components/kid/ChoiceBubble';
 import { KidHeader } from '@/components/kid/KidHeader';
 import { ReplayCanvas } from '@/components/kid/ReplayCanvas';
 import { toggleFavorite, trashArtwork } from '@/db/repositories/artworkRepo';
 import { loadArtDetail, type ArtDetail } from '@/games/gallery/loadDetail';
+import { addCreature, randomCreatureName } from '@/games/worlds/addCreature';
+import { WORLDS, type PlayWorld } from '@/games/worlds/worldConfig';
 import { playSound } from '@/services/audio';
 import { fileUri } from '@/services/files';
 import { isFeatureOn } from '@/state/features';
@@ -34,6 +37,7 @@ export function GalleryDetailScreen() {
   const [d, setD] = useState<ArtDetail | null>(null);
   const [replay, setReplay] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [worldPick, setWorldPick] = useState(false);
   const stopReplay = useCallback(() => setReplay(0), []);
 
   useEffect(() => {
@@ -60,6 +64,12 @@ export function GalleryDetailScreen() {
     await trashArtwork(a.id);
     playSound('bubble');
     router.back();
+  };
+
+  const putIn = async (w: PlayWorld) => {
+    setWorldPick(false);
+    const entityId = await addCreature(a.kidId, w, a.id, randomCreatureName());
+    router.push({ pathname: WORLDS[w].route, params: { enter: entityId } });
   };
 
   const keepDrawing =
@@ -90,10 +100,19 @@ export function GalleryDetailScreen() {
           {isFeatureOn('magicSketch') ? <DetailAction icon={<WandIcon />} label="Magic" onPress={() => router.push({ pathname: '/magic/sketch', params: { artworkId: a.id } })} /> : null}
           {isFeatureOn('stickers') ? <DetailAction icon={<StampIcon />} label="Make a sticker" /> : null}
           {isFeatureOn('voices') ? <DetailAction icon={<MicIcon />} label="Give it a voice" /> : null}
-          {isFeatureOn('worlds') ? <DetailAction icon={<AquariumArt size={30} />} label="Put in a world" /> : null}
+          {isFeatureOn('worlds') && !d.flipbook ? <DetailAction icon={<AquariumArt size={30} />} label="Put in a world" onPress={() => setWorldPick(true)} /> : null}
           <DetailAction icon={<TrashIcon />} label="Hold to trash" onLongPress={() => void trash()} delayLongPress={TRASH_HOLD_MS} />
         </ScrollView>
       </View>
+      {worldPick ? (
+        <ChoiceBubble
+          text="Which world?"
+          choices={[
+            ...(['aquarium', 'zoo', 'racetrack'] as const).map((w) => ({ label: WORLDS[w].title, onPress: () => void putIn(w) })),
+            { label: 'Not now', tone: 'tomato' as const, onPress: () => setWorldPick(false) },
+          ]}
+        />
+      ) : null}
       {playing && d.frames.length > 0 && d.flipbook ? <FlipbookPlayer frames={d.frames} fps={d.flipbook.fps} width={Math.min(width * 0.8, 700)} onClose={() => setPlaying(false)} /> : null}
     </SafeAreaView>
   );

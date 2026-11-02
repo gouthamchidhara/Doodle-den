@@ -30,10 +30,11 @@ export interface WorldScreenProps {
   extraButton?: ReactNode;
   onSize?: (w: number, h: number) => void;
   onLongPressCreature?: (c: Creature) => void;
+  drawOrder?: (count: number) => number[];
 }
 
 // World screen layout.
-export function WorldScreen({ cfg, motion, ext, clock, background, foreground, extraButton, onSize, onLongPressCreature }: WorldScreenProps) {
+export function WorldScreen({ cfg, motion, ext, clock, background, foreground, extraButton, onSize, onLongPressCreature, drawOrder }: WorldScreenProps) {
   const { isTablet, height } = useLayout();
   const kid = useActiveKid();
   const params = useLocalSearchParams<{ enter?: string }>();
@@ -54,6 +55,7 @@ export function WorldScreen({ cfg, motion, ext, clock, background, foreground, e
         enteringId={params.enter ?? null}
         screenH={height}
         onSize={onSize}
+        drawOrder={drawOrder}
         onLongPress={(c) => (isFeatureOn('voices') ? onLongPressCreature?.(c) : undefined)}
       />
       <SafeAreaView pointerEvents="box-none" style={StyleSheet.absoluteFill}>
