@@ -1,6 +1,3 @@
-// Draw-to-Life Aquarium (T-051). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { AquariumScreen } from '@/screens/kid/AquariumScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Draw-to-Life Aquarium" />;
-}
+export default AquariumScreen;

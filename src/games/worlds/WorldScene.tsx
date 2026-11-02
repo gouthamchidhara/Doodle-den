@@ -1,7 +1,7 @@
 // The live scene: background + creatures moved by the world's motion worklet on the UI thread.
 import { useState, type ReactNode } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { useFrameCallback, useSharedValue, type SharedValue } from 'react-native-reanimated';
+import { useFrameCallback, type SharedValue } from 'react-native-reanimated';
 
 import { playVoiceClip } from '@/games/voice/playVoice';
 import { playSound, type SoundName } from '@/services/audio';
@@ -19,6 +19,7 @@ export interface WorldSceneProps {
   foreground?: (w: number, h: number) => ReactNode;
   sound: SoundName;
   ext: SharedValue<number[]>;
+  clock: SharedValue<number>;
   enteringId?: string | null;
   screenH: number;
   onLongPress: (c: Creature) => void;
@@ -26,10 +27,9 @@ export interface WorldSceneProps {
 }
 
 // Scene component.
-export function WorldScene({ creatures, motion, background, foreground, sound, ext, enteringId, screenH, onLongPress, onSize }: WorldSceneProps) {
+export function WorldScene({ creatures, motion, background, foreground, sound, ext, clock, enteringId, screenH, onLongPress, onSize }: WorldSceneProps) {
   const [size, setSize] = useState({ w: 0, h: 0 });
   const [named, setNamed] = useState<string | null>(null);
-  const clock = useSharedValue(0);
   useFrameCallback((f) => {
     clock.set(f.timeSinceFirstFrame / 1000);
   });

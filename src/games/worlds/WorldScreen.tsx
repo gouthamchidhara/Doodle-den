@@ -1,4 +1,4 @@
-// Shared world screen shell (A5): title "{nickname}'s Aquarium · 6 fish", Album, scene, "Draw a new fish" + extra button.
+// Shared world screen shell (A5, mockup Aquarium): full-bleed scene, title pill, extra + Album buttons, "Draw a new fish".
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState, type ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -11,7 +11,7 @@ import { KidHeader } from '@/components/kid/KidHeader';
 import { PrimaryButton } from '@/components/kid/PrimaryButton';
 import { isFeatureOn } from '@/state/features';
 import { useActiveKid } from '@/state/useActiveKid';
-import { colors, fonts, fontSize, space } from '@/theme/tokens';
+import { colors, fonts, fontSize, radius, space } from '@/theme/tokens';
 import { useLayout } from '@/theme/useLayout';
 
 import { AlbumDrawer } from './AlbumDrawer';
@@ -24,6 +24,7 @@ export interface WorldScreenProps {
   cfg: WorldConfig;
   motion: MotionFn;
   ext: SharedValue<number[]>;
+  clock: SharedValue<number>;
   background: (w: number, h: number) => ReactNode;
   foreground?: (w: number, h: number) => ReactNode;
   extraButton?: ReactNode;
@@ -32,22 +33,16 @@ export interface WorldScreenProps {
 }
 
 // World screen layout.
-export function WorldScreen({ cfg, motion, ext, background, foreground, extraButton, onSize, onLongPressCreature }: WorldScreenProps) {
+export function WorldScreen({ cfg, motion, ext, clock, background, foreground, extraButton, onSize, onLongPressCreature }: WorldScreenProps) {
   const { isTablet, height } = useLayout();
   const kid = useActiveKid();
   const params = useLocalSearchParams<{ enter?: string }>();
   const { onScreen, album, total, restore } = useWorldCreatures(cfg.key, cfg.max);
   const [albumOpen, setAlbumOpen] = useState(false);
 
+  const title = worldTitle(cfg, kid?.nickname, total);
   return (
-    <SafeAreaView style={styles.screen}>
-      <View style={[styles.top, { paddingHorizontal: isTablet ? space.xl : space.lg }]}>
-        <KidHeader
-          left={isTablet ? <Text style={styles.title}>{worldTitle(cfg, kid?.nickname, total)}</Text> : null}
-          right={album.length > 0 ? <IconButton icon={<GalleryArt size={36} />} accessibilityLabel="Album" onPress={() => setAlbumOpen(true)} /> : null}
-        />
-        {!isTablet ? <Text style={styles.title}>{worldTitle(cfg, kid?.nickname, total)}</Text> : null}
-      </View>
+    <View style={styles.screen}>
       <WorldScene
         creatures={onScreen}
         motion={motion}
@@ -55,15 +50,29 @@ export function WorldScreen({ cfg, motion, ext, background, foreground, extraBut
         foreground={foreground}
         sound={cfg.sound}
         ext={ext}
+        clock={clock}
         enteringId={params.enter ?? null}
         screenH={height}
         onSize={onSize}
         onLongPress={(c) => (isFeatureOn('voices') ? onLongPressCreature?.(c) : undefined)}
       />
-      <View style={[styles.bottom, { paddingHorizontal: isTablet ? space.xl : space.lg }]}>
-        <PrimaryButton label={`Draw a new ${cfg.noun}`} tone="tomato" onPress={() => router.push({ pathname: '/world-draw', params: { world: cfg.key } })} />
-        {extraButton}
-      </View>
+      <SafeAreaView pointerEvents="box-none" style={StyleSheet.absoluteFill}>
+        <View pointerEvents="box-none" style={[styles.top, { paddingHorizontal: isTablet ? space.xl : space.lg }]}>
+          <KidHeader
+            left={isTablet ? <Text style={styles.title}>{title}</Text> : null}
+            right={
+              <>
+                {extraButton}
+                {album.length > 0 ? <IconButton icon={<GalleryArt size={36} />} accessibilityLabel="Album" onPress={() => setAlbumOpen(true)} /> : null}
+              </>
+            }
+          />
+          {!isTablet ? <Text style={[styles.title, styles.titlePhone]}>{title}</Text> : null}
+        </View>
+        <View pointerEvents="box-none" style={styles.bottom}>
+          <PrimaryButton label={`Draw a new ${cfg.noun}`} tone="tomato" onPress={() => router.push({ pathname: '/world-draw', params: { world: cfg.key } })} />
+        </View>
+      </SafeAreaView>
       {albumOpen ? (
         <AlbumDrawer
           album={album}
@@ -74,13 +83,14 @@ export function WorldScreen({ cfg, motion, ext, background, foreground, extraBut
           onClose={() => setAlbumOpen(false)}
         />
       ) : null}
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.bgKid },
   top: { paddingVertical: space.md, gap: space.sm },
-  title: { fontFamily: fonts.display, fontSize: fontSize.title, color: colors.ink },
-  bottom: { flexDirection: 'row', justifyContent: 'center', gap: space.lg, paddingVertical: space.md },
+  title: { fontFamily: fonts.display, fontSize: fontSize.bubble, color: colors.ink, backgroundColor: colors.surface, borderRadius: radius.pill, paddingHorizontal: space.xl, paddingVertical: space.md, overflow: 'hidden' },
+  titlePhone: { alignSelf: 'center', fontSize: fontSize.body },
+  bottom: { position: 'absolute', bottom: space.xl, left: 0, right: 0, alignItems: 'center' },
 });
