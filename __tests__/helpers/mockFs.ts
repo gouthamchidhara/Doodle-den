@@ -33,6 +33,11 @@ export class File {
   delete(): void {
     fsData.delete(this.uri);
   }
+  async move(dest: { uri: string }): Promise<void> {
+    fsData.set(dest.uri, fsData.get(this.uri) ?? '');
+    fsData.delete(this.uri);
+    this.uri = dest.uri;
+  }
 }
 
 export class Directory {

@@ -3,7 +3,7 @@
 export const FEATURES = {
   magicSketch: false, // T-081
   stickers: false, // T-059
-  voices: false, // T-055
+  voices: true, // T-055
   worlds: true, // T-050–T-053
 } as const;
 

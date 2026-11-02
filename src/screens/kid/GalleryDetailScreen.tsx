@@ -1,4 +1,5 @@
 // My Gallery detail (A5): big picture + Replay, Favorite, Keep drawing, (later) Magic / sticker / voice / world, hold-to-trash.
+import { requestRecordingPermissionsAsync } from 'expo-audio';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, View } from 'react-native';
@@ -7,6 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { HeartIcon } from '@/components/kid/icons/HeartIcon';
 import { MicIcon } from '@/components/kid/icons/MicIcon';
 import { PlayIcon } from '@/components/kid/icons/PlayIcon';
+import { SpeakerIcon } from '@/components/kid/icons/SpeakerIcon';
 import { StampIcon } from '@/components/kid/icons/StampIcon';
 import { TrashIcon } from '@/components/kid/icons/TrashIcon';
 import { WandIcon } from '@/components/kid/icons/WandIcon';
@@ -17,11 +19,15 @@ import { KidHeader } from '@/components/kid/KidHeader';
 import { ReplayCanvas } from '@/components/kid/ReplayCanvas';
 import { toggleFavorite, trashArtwork } from '@/db/repositories/artworkRepo';
 import { loadArtDetail, type ArtDetail } from '@/games/gallery/loadDetail';
+import { playVoiceClip } from '@/games/voice/playVoice';
+import { voiceForArtwork } from '@/games/voice/voiceStore';
+import { VoiceSheet } from '@/games/voice/VoiceSheet';
 import { addCreature, randomCreatureName } from '@/games/worlds/addCreature';
 import { WORLDS, type PlayWorld } from '@/games/worlds/worldConfig';
 import { playSound } from '@/services/audio';
 import { fileUri } from '@/services/files';
 import { isFeatureOn } from '@/state/features';
+import { isParentUnlocked } from '@/state/parentStore';
 import { border, colors, radius, space } from '@/theme/tokens';
 import { useLayout } from '@/theme/useLayout';
 
@@ -33,11 +39,14 @@ export const TRASH_HOLD_MS = 1500;
 // Gallery detail screen.
 export function GalleryDetailScreen() {
   const { isTablet, width, height } = useLayout();
-  const { artworkId } = useLocalSearchParams<{ artworkId: string }>();
+  const params = useLocalSearchParams<{ artworkId: string; granted?: string }>();
+  const { artworkId } = params;
   const [d, setD] = useState<ArtDetail | null>(null);
   const [replay, setReplay] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [worldPick, setWorldPick] = useState(false);
+  const [voiceOpen, setVoiceOpen] = useState(false);
+  const [voiceId, setVoiceId] = useState<string | null>(null);
   const stopReplay = useCallback(() => setReplay(0), []);
 
   useEffect(() => {
@@ -45,7 +54,14 @@ export function GalleryDetailScreen() {
     loadArtDetail(artworkId)
       .then(setD)
       .catch((e: unknown) => console.warn('[gallery] detail failed', e));
+    voiceForArtwork(artworkId)
+      .then(setVoiceId)
+      .catch(() => undefined);
   }, [artworkId]);
+
+  useEffect(() => {
+    if (params.granted === '1' && isParentUnlocked()) requestRecordingPermissionsAsync().catch(() => undefined);
+  }, [params.granted]);
 
   if (!d) return <SafeAreaView style={styles.screen} />;
   const a = d.art;
@@ -99,11 +115,15 @@ export function GalleryDetailScreen() {
           {keepDrawing ? <DetailAction icon={<CrayonIcon />} label="Keep drawing" onPress={keepDrawing} /> : null}
           {isFeatureOn('magicSketch') ? <DetailAction icon={<WandIcon />} label="Magic" onPress={() => router.push({ pathname: '/magic/sketch', params: { artworkId: a.id } })} /> : null}
           {isFeatureOn('stickers') ? <DetailAction icon={<StampIcon />} label="Make a sticker" /> : null}
-          {isFeatureOn('voices') ? <DetailAction icon={<MicIcon />} label="Give it a voice" /> : null}
+          {isFeatureOn('voices') ? <DetailAction icon={<MicIcon />} label="Give it a voice" onPress={() => setVoiceOpen(true)} /> : null}
+          {voiceId ? <DetailAction icon={<SpeakerIcon />} label="Hear it" onPress={() => void playVoiceClip(voiceId)} /> : null}
           {isFeatureOn('worlds') && !d.flipbook ? <DetailAction icon={<AquariumArt size={30} />} label="Put in a world" onPress={() => setWorldPick(true)} /> : null}
           <DetailAction icon={<TrashIcon />} label="Hold to trash" onLongPress={() => void trash()} delayLongPress={TRASH_HOLD_MS} />
         </ScrollView>
       </View>
+      {voiceOpen ? (
+        <VoiceSheet kidId={a.kidId} target={{ artworkId: a.id }} returnTo={`/gallery/${a.id}`} onClose={() => setVoiceOpen(false)} onSaved={setVoiceId} />
+      ) : null}
       {worldPick ? (
         <ChoiceBubble
           text="Which world?"

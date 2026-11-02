@@ -12,6 +12,8 @@ export interface PressableScaleProps {
   onPress?: () => void;
   onLongPress?: () => void;
   delayLongPress?: number;
+  onPressIn?: () => void;
+  onPressOut?: () => void;
   accessibilityLabel: string;
   sound?: SoundName | null;
   disabled?: boolean;
@@ -26,6 +28,8 @@ export function PressableScale({
   onPress,
   onLongPress,
   delayLongPress,
+  onPressIn,
+  onPressOut,
   accessibilityLabel,
   sound = 'tap',
   disabled,
@@ -49,8 +53,14 @@ export function PressableScale({
       accessibilityState={{ disabled: !!disabled, selected: !!selected }}
       disabled={disabled}
       testID={testID}
-      onPressIn={() => scale.set(withTiming(motion.tapScale, { duration: motion.tapMs }))}
-      onPressOut={() => scale.set(withTiming(1, { duration: motion.tapMs }))}
+      onPressIn={() => {
+        scale.set(withTiming(motion.tapScale, { duration: motion.tapMs }));
+        onPressIn?.();
+      }}
+      onPressOut={() => {
+        scale.set(withTiming(1, { duration: motion.tapMs }));
+        onPressOut?.();
+      }}
       onPress={handlePress}
       onLongPress={onLongPress}
       delayLongPress={delayLongPress}

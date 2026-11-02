@@ -84,3 +84,15 @@ export function deleteKidArt(kidId: string): void {
     console.warn('[files] delete folder failed', e);
   }
 }
+
+// Moves a file from anywhere (e.g. a fresh recording in the cache) into the app folder at `rel`.
+export async function moveIntoApp(srcUri: string, rel: string): Promise<void> {
+  const dest = new File(Paths.document, rel);
+  const dir = rel.split('/').slice(0, -1).join('/');
+  if (dir) {
+    const d = new Directory(Paths.document, dir);
+    if (!d.exists) d.create({ intermediates: true, idempotent: true });
+  }
+  if (dest.exists) dest.delete();
+  await new File(srcUri).move(dest);
+}

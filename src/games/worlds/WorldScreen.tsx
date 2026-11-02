@@ -1,6 +1,7 @@
 // Shared world screen shell (A5, mockup Aquarium): full-bleed scene, title pill, extra + Album buttons, "Draw a new fish".
 import { router, useLocalSearchParams } from 'expo-router';
-import { useState, type ReactNode } from 'react';
+import { requestRecordingPermissionsAsync } from 'expo-audio';
+import { useEffect, useState, type ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,7 +10,9 @@ import { IconButton } from '@/components/kid/IconButton';
 import { GalleryArt } from '@/components/kid/icons/GalleryArt';
 import { KidHeader } from '@/components/kid/KidHeader';
 import { PrimaryButton } from '@/components/kid/PrimaryButton';
+import { VoiceSheet } from '@/games/voice/VoiceSheet';
 import { isFeatureOn } from '@/state/features';
+import { isParentUnlocked } from '@/state/parentStore';
 import { useActiveKid } from '@/state/useActiveKid';
 import { colors, fonts, fontSize, radius, space } from '@/theme/tokens';
 import { useLayout } from '@/theme/useLayout';
@@ -37,9 +40,14 @@ export interface WorldScreenProps {
 export function WorldScreen({ cfg, motion, ext, clock, background, foreground, extraButton, onSize, onLongPressCreature, drawOrder }: WorldScreenProps) {
   const { isTablet, height } = useLayout();
   const kid = useActiveKid();
-  const params = useLocalSearchParams<{ enter?: string }>();
-  const { onScreen, album, total, restore } = useWorldCreatures(cfg.key, cfg.max);
+  const params = useLocalSearchParams<{ enter?: string; granted?: string }>();
+  const { onScreen, album, total, restore, reload } = useWorldCreatures(cfg.key, cfg.max);
   const [albumOpen, setAlbumOpen] = useState(false);
+  const [voiceFor, setVoiceFor] = useState<Creature | null>(null);
+
+  useEffect(() => {
+    if (params.granted === '1' && isParentUnlocked()) requestRecordingPermissionsAsync().catch(() => undefined);
+  }, [params.granted]);
 
   const title = worldTitle(cfg, kid?.nickname, total);
   return (
@@ -56,7 +64,11 @@ export function WorldScreen({ cfg, motion, ext, clock, background, foreground, e
         screenH={height}
         onSize={onSize}
         drawOrder={drawOrder}
-        onLongPress={(c) => (isFeatureOn('voices') ? onLongPressCreature?.(c) : undefined)}
+        onLongPress={(c) => {
+          if (!isFeatureOn('voices')) return;
+          if (onLongPressCreature) onLongPressCreature(c);
+          else setVoiceFor(c);
+        }}
       />
       <SafeAreaView pointerEvents="box-none" style={StyleSheet.absoluteFill}>
         <View pointerEvents="box-none" style={[styles.top, { paddingHorizontal: isTablet ? space.xl : space.lg }]}>
@@ -75,6 +87,9 @@ export function WorldScreen({ cfg, motion, ext, clock, background, foreground, e
           <PrimaryButton label={`Draw a new ${cfg.noun}`} tone="tomato" onPress={() => router.push({ pathname: '/world-draw', params: { world: cfg.key } })} />
         </View>
       </SafeAreaView>
+      {voiceFor && kid ? (
+        <VoiceSheet kidId={kid.id} target={{ entityId: voiceFor.entity.id }} returnTo={cfg.route} onClose={() => setVoiceFor(null)} onSaved={() => void reload()} />
+      ) : null}
       {albumOpen ? (
         <AlbumDrawer
           album={album}
