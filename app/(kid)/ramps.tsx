@@ -1,6 +1,3 @@
-// Ramps & Rollers (T-056). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { RampsScreen } from '@/screens/kid/RampsScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Ramps & Rollers" />;
-}
+export default RampsScreen;
