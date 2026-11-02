@@ -199,3 +199,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-056 · Ramps & Rollers
 - Files: `src/games/ramps/{rampsWorld.ts,RampsPlay.tsx}`, `src/screens/kid/RampsScreen.tsx`, `app/(kid)/ramps.tsx`, `__tests__/games/ramps.test.ts`, `__tests__/screens/ramps.test.tsx`.
 - Works: big Draw / Play toggle. Draw = marker, size L; each stroke becomes a static `planck` chain (1 m = 50 px, a point every 12 px). Play = three drop arrows; balls (r 0.4 m, restitution 0.4, friction 0.3, gravity (0, 10)) with rotating skins (ball, orange, round cat); bucket at a random x per session with a sensor — a landing (counted once per ball) gives confetti, `star` and the bucket stickers; balls leaving the screen are removed; max 15; "Reset balls". Fixed 1/60 s steps with 8 / 3 iterations via an accumulator; rendered with Skia. The drawing autosaves as `ramps`.
+
+## T-057 · Music Paint
+- Files: `src/games/music/{notes.ts,noteEvents.ts}`, `assets/sounds/notes/{C4,D4,E4,G4,A4,C5,D5,E5,G5,A5}.m4a` (placeholder marimba-like tones made with ffmpeg), `src/screens/kid/MusicScreen.tsx`, `app/(kid)/music.tsx`, gallery detail Replay plays the song for music art, `__tests__/games/music.test.ts`.
+- Works: 10 palette colors → pentatonic notes (tomato C4 … white A5); while drawing a note sounds at the stroke start and every 140 ms of movement, volume 0.4–1.0 by finger speed. Note events `{ t, note, x, y }` (+ stroke id) go to `art/<kidId>/<artworkId>.notes.json` with a `music_paint` row; undone strokes drop their notes. Play replays the drawing and its notes on the same timeline (min(8 s, real time)); first song grants `first_song`.
+- Owner can swap in real marimba samples later (T-103).

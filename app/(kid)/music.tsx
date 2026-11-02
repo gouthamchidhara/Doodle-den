@@ -1,6 +1,3 @@
-// Music Paint (T-057). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { MusicScreen } from '@/screens/kid/MusicScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Music Paint" />;
-}
+export default MusicScreen;

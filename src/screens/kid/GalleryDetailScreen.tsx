@@ -18,14 +18,17 @@ import { ChoiceBubble } from '@/components/kid/ChoiceBubble';
 import { KidHeader } from '@/components/kid/KidHeader';
 import { ReplayCanvas } from '@/components/kid/ReplayCanvas';
 import { toggleFavorite, trashArtwork } from '@/db/repositories/artworkRepo';
+import { getMusic } from '@/db/repositories/musicRepo';
 import { loadArtDetail, type ArtDetail } from '@/games/gallery/loadDetail';
+import { parseNotes, scheduleNotes } from '@/games/music/noteEvents';
+import { playNote } from '@/games/music/notes';
 import { playVoiceClip } from '@/games/voice/playVoice';
 import { voiceForArtwork } from '@/games/voice/voiceStore';
 import { VoiceSheet } from '@/games/voice/VoiceSheet';
 import { addCreature, randomCreatureName } from '@/games/worlds/addCreature';
 import { WORLDS, type PlayWorld } from '@/games/worlds/worldConfig';
 import { playSound } from '@/services/audio';
-import { fileUri } from '@/services/files';
+import { fileUri, readText } from '@/services/files';
 import { isFeatureOn } from '@/state/features';
 import { isParentUnlocked } from '@/state/parentStore';
 import { border, colors, radius, space } from '@/theme/tokens';
@@ -82,6 +85,14 @@ export function GalleryDetailScreen() {
     router.back();
   };
 
+  const startReplay = async () => {
+    setReplay((n) => n + 1);
+    if (a.activity !== 'music' || !d.doc) return;
+    const music = await getMusic(a.id);
+    const notes = parseNotes(music ? await readText(music.notesPath) : null);
+    scheduleNotes(d.doc, notes, playNote);
+  };
+
   const putIn = async (w: PlayWorld) => {
     setWorldPick(false);
     const entityId = await addCreature(a.kidId, w, a.id, randomCreatureName());
@@ -110,7 +121,7 @@ export function GalleryDetailScreen() {
         </View>
         <ScrollView horizontal={!isTablet} contentContainerStyle={[styles.actions, isTablet && styles.actionsCol]}>
           {d.flipbook ? <DetailAction icon={<PlayIcon />} label="Play" onPress={() => setPlaying(true)} /> : null}
-          {d.doc && a.activity !== 'coloring' ? <DetailAction icon={<PlayIcon />} label="Replay" onPress={() => setReplay((n) => n + 1)} /> : null}
+          {d.doc && a.activity !== 'coloring' ? <DetailAction icon={<PlayIcon />} label="Replay" onPress={() => void startReplay()} /> : null}
           <DetailAction icon={<HeartIcon color={a.isFavorite ? colors.tomato : colors.ink} />} label="Favorite" selected={a.isFavorite} onPress={() => void favorite()} />
           {keepDrawing ? <DetailAction icon={<CrayonIcon />} label="Keep drawing" onPress={keepDrawing} /> : null}
           {isFeatureOn('magicSketch') ? <DetailAction icon={<WandIcon />} label="Magic" onPress={() => router.push({ pathname: '/magic/sketch', params: { artworkId: a.id } })} /> : null}
