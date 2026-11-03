@@ -1,6 +1,3 @@
-// My Art Jigsaw (T-058). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { JigsawScreen } from '@/screens/kid/JigsawScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="My Art Jigsaw" />;
-}
+export default JigsawScreen;

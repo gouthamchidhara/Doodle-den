@@ -204,3 +204,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 - Files: `src/games/music/{notes.ts,noteEvents.ts}`, `assets/sounds/notes/{C4,D4,E4,G4,A4,C5,D5,E5,G5,A5}.m4a` (placeholder marimba-like tones made with ffmpeg), `src/screens/kid/MusicScreen.tsx`, `app/(kid)/music.tsx`, gallery detail Replay plays the song for music art, `__tests__/games/music.test.ts`.
 - Works: 10 palette colors → pentatonic notes (tomato C4 … white A5); while drawing a note sounds at the stroke start and every 140 ms of movement, volume 0.4–1.0 by finger speed. Note events `{ t, note, x, y }` (+ stroke id) go to `art/<kidId>/<artworkId>.notes.json` with a `music_paint` row; undone strokes drop their notes. Play replays the drawing and its notes on the same timeline (min(8 s, real time)); first song grants `first_song`.
 - Owner can swap in real marimba samples later (T-103).
+
+## T-058 · My Art Jigsaw
+- Files: `src/games/jigsaw/{pieces.ts,JigsawPiece.tsx,JigsawBoard.tsx}`, `src/screens/kid/JigsawScreen.tsx`, `app/(kid)/jigsaw.tsx`, `__tests__/games/jigsaw.test.ts`, `__tests__/screens/jigsaw.test.tsx`.
+- Works: pick a drawing → 4 / 9 / 16 / 24 pieces (Little: 4 and 9) → board left (wide) or top (tall), 15 % guide picture in Little mode, seeded tray scatter. Tab/blank edges seeded by artwork id + count (neighbours always fit, borders flat — tested), Skia paths clip the picture; drag, snap within 24 px with a click, touched piece comes to the front. Done → confetti, `star`, "You did it!", `jigsaw_result` best time, `jigsaw_<n>` sticker once.
