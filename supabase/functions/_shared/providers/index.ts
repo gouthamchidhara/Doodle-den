@@ -8,7 +8,7 @@ const env = (k: string, d = '') => Deno.env.get(k) ?? d;
 // Text provider (anthropic by default).
 export function textProvider(): TextProvider {
   const name = env('AI_TEXT_PROVIDER', 'anthropic');
-  if (name === 'anthropic') return anthropicText(env('AI_TEXT_API_KEY'), env('AI_TEXT_MODEL', 'claude-haiku-4-5-20251001'));
+  if (name === 'anthropic') return anthropicText(env('AI_TEXT_API_KEY'), env('AI_TEXT_MODEL', 'claude-haiku-5-5'));
   throw new Error(`unknown text provider ${name}`);
 }
 

@@ -277,3 +277,6 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 
 ## T-096 follow-up · in-activity Free limits
 - Coloring picker: pages after the first 10 show a padlock → Parent Gate → Subscription. Trace: only letters A–E free. Tested in `__tests__/services/printGallery.test.ts`. Free Draw rail shows only crayon, marker, eraser and stamps on Free.
+
+## Supabase setup
+- Live project `oagidmdqcnwiuaavssie`: migrations 0001–0003 applied (tables, RLS, private `art` bucket + policies, AI tables, hardening). Added `supabase/functions/ai` router (app now invokes `ai/<name>`), default text model `claude-haiku-5-5`. Edge functions not deployed yet (connector dropped) — command in `supabase/README.md`.

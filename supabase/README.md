@@ -29,7 +29,7 @@ Deploy `family-gallery` and `rc-webhook` with `--no-verify-jwt`.
 | Secret | Default | Notes |
 | --- | --- | --- |
 | `AI_TEXT_PROVIDER` | `anthropic` | text + vision |
-| `AI_TEXT_MODEL` | `claude-haiku-4-5-20251001` | |
+| `AI_TEXT_MODEL` | `claude-haiku-5-5` | |
 | `AI_TEXT_API_KEY` | — | required for AI |
 | `AI_IMAGE_PROVIDER` | `openai` | image generate + edit |
 | `AI_IMAGE_MODEL` | `gpt-image-1` | owner confirms the current model name before launch |
@@ -49,3 +49,8 @@ Deploy `family-gallery` and `rc-webhook` with `--no-verify-jwt`.
 ## Lists to keep in step with the app
 
 `_shared/aiIdeaTiles.json` = `src/content/aiIdeaTiles.json`; `_shared/coachIdeas.json` ids = `src/content/coachIdeas.json`; `_shared/blocklist.ts` ≈ `src/content/blocklist.ts`.
+
+## Deployed state (project `oagidmdqcnwiuaavssie`, "Doodle-Den", us-east-1)
+- Migrations applied via the Supabase connector: `0001_core`, `0002_ai`, `0003_hardening` (parents cannot set `plan` / `ai_entitled`; no anon table access; `server_now()` search_path pinned).
+- The app calls one router function `ai` (`supabase/functions/ai/index.ts`) at `/functions/v1/ai/<ai-feature-name>`; the per-feature folders stay for reference/tests.
+- Deploy functions: `supabase link --project-ref oagidmdqcnwiuaavssie && supabase functions deploy ai family-gallery rc-webhook delete-account` then `supabase functions deploy family-gallery rc-webhook --no-verify-jwt` (gallery is a public page; webhook checks `RC_WEBHOOK_SECRET`).

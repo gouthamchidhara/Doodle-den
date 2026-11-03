@@ -68,7 +68,7 @@ export async function callAi<T>(fn: string, body: Record<string, unknown>): Prom
     timer = setTimeout(() => resolve({ ok: false, code: 'TIMEOUT' }), AI_TIMEOUT_MS);
   });
   const call = (async (): Promise<AiResult<T>> => {
-    const { data, error } = await sb.functions.invoke(fn, { body });
+    const { data, error } = await sb.functions.invoke(`ai/${fn}`, { body });
     if (error || !data) return { ok: false, code: 'PROVIDER_ERROR' };
     return data as AiResult<T>;
   })().catch((): AiResult<T> => ({ ok: false, code: 'PROVIDER_ERROR' }));
