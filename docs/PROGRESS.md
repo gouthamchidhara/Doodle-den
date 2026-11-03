@@ -274,3 +274,6 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 - T-104: `eas.json` (development / preview / production + submit). Builds and store uploads need the owner's EAS + store accounts.
 - T-105: `docs/SUBMISSION.md` — beta loop, screenshots list, age rating answers, review notes (parental gate + Screen Time).
 - Removed the temporary `dev-components` route and screen.
+
+## T-096 follow-up · in-activity Free limits
+- Coloring picker: pages after the first 10 show a padlock → Parent Gate → Subscription. Trace: only letters A–E free. Tested in `__tests__/services/printGallery.test.ts`. Free Draw rail shows only crayon, marker, eraser and stamps on Free.

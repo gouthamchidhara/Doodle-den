@@ -27,3 +27,14 @@ describe('print + gallery + gating', () => {
     expect(isFamilyTile('magic_sketch')).toBe(false);
   });
 });
+
+describe('in-activity free limits', () => {
+  const { isFamilyColoringPage, isFamilyTrace } = jest.requireActual<typeof import('@/state/features')>('@/state/features');
+  it('frees the first 10 coloring pages and letters A–E', () => {
+    expect(isFamilyColoringPage(9)).toBe(false);
+    expect(isFamilyColoringPage(10)).toBe(true);
+    expect(isFamilyTrace('letter', 'E')).toBe(false);
+    expect(isFamilyTrace('letter', 'F')).toBe(true);
+    expect(isFamilyTrace('number', '1')).toBe(true);
+  });
+});

@@ -1,4 +1,5 @@
 // Trace & Learn (A5): pick a letter/number/shape, trace each stroke in order, earn stars and hear the word.
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -7,6 +8,7 @@ import { ChipTabs } from '@/components/kid/ChipTabs';
 import { IconButton } from '@/components/kid/IconButton';
 import { SpeakerIcon } from '@/components/kid/icons/SpeakerIcon';
 import { KidHeader } from '@/components/kid/KidHeader';
+import { PadlockIcon } from '@/components/kid/icons/PadlockIcon';
 import { PressableScale } from '@/components/kid/PressableScale';
 import { StarRow } from '@/components/kid/StarRow';
 import { traceItems, traceWord, type TraceKind, type TracePath } from '@/content/tracePaths';
@@ -16,7 +18,9 @@ import { TraceBoard } from '@/games/trace/TraceBoard';
 import { TOLERANCE_PX } from '@/games/trace/traceEngine';
 import { playSound } from '@/services/audio';
 import { say } from '@/services/voice';
+import { isFamilyTrace } from '@/state/features';
 import { useSessionStore } from '@/state/sessionStore';
+import { usePlan } from '@/state/usePlan';
 import { border, colors, fonts, fontSize, radius, space } from '@/theme/tokens';
 import { useLayout } from '@/theme/useLayout';
 
@@ -37,6 +41,7 @@ export function TraceScreen() {
   const { isTablet, width, height, ageMode } = useLayout();
   const kidId = useSessionStore((s) => s.activeKidId);
   const replay = useIntroVoice('intro_trace');
+  const plan = usePlan();
   const [tab, setTab] = useState<TraceKind>('letter');
   const [current, setCurrent] = useState<TracePath | null>(null);
   const [attempt, setAttempt] = useState(0);
@@ -51,7 +56,13 @@ export function TraceScreen() {
       .catch((e: unknown) => console.warn('[trace] progress failed', e));
   }, [kidId]);
 
+  const locked = (p: TracePath) => !plan.family && isFamilyTrace(p.kind, p.id);
   const start = (p: TracePath) => {
+    if (locked(p)) {
+      setCurrent(null);
+      router.push({ pathname: '/parent/gate', params: { next: '/parent/subscription' } });
+      return;
+    }
     setCurrent(p);
     setResult(null);
     setAttempt((n) => n + 1);
@@ -95,9 +106,9 @@ export function TraceScreen() {
           </View>
           <ScrollView contentContainerStyle={styles.grid}>
             {items.map((p) => (
-              <PressableScale key={p.id} accessibilityLabel={`Trace ${p.id}`} onPress={() => start(p)} style={[styles.tile, { width: tile, minHeight: tile + 20 }]}>
+              <PressableScale key={p.id} accessibilityLabel={locked(p) ? `Trace ${p.id}, ask a grown-up` : `Trace ${p.id}`} onPress={() => start(p)} style={[styles.tile, { width: tile, minHeight: tile + 20 }]}>
                 <Text style={[styles.glyph, p.kind === 'shape' && styles.shapeName]}>{p.id}</Text>
-                <StarRow count={best[traceSkill(p.id)] ?? 0} size={14} />
+                {locked(p) ? <PadlockIcon size={18} /> : <StarRow count={best[traceSkill(p.id)] ?? 0} size={14} />}
               </PressableScale>
             ))}
           </ScrollView>

@@ -8,7 +8,9 @@ import { IconButton } from '@/components/kid/IconButton';
 import { SpeakerIcon } from '@/components/kid/icons/SpeakerIcon';
 import { KidHeader } from '@/components/kid/KidHeader';
 import { PageCard } from '@/components/kid/PageCard';
-import { COLORING_CATEGORIES, coloringSource, pagesFor } from '@/content/coloringPages';
+import { COLORING_CATEGORIES, COLORING_PAGES, coloringSource, pagesFor } from '@/content/coloringPages';
+import { isFamilyColoringPage } from '@/state/features';
+import { usePlan } from '@/state/usePlan';
 import { listAiResults } from '@/db/repositories/aiResultRepo';
 import { getMeta } from '@/db/repositories/metaRepo';
 import { aiIdeaKey, aiPagePath } from '@/games/coloring/aiPages';
@@ -49,7 +51,10 @@ export function ColoringPickerScreen() {
     })().catch((e: unknown) => console.warn('[coloring] my pages failed', e));
   }, [kidId]);
 
+  const plan = usePlan();
   const open = (pageId: string) => router.push({ pathname: '/coloring/[pageId]', params: { pageId } });
+  const isLocked = (id: string) => !plan.family && isFamilyColoringPage(COLORING_PAGES.findIndex((x) => x.id === id));
+  const gateToPlans = () => router.push({ pathname: '/parent/gate', params: { next: '/parent/subscription' } });
 
   return (
     <SafeAreaView style={[styles.screen, { padding: isTablet ? space.xl : space.lg }]}>
@@ -74,7 +79,7 @@ export function ColoringPickerScreen() {
               <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.row}>
                 {pages.map((p) => {
                   const src = coloringSource(p);
-                  return src ? <PageCard key={p.id} title={p.title} source={src} size={size} onPress={() => open(p.id)} /> : null;
+                  return src ? <PageCard key={p.id} title={p.title} source={src} size={size} locked={isLocked(p.id)} onPress={() => (isLocked(p.id) ? gateToPlans() : open(p.id))} /> : null;
                 })}
               </ScrollView>
             </View>

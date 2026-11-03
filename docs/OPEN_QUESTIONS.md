@@ -11,4 +11,4 @@ Write the ticket ID with each question (A1 rule 6).
 
 ## T-096 gating
 - Family gating turns on only when `EXPO_PUBLIC_RC_IOS_KEY` / `EXPO_PUBLIC_RC_ANDROID_KEY` are set; dev builds stay fully open.
-- Not yet gated inside activities: "10 coloring pages" and "Trace letters A–E" limits on Free, and "all brushes". Owner to confirm which pages/brushes are Free before wiring.
+- Free limits inside activities are wired: first 10 bundled coloring pages, trace letters A–E (numbers/shapes need Family). Brushes: Free shows crayon, marker, eraser, stamps; watercolor/glitter/neon are hidden on Free.

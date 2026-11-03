@@ -26,6 +26,22 @@ export function isFamilyTile(key: string): boolean {
   return FAMILY_TILES.has(key);
 }
 
+// Free coloring pages: the first 10 bundled pages (A5).
+export const FREE_COLORING_PAGES = 10;
+
+// True when a bundled coloring page needs Family (index in COLORING_PAGES order).
+export function isFamilyColoringPage(index: number): boolean {
+  return index >= FREE_COLORING_PAGES;
+}
+
+// Free trace items: letters A–E only (A5).
+export function isFamilyTrace(kind: string, id: string): boolean {
+  return !(kind === 'letter' && /^[A-E]$/i.test(id));
+}
+
+// Brushes on Free (A5): crayon, marker, eraser, stamps; the rest need Family.
+export const FREE_BRUSHES: ReadonlySet<string> = new Set(['crayon', 'marker', 'eraser', 'stamp']);
+
 // Free plan kid limit.
 export const FREE_KIDS = 1;
 

@@ -12,7 +12,7 @@ Everything below works today with placeholder content. Counts are what the spec 
 | Stamps | `src/canvas/stamps.ts` | 20 | vector placeholders | SVG paths |
 | Rewards / stickers art | `src/content/rewards.json` | 56 + 30 daily | names only, generic badge art | One PNG per reward |
 | World templates (Aquarium, Racetrack, Zoo) | `src/games/worlds/` | 3 backgrounds + creature parts | simple vector scenes | |
-| Avatars | `src/content/avatars.ts` | 8 | 8 vector faces | OK for v1 |
+| Avatars | `src/content/avatars.ts` | 8 (confirmed in code) | 8 vector faces | OK for v1 |
 | AI idea tile pictures | `src/content/aiIdeaTiles.json` | 62 pictures | words only | Coloring Page Maker tiles |
 | App icon, splash | `assets/images/icon.png`, `splash-icon.png`, `assets/expo.icon`, android icons | final art | Expo defaults | Also store screenshots (see SUBMISSION) |
 | Privacy policy + support URLs | `src/content/links.ts` | real URLs | placeholders | Required before submission |

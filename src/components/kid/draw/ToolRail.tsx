@@ -1,6 +1,8 @@
 // Row or column of brush tool buttons (Free Draw rails, phone tray).
 import { ScrollView, StyleSheet, View } from 'react-native';
 
+import { FREE_BRUSHES } from '@/state/features';
+import { usePlan } from '@/state/usePlan';
 import { space } from '@/theme/tokens';
 import type { BrushType } from '@/types/models';
 
@@ -13,8 +15,10 @@ export interface ToolRailProps {
   horizontal?: boolean;
 }
 
-// Eraser always sits apart at the end of a vertical rail (mockup "Free Draw · iPad").
-export function ToolRail({ tools, selected, onSelect, horizontal }: ToolRailProps) {
+// Eraser always sits apart at the end of a vertical rail (mockup "Free Draw · iPad"). Free plan shows only Free brushes.
+export function ToolRail({ tools: allTools, selected, onSelect, horizontal }: ToolRailProps) {
+  const plan = usePlan();
+  const tools = plan.family ? allTools : allTools.filter((t) => FREE_BRUSHES.has(t));
   const main = tools.filter((t) => t !== 'eraser');
   const hasEraser = tools.includes('eraser');
   if (horizontal) {
