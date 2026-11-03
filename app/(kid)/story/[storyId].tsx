@@ -1,6 +1,3 @@
-// Story player (T-082). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { StoryPlayerScreen } from '@/screens/kid/StoryPlayerScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Story player" />;
-}
+export default StoryPlayerScreen;

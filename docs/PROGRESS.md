@@ -246,3 +246,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-081 · Magic Sketch
 - Files: `src/screens/kid/MagicSketchScreen.tsx` + `app/(kid)/magic/sketch.tsx`, Free Draw mascot "Magic!" (10+ strokes, saves first), gallery "Magic" button (`features.magicSketch` on).
 - Works: from the Magic shelf pick a drawing (or arrive with `?artworkId=`), "Make it magic!" → waiting overlay → `ai-magic-sketch` with the PNG at 768 px → the result slides in beside the original → "Keep it!" saves a NEW artwork (activity `magic`, title "Magic …", sparkle badge in the gallery) + `ai_result` with `source_artwork_id`, grants `first_magic`; "Try again" calls again (counts toward the cap). The original is never touched.
+
+## T-082 · Story Maker, player, Stories
+- Files: `src/screens/kid/{StoryMakerScreen,StoryPlayerScreen,StoriesScreen}.tsx` + `app/(kid)/magic/story-maker.tsx`, `app/(kid)/story/[storyId].tsx`, `app/(kid)/stories.tsx`, `sayTextThen` in `src/services/voice.ts`, `__tests__/screens/storyMaker.test.tsx`.
+- Works: pick 1–4 drawings (big thumbnails numbered in tap order) → "Make my story!" → waiting overlay → `ai-story` with 512 px PNGs; `heroName` sent only when the parent's "Use nickname in stories" is on (tested both ways) → `story` row (+ `first_story` sticker) → player: title then one drawing per page, big Fredoka text read aloud (0.9 Little / 1.0 Big) and pages turn by themselves; Replay / Next / Done. Stories list: cards with title + first drawing, newest first; kids cannot delete (parents can in T-09x).

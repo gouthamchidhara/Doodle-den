@@ -1,6 +1,3 @@
-// Story Maker (T-082). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { StoryMakerScreen } from '@/screens/kid/StoryMakerScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Story Maker" />;
-}
+export default StoryMakerScreen;

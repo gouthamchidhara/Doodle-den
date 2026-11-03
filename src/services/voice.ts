@@ -41,3 +41,14 @@ export function say(key: string): void {
 export function stopVoice(): void {
   Speech.stop().catch(() => undefined);
 }
+
+// Speaks text and calls `onDone` when finished (story pages turn themselves).
+export function sayTextThen(text: string, rate: number, onDone: () => void): void {
+  try {
+    Speech.stop().catch(() => undefined);
+    Speech.speak(text, { rate, pitch: SPEECH_PITCH, onDone, onStopped: undefined });
+  } catch (error) {
+    console.warn('[voice] speak failed', error);
+    onDone();
+  }
+}

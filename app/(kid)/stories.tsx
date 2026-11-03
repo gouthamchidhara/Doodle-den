@@ -1,6 +1,3 @@
-// Stories list (T-082). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { StoriesScreen } from '@/screens/kid/StoriesScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Stories list" />;
-}
+export default StoriesScreen;
