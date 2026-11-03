@@ -1,0 +1,25 @@
+{
+  "cli": { "version": ">= 16.0.0", "appVersionSource": "remote" },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": { "EXPO_PUBLIC_IOS_SCREEN_TIME": "false" }
+    },
+    "preview": {
+      "distribution": "internal",
+      "android": { "buildType": "apk" },
+      "env": { "EXPO_PUBLIC_IOS_SCREEN_TIME": "false" }
+    },
+    "production": {
+      "autoIncrement": true,
+      "env": { "EXPO_PUBLIC_IOS_SCREEN_TIME": "false" }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": { "ascAppId": "REPLACE_WITH_APP_STORE_CONNECT_APP_ID", "appleTeamId": "KSD8FCH7C9" },
+      "android": { "track": "internal" }
+    }
+  }
+}

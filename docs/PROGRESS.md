@@ -265,3 +265,12 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 - Family Gallery: create private link (32-char url-safe token, tested), Share, Turn off link (`revoked_at`); per-artwork "share" toggles set `family_shared` and upload that PNG right away even with backup off.
 - Printing: sticker sheet (3×4, cut lines, max 12) and story book (title page + one page per story page) → PDF → share sheet. Behind the parental gate (Art & sharing).
 - Subscription: Free vs Family text, packages + prices from RevenueCat offerings only, Restore. Gating: `FAMILY_TILES` get a padlock → Parent Gate → Subscription; Free = 1 kid; Art & sharing needs Family. Entitlement refreshed at startup. Gating is active only in builds with RevenueCat keys (without keys everything is open) — see OPEN_QUESTIONS. Page-level gating (10 coloring pages, Trace A–E) not done yet — OPEN_QUESTIONS.
+
+## M8 · T-100–T-105 (ship prep)
+- T-100: `docs/ACCESSIBILITY.md` — code checks done (labels, roles, touch sizes, contrast tokens, Reduce Motion via Reanimated `ReduceMotion.System`); VoiceOver/TalkBack/large-text device checks left for a person.
+- T-101: `docs/PERFORMANCE.md` — targets + table to fill on real devices (none available in this container).
+- T-102: `docs/COMPLIANCE.md` + `ios.privacyManifests` in `app.config.ts`; dependency scan clean (no ads/analytics). Owner sign-off line at the bottom.
+- T-103: `docs/CONTENT_TODO.md` — every placeholder with file names and counts.
+- T-104: `eas.json` (development / preview / production + submit). Builds and store uploads need the owner's EAS + store accounts.
+- T-105: `docs/SUBMISSION.md` — beta loop, screenshots list, age rating answers, review notes (parental gate + Screen Time).
+- Removed the temporary `dev-components` route and screen.

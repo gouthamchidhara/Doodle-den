@@ -51,6 +51,31 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         ],
         ITSAppUsesNonExemptEncryption: false,
       },
+      // Apple privacy manifest (T-102): no tracking; only the parent's email for the optional account.
+      privacyManifests: {
+        NSPrivacyTracking: false,
+        NSPrivacyTrackingDomains: [],
+        NSPrivacyCollectedDataTypes: [
+          {
+            NSPrivacyCollectedDataType: 'NSPrivacyCollectedDataTypeEmailAddress',
+            NSPrivacyCollectedDataTypeLinked: true,
+            NSPrivacyCollectedDataTypeTracking: false,
+            NSPrivacyCollectedDataTypePurposes: ['NSPrivacyCollectedDataTypePurposeAppFunctionality'],
+          },
+          {
+            NSPrivacyCollectedDataType: 'NSPrivacyCollectedDataTypePhotosorVideos',
+            NSPrivacyCollectedDataTypeLinked: true,
+            NSPrivacyCollectedDataTypeTracking: false,
+            NSPrivacyCollectedDataTypePurposes: ['NSPrivacyCollectedDataTypePurposeAppFunctionality'],
+          },
+        ],
+        NSPrivacyAccessedAPITypes: [
+          { NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryUserDefaults', NSPrivacyAccessedAPITypeReasons: ['CA92.1'] },
+          { NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryFileTimestamp', NSPrivacyAccessedAPITypeReasons: ['C617.1'] },
+          { NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategorySystemBootTime', NSPrivacyAccessedAPITypeReasons: ['35F9.1'] },
+          { NSPrivacyAccessedAPIType: 'NSPrivacyAccessedAPICategoryDiskSpace', NSPrivacyAccessedAPITypeReasons: ['E174.1'] },
+        ],
+      },
       ...(IOS_SCREEN_TIME
         ? { entitlements: { 'com.apple.developer.family-controls': true } }
         : {}),
