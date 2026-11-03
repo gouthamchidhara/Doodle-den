@@ -1,6 +1,3 @@
-// Magic settings (T-078). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { MagicSettingsScreen } from '@/screens/parent/MagicSettingsScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Magic settings" />;
-}
+export default MagicSettingsScreen;
