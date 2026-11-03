@@ -258,3 +258,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-092 · Kids management + per-kid trash
 - Files: `src/screens/parent/KidsScreen.tsx` + `app/parent/profiles.tsx`, `src/components/parent/{KidForm,KidTrash}.tsx` (KidForm now shared with onboarding Add kid), `src/games/parent/kidAdmin.ts`, `__tests__/games/parent/kidAdmin.test.ts`.
 - Works: list with avatars, Add (hidden at 4 kids), edit nickname/avatar/age, Delete (not the last kid) behind two confirms → `deleteKid` (DB cascade + `art/<kidId>` folder) + `clearLockState`; trash per kid with tap-to-Restore and Empty trash (confirm) which deletes PNG, thumbnail, strokes and sticker files.
+
+## T-093 · Sync service (in progress)
+- Files so far: `src/services/{sync,syncPush}.ts`, `__tests__/services/syncPush.test.ts`.
+- Works: runs only with `consent_sync = 'true'` + session + online; queue oldest first, delete on success, stop at first error; usage_day MAX rule (tested); PNG upload to `art/<family>/<kid>/<id>.png`; turning consent on queues existing rows; `startSyncLoop` (start + every 5 min in foreground).
+- Still to do: Art & sharing screen (backup consent), wiring the loop at startup and on parent-zone open.
