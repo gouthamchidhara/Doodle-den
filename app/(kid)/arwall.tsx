@@ -1,6 +1,3 @@
-// AR Wall (T-061). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { ArWallScreen } from '@/screens/kid/ArWallScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="AR Wall" />;
-}
+export default ArWallScreen;

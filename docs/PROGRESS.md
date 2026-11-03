@@ -217,3 +217,6 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 - Files: `src/games/museum/{museumPlan.ts,MuseumShow.tsx}`, `src/screens/kid/MuseumScreen.tsx`, `app/(kid)/museum.tsx`, `__tests__/games/museum.test.tsx`.
 - Works: pick 3–6 drawings (favorites first) or "Surprise me" (favorites, then newest); "Open the museum!" → dark hall, frames light up one at a time (spotlight glow) and replay their strokes (or show the picture), then up to 5 world creatures parade across the floor, then a clapping blob audience, `clap`, confetti and "Welcome to {nickname}'s museum!" — ~44 s for 6 drawings; "Again!" replays. Saves a `museum_exhibit` row and grants `museum_night` once.
 - Built with RN views + Reanimated (replays use Skia) rather than one Skia scene; same look, simpler to maintain.
+
+## T-061 · AR Wall (deferred)
+- Not built: the AR library cannot run on this Expo SDK (OPEN_QUESTIONS T-061). Tile hidden as A5 requires; `app/(kid)/arwall.tsx` → `src/screens/kid/ArWallScreen.tsx` shows a friendly "not ready" message for deep links.
