@@ -20,6 +20,8 @@ import { getMeta, setMeta } from '@/db/repositories/metaRepo';
 import { isArSupported } from '@/games/arwall/arSupport';
 import { useRemainingMinutes } from '@/lock/useRemainingMinutes';
 import { useAiStatus } from '@/services/useAiStatus';
+import { isFamilyTile } from '@/state/features';
+import { usePlan } from '@/state/usePlan';
 import { useActiveKid } from '@/state/useActiveKid';
 import { border, colors, fonts, fontSize, radius, space } from '@/theme/tokens';
 import { useLayout } from '@/theme/useLayout';
@@ -34,6 +36,7 @@ export function HomeScreen() {
   const kid = useActiveKid();
   const minutes = useRemainingMinutes();
   const ai = useAiStatus();
+  const plan = usePlan();
   const [shelf, setShelf] = useState<ShelfKey>('draw');
   const [kidCount, setKidCount] = useState(1);
   const [idea] = useState(() => pickDailyIdea(localDayKey(Date.now())));
@@ -96,7 +99,8 @@ export function HomeScreen() {
       </View>
       <ScrollView contentContainerStyle={[styles.grid, { paddingHorizontal: pad, gap }]}>
         {tiles.map((t) => {
-          const locked = !!t.magic && !ai.consented;
+          const planLocked = !plan.family && isFamilyTile(t.key);
+          const locked = planLocked || (!!t.magic && !ai.consented);
           const dimmed = !!t.magic && !ai.online;
           return (
             <View key={t.key} style={{ width: tileW }}>
@@ -117,7 +121,7 @@ export function HomeScreen() {
                 locked={locked}
                 dimmed={dimmed}
                 onPress={() => openTile(t)}
-                onLockedPress={() => gate('/parent/magic')}
+                onLockedPress={() => gate(planLocked ? '/parent/subscription' : '/parent/magic')}
               />
             </View>
           );

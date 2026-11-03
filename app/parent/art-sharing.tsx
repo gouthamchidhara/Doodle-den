@@ -1,6 +1,3 @@
-// Art & sharing (T-093). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { ArtSharingScreen } from '@/screens/parent/ArtSharingScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Art & sharing" />;
-}
+export default ArtSharingScreen;

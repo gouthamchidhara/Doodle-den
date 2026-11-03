@@ -2,6 +2,7 @@
 import { Redirect, Stack, usePathname } from 'expo-router';
 import { useEffect, useState } from 'react';
 
+import { runSync } from '@/services/sync';
 import { isParentUnlocked, useParentStore } from '@/state/parentStore';
 import { colors } from '@/theme/tokens';
 
@@ -17,7 +18,10 @@ export function ParentZoneLayout() {
     const t = setInterval(() => setNow(Date.now()), CHECK_MS);
     return () => clearInterval(t);
   }, []);
-  useEffect(() => () => useParentStore.getState().clear(), []);
+  useEffect(() => {
+    void runSync();
+    return () => useParentStore.getState().clear();
+  }, []);
 
   const onGate = pathname === '/parent/gate';
   if (!onGate && !(unlockedUntil !== null && unlockedUntil > now) && !isParentUnlocked()) {

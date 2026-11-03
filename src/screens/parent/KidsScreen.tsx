@@ -11,7 +11,9 @@ import { ParentScreen } from '@/components/parent/ParentScreen';
 import { toAvatarId } from '@/content/avatars';
 import { createKid, listKids, MAX_KIDS, updateKid } from '@/db/repositories/kidRepo';
 import { removeKid } from '@/games/parent/kidAdmin';
+import { FREE_KIDS } from '@/state/features';
 import { useSessionStore } from '@/state/sessionStore';
+import { usePlan } from '@/state/usePlan';
 import { colors, fonts, fontSize, space } from '@/theme/tokens';
 import type { KidProfile } from '@/types/models';
 
@@ -21,6 +23,8 @@ type Editing = { id: string | null; value: KidFormValue };
 export function KidsScreen() {
   const [kids, setKids] = useState<KidProfile[]>([]);
   const [editing, setEditing] = useState<Editing | null>(null);
+  const plan = usePlan();
+  const maxKids = plan.family ? MAX_KIDS : FREE_KIDS;
   const load = useCallback(() => {
     listKids().then(setKids).catch((e: unknown) => console.warn('[kids] load failed', e));
   }, []);
@@ -92,10 +96,10 @@ export function KidsScreen() {
           </Pressable>
         ))}
       </ParentCard>
-      {kids.length < MAX_KIDS ? (
+      {kids.length < maxKids ? (
         <ParentButton label="Add a kid" onPress={() => setEditing({ id: null, value: { nickname: '', avatar: 'fox', age: null } })} />
       ) : (
-        <Text style={styles.muted}>{`Up to ${MAX_KIDS} kids.`}</Text>
+        <Text style={styles.muted}>{plan.family ? `Up to ${MAX_KIDS} kids.` : 'More kids come with the Family plan (Subscription).'}</Text>
       )}
     </ParentScreen>
   );

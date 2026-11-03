@@ -11,6 +11,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { LockGate } from '@/lock/LockGate';
 import { preloadSounds } from '@/services/audio';
+import { refreshEntitlement } from '@/services/purchases';
+import { startSyncLoop } from '@/services/sync';
 import { colors } from '@/theme/tokens';
 import { isTabletSize } from '@/theme/useLayout';
 
@@ -36,8 +38,13 @@ export default function RootLayout() {
       console.warn('[layout] orientation lock failed', error),
     );
     preloadSounds().catch((error: unknown) => console.warn('[layout] preload sounds failed', error));
+    refreshEntitlement().catch(() => undefined);
+    const stopSync = startSyncLoop();
     const timer = setTimeout(() => SplashScreen.hideAsync().catch(() => undefined), SPLASH_MAX_MS);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      stopSync();
+    };
   }, []);
 
   useEffect(() => {

@@ -1,6 +1,3 @@
-// Subscription (T-096). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { SubscriptionScreen } from '@/screens/parent/SubscriptionScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Subscription" />;
-}
+export default SubscriptionScreen;
