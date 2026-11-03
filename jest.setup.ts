@@ -64,3 +64,15 @@ jest.mock('expo-speech-recognition', () => ({
   },
   useSpeechRecognitionEvent: jest.fn(),
 }));
+
+jest.mock('react-native-purchases', () => ({
+  __esModule: true,
+  default: {
+    configure: jest.fn(),
+    logIn: jest.fn(() => Promise.resolve({ customerInfo: { entitlements: { active: {} } } })),
+    getCustomerInfo: jest.fn(() => Promise.resolve({ entitlements: { active: {} } })),
+    getOfferings: jest.fn(() => Promise.resolve({ current: null })),
+    purchasePackage: jest.fn(),
+    restorePurchases: jest.fn(() => Promise.resolve({ entitlements: { active: {} } })),
+  },
+}));

@@ -12,7 +12,7 @@ import { useLockTimer } from './useLockTimer';
 // Route groups a locked kid may still see.
 export function isAllowedWhileLocked(segments: readonly string[]): boolean {
   const first = segments[0];
-  return first === undefined || first === 'locked' || first === 'parent' || first === 'onboarding' || first === 'profiles';
+  return first === undefined || first === 'locked' || first === 'parent' || first === 'onboarding' || first === 'profiles' || first === 'auth';
 }
 
 // Renders nothing.

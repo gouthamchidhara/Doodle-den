@@ -1,10 +1,16 @@
-// "Forgot PIN?" handling. With a parent account (T-071) a magic-link sign-in resets the PIN.
+// "Forgot PIN?": with a parent account, a magic link resets the PIN; otherwise the only way is reinstalling.
+import { getSupabase } from '@/services/supabase';
+import { sendMagicLink } from '@/services/auth';
+
 type AlertFn = (title: string, message?: string) => void;
 
-// Explains how to reset the PIN.
+// Sends the reset link or explains the reinstall route.
 export async function forgotPin(alert: AlertFn): Promise<void> {
-  alert(
-    'Reset your PIN',
-    'Without a parent account the only way to reset the PIN is to delete and reinstall the app. Art that is not backed up will be lost.',
-  );
+  const sb = getSupabase();
+  const email = sb ? (await sb.auth.getSession()).data.session?.user.email : undefined;
+  if (email && (await sendMagicLink(email, true))) {
+    alert('Check your email', `We sent a link to ${email}. Open it on this device to set a new PIN.`);
+    return;
+  }
+  alert('Reset your PIN', 'Without a parent account the only way to reset the PIN is to delete and reinstall the app. Art that is not backed up will be lost.');
 }

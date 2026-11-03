@@ -1,6 +1,3 @@
-// Account (T-097). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { AccountScreen } from '@/screens/parent/AccountScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Account" />;
-}
+export default AccountScreen;
