@@ -1,6 +1,3 @@
-// Museum Night (T-060). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { MuseumScreen } from '@/screens/kid/MuseumScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Museum Night" />;
-}
+export default MuseumScreen;

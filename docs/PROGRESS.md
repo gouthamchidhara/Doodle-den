@@ -212,3 +212,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-059 · Stickers From My Art
 - Files: `src/games/stickers/artStickers.ts`, `src/canvas/imageStamps.ts` (art stamps `art:<artworkId>` drawn as images by the stroke renderer), `keyEncodedImage` split out of `src/games/paper/processPhoto.ts`, gallery detail "Make a sticker" (`features.stickers` on), "My stickers" in the Free Draw stamp tray and the Sticker Book decorate tray, `__tests__/games/artStickers.test.ts`.
 - Works: drawings with strokes → transparent export trimmed to the strokes; others (coloring pages, paper, decorate pages) → white-paper keying of the PNG; saved to `art/<kidId>/<artworkId>.sticker.png`, `is_sticker = 1`, `sticker_path`. Both paths tested. Printing sticker sheets lands with T-095.
+
+## T-060 · Museum Night
+- Files: `src/games/museum/{museumPlan.ts,MuseumShow.tsx}`, `src/screens/kid/MuseumScreen.tsx`, `app/(kid)/museum.tsx`, `__tests__/games/museum.test.tsx`.
+- Works: pick 3–6 drawings (favorites first) or "Surprise me" (favorites, then newest); "Open the museum!" → dark hall, frames light up one at a time (spotlight glow) and replay their strokes (or show the picture), then up to 5 world creatures parade across the floor, then a clapping blob audience, `clap`, confetti and "Welcome to {nickname}'s museum!" — ~44 s for 6 drawings; "Again!" replays. Saves a `museum_exhibit` row and grants `museum_night` once.
+- Built with RN views + Reanimated (replays use Skia) rather than one Skia scene; same look, simpler to maintain.
