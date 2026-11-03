@@ -1,0 +1,162 @@
+[
+  {
+    "id": "add_sun",
+    "text": "Add a big sun!"
+  },
+  {
+    "id": "add_clouds",
+    "text": "Add fluffy clouds!"
+  },
+  {
+    "id": "add_grass",
+    "text": "Add some grass!"
+  },
+  {
+    "id": "add_flowers",
+    "text": "Add flowers!"
+  },
+  {
+    "id": "add_rainbow",
+    "text": "Add a rainbow!"
+  },
+  {
+    "id": "add_friend",
+    "text": "Draw a friend for it!"
+  },
+  {
+    "id": "add_hat",
+    "text": "Give it a hat!"
+  },
+  {
+    "id": "add_house",
+    "text": "Draw a house!"
+  },
+  {
+    "id": "add_tree",
+    "text": "Draw a tree!"
+  },
+  {
+    "id": "add_stars",
+    "text": "Add twinkly stars!"
+  },
+  {
+    "id": "add_moon",
+    "text": "Add the moon!"
+  },
+  {
+    "id": "add_bird",
+    "text": "Add a bird!"
+  },
+  {
+    "id": "add_butterfly",
+    "text": "Add a butterfly!"
+  },
+  {
+    "id": "add_fish",
+    "text": "Add a fish!"
+  },
+  {
+    "id": "add_boat",
+    "text": "Draw a boat!"
+  },
+  {
+    "id": "add_waves",
+    "text": "Add waves!"
+  },
+  {
+    "id": "add_mountain",
+    "text": "Draw a mountain!"
+  },
+  {
+    "id": "add_road",
+    "text": "Draw a road!"
+  },
+  {
+    "id": "add_car",
+    "text": "Add a car!"
+  },
+  {
+    "id": "add_balloon",
+    "text": "Add a balloon!"
+  },
+  {
+    "id": "add_heart",
+    "text": "Add a heart!"
+  },
+  {
+    "id": "add_stripes",
+    "text": "Try some stripes!"
+  },
+  {
+    "id": "add_dots",
+    "text": "Try polka dots!"
+  },
+  {
+    "id": "use_glitter",
+    "text": "Try the glitter brush!"
+  },
+  {
+    "id": "use_neon",
+    "text": "Try the glowing brush!"
+  },
+  {
+    "id": "use_rainbow",
+    "text": "Try rainbow color!"
+  },
+  {
+    "id": "color_sky",
+    "text": "Color the sky!"
+  },
+  {
+    "id": "add_eyes",
+    "text": "Give it eyes!"
+  },
+  {
+    "id": "add_smile",
+    "text": "Give it a big smile!"
+  },
+  {
+    "id": "add_ground",
+    "text": "Draw the ground!"
+  },
+  {
+    "id": "add_snow",
+    "text": "Make it snow!"
+  },
+  {
+    "id": "add_rain",
+    "text": "Add raindrops!"
+  },
+  {
+    "id": "add_apple",
+    "text": "Draw an apple!"
+  },
+  {
+    "id": "add_kite",
+    "text": "Add a kite!"
+  },
+  {
+    "id": "add_frame",
+    "text": "Draw a frame around it!"
+  },
+  {
+    "id": "draw_big",
+    "text": "Draw something really big!"
+  },
+  {
+    "id": "draw_tiny",
+    "text": "Draw something tiny!"
+  },
+  {
+    "id": "add_pet",
+    "text": "Draw a pet!"
+  },
+  {
+    "id": "add_snack",
+    "text": "Draw a yummy snack!"
+  },
+  {
+    "id": "add_music",
+    "text": "Add music notes!"
+  }
+]

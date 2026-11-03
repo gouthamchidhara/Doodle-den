@@ -220,3 +220,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 
 ## T-061 · AR Wall (deferred)
 - Not built: the AR library cannot run on this Expo SDK (OPEN_QUESTIONS T-061). Tile hidden as A5 requires; `app/(kid)/arwall.tsx` → `src/screens/kid/ArWallScreen.tsx` shows a friendly "not ready" message for deep links.
+
+## T-070, T-072–T-077 · Supabase (SERVER track)
+- Files: `supabase/migrations/{0001_core.sql,0002_ai.sql}` (A3/A7 SQL copied exactly + `server_now()` grant, private `art` bucket with owner-only policies, `artwork.family_shared`), `supabase/README.md` (setup, every secret, switches), `supabase/functions/_shared/{contract,deps,guard,validate,blocklist,moderation,usage,handler,features}.ts`, `_shared/providers/{types,anthropic,openai,timeout,index}.ts`, `_shared/{aiIdeaTiles,coachIdeas}.json`, functions `ai-coloring-page`, `ai-magic-sketch`, `ai-story`, `ai-guess`, `ai-coach`, `ai-digest`, `rc-webhook`, `family-gallery` (HTML page of shared art, 60-min signed URLs, "This link is turned off."). Deno tests: `_shared/guard_test.ts` (every guard code, cap logging, UTC day / 7-day digest window), `_shared/features_test.ts` (whole-word blocklist, coach rejects unknown ids, story JSON retry once, tile validation, guess fallback).
+- Exact A7 prompts are in `features.ts`; providers sit behind the A7 interfaces so secrets alone switch them; 45 s provider timeout.
+- NOT RUN here: Deno and the Supabase CLI are not available in this build container, so the Deno tests and `supabase db reset` still need to be run once locally (commands in `supabase/README.md`). `supabase/` is excluded from the app's tsc/eslint (Deno code).
