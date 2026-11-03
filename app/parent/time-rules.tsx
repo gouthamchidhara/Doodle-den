@@ -1,6 +1,3 @@
-// Parent time rules (T-091). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { TimeRulesScreen } from '@/screens/parent/TimeRulesScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Time rules" />;
-}
+export default TimeRulesScreen;

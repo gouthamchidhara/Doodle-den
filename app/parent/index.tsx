@@ -1,6 +1,3 @@
-// Parent dashboard (T-090). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { DashboardScreen } from '@/screens/parent/DashboardScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Dashboard" />;
-}
+export default DashboardScreen;
