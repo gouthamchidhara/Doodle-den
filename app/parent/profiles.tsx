@@ -1,6 +1,3 @@
-// Parent kids management (T-092). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { KidsScreen } from '@/screens/parent/KidsScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Kids management" />;
-}
+export default KidsScreen;

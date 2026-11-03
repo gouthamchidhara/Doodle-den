@@ -254,3 +254,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-090 · Parent dashboard (+ T-098 digest card) · T-091 Time rules
 - Files: `src/games/parent/dashboard.ts` (loader + pure helpers), `src/screens/parent/{DashboardScreen,DigestCard,TimeRulesScreen}.tsx`, `app/parent/{index,time-rules}.tsx`, `__tests__/games/parent/dashboard.test.ts`.
 - Works: kid switcher chips (2+ kids), today ring (used vs daily limit, sessions, extensions), 7-day bars, rule rows → Time rules, "Finish my drawing" toggle (saves + `lockController.rulesChanged`), 3 newest thumbnails + count, skills line ("traced letters A–F · discovered 9 colors"), menu rows. Digest: shown only with Magic consent; cached in `app_meta.digest_<isoWeek>`, one Refresh per week; facts are numbers only. Time rules: full form with advanced fields; Save → `saveRules` + `rulesChanged` (re-applies the iOS shield through the lock controller).
+
+## T-092 · Kids management + per-kid trash
+- Files: `src/screens/parent/KidsScreen.tsx` + `app/parent/profiles.tsx`, `src/components/parent/{KidForm,KidTrash}.tsx` (KidForm now shared with onboarding Add kid), `src/games/parent/kidAdmin.ts`, `__tests__/games/parent/kidAdmin.test.ts`.
+- Works: list with avatars, Add (hidden at 4 kids), edit nickname/avatar/age, Delete (not the last kid) behind two confirms → `deleteKid` (DB cascade + `art/<kidId>` folder) + `clearLockState`; trash per kid with tap-to-Restore and Empty trash (confirm) which deletes PNG, thumbnail, strokes and sticker files.
