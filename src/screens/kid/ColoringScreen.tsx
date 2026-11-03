@@ -9,9 +9,11 @@ import { DrawingCanvas, type DrawingCanvasHandle } from '@/canvas/DrawingCanvas'
 import { resolveColor } from '@/canvas/color';
 import { exportPngBase64 } from '@/canvas/exportPng';
 import { ChoiceBubble } from '@/components/kid/ChoiceBubble';
+import { MascotHelper } from '@/components/kid/MascotHelper';
 import { SparkleBurst } from '@/components/kid/SparkleBurst';
 import { setMeta } from '@/db/repositories/metaRepo';
 import { useColoringPage } from '@/games/coloring/useColoringPage';
+import { GUESS_MIN_STROKES } from '@/games/mascot/mascotAi';
 import { useSessionStore } from '@/state/sessionStore';
 import { playSound } from '@/services/audio';
 import { colors, space } from '@/theme/tokens';
@@ -109,6 +111,7 @@ export function ColoringScreen() {
               ) : null}
               {fillMode && !done ? <Pressable accessibilityLabel="Coloring page" style={StyleSheet.absoluteFill} onPress={tap} /> : null}
               {sparkle > 0 ? <SparkleBurst key={sparkle} radius={60} /> : null}
+              <MascotHelper strokes={s.doc.strokes.length + (page.hasFills() ? GUESS_MIN_STROKES : 0)} getImage={async () => exportPngBase64(s.doc, 512, { underlay: page.fillImage, overlay: page.lineArt })} />
             </View>
           </View>
         }

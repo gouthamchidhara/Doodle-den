@@ -1,15 +1,15 @@
 // Free Draw (A5): the full brush set on one canvas, autosaved, with "I'm done!" sheet and hold-to-clear.
 import { router, useLocalSearchParams } from 'expo-router';
 import { useKeepAwake } from 'expo-keep-awake';
-import { useCallback, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { DrawingCanvas, type DrawingCanvasHandle } from '@/canvas/DrawingCanvas';
 import { ChoiceBubble } from '@/components/kid/ChoiceBubble';
-import { MascotCorner } from '@/components/kid/MascotCorner';
+import { MascotHelper } from '@/components/kid/MascotHelper';
 import { SparkleBurst } from '@/components/kid/SparkleBurst';
-import coachIdeas from '@/content/coachIdeas.json';
+import { exportPngBase64 } from '@/canvas/exportPng';
 import { playSound } from '@/services/audio';
 import { colors, space } from '@/theme/tokens';
 import { useLayout } from '@/theme/useLayout';
@@ -34,8 +34,12 @@ export function DrawScreen() {
   const replayIntro = useIntroVoice('intro_draw');
   const [phase, setPhase] = useState<Phase>('drawing');
   const [sparkle, setSparkle] = useState(0);
-  const [bubble, setBubble] = useState<{ text: string; voice?: string; id: number } | null>(null);
-  const clearBubble = useCallback(() => setBubble(null), []);
+
+  // Magic Sketch from Free Draw: save first, then open the reveal for this artwork.
+  const openMagic = async () => {
+    const id = await s.finish();
+    if (id) router.push({ pathname: '/magic/sketch', params: { artworkId: id } });
+  };
 
   const done = async () => {
     const id = await s.finish();
@@ -49,11 +53,6 @@ export function DrawScreen() {
   const cycleBackground = () => {
     const i = BACKGROUNDS.indexOf(s.doc.background);
     s.setBackground(BACKGROUNDS[(i + 1) % BACKGROUNDS.length]);
-  };
-
-  const showIdea = () => {
-    const idea = coachIdeas[Math.floor(Math.random() * coachIdeas.length)];
-    setBubble({ text: idea.text, voice: idea.voice, id: Date.now() });
   };
 
   const canvas = (
@@ -70,7 +69,7 @@ export function DrawScreen() {
         stampId={s.stampId}
         disabled={phase !== 'drawing'}
       />
-      <MascotCorner bubble={bubble} onPress={showIdea} onBubbleDone={clearBubble} />
+      <MascotHelper strokes={s.doc.strokes.length} getImage={async () => exportPngBase64(s.doc, 512)} onMagic={openMagic} />
     </View>
   );
 

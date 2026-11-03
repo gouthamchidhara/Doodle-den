@@ -6,6 +6,7 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { DrawingCanvas, type DrawingCanvasHandle } from '@/canvas/DrawingCanvas';
+import { exportPngBase64 } from '@/canvas/exportPng';
 import { exportTrimmedPng } from '@/canvas/exportTrimmed';
 import { PaletteBar } from '@/components/kid/draw/PaletteBar';
 import { SizePicker } from '@/components/kid/draw/SizePicker';
@@ -13,6 +14,7 @@ import { ToolRail } from '@/components/kid/draw/ToolRail';
 import { IconButton } from '@/components/kid/IconButton';
 import { UndoIcon } from '@/components/kid/icons/UndoIcon';
 import { KidHeader } from '@/components/kid/KidHeader';
+import { MascotHelper } from '@/components/kid/MascotHelper';
 import { PrimaryButton } from '@/components/kid/PrimaryButton';
 import { addCreature } from '@/games/worlds/addCreature';
 import { NameCreature } from '@/games/worlds/NameCreature';
@@ -81,6 +83,7 @@ export function WorldDrawScreen() {
                     ghost={{ pathSvg: cfg.template, opacity: 0.3 }}
                   />
                 ) : null}
+                <MascotHelper strokes={s.doc.strokes.length} getImage={async () => exportPngBase64(s.doc, 512)} />
               </View>
             </View>
             <View style={[styles.panel, styles.tray]}>
