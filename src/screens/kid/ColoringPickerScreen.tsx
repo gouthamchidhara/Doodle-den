@@ -10,8 +10,9 @@ import { KidHeader } from '@/components/kid/KidHeader';
 import { PageCard } from '@/components/kid/PageCard';
 import { COLORING_CATEGORIES, coloringSource, pagesFor } from '@/content/coloringPages';
 import { listAiResults } from '@/db/repositories/aiResultRepo';
-import { getArtwork } from '@/db/repositories/artworkRepo';
-import { fileUri } from '@/services/files';
+import { getMeta } from '@/db/repositories/metaRepo';
+import { aiIdeaKey, aiPagePath } from '@/games/coloring/aiPages';
+import { fileExists, fileUri } from '@/services/files';
 import { useSessionStore } from '@/state/sessionStore';
 import { colors, fonts, fontSize, space } from '@/theme/tokens';
 import { useLayout } from '@/theme/useLayout';
@@ -24,8 +25,8 @@ interface MyPage {
   uri: string;
 }
 
-// Page id used for AI-made pages: the line art lives in the artwork's PNG.
-export const aiPageId = (artworkId: string) => `ai-${artworkId}`;
+// Page id used for AI-made pages (the ai_result id).
+export const aiPageId = (resultId: string) => `ai-${resultId}`;
 
 // Picker screen.
 export function ColoringPickerScreen() {
@@ -41,8 +42,8 @@ export function ColoringPickerScreen() {
       const results = await listAiResults(kidId, 'coloring_page');
       const out: MyPage[] = [];
       for (const r of results) {
-        const art = r.outputArtworkId ? await getArtwork(r.outputArtworkId) : null;
-        if (art && !art.trashedAt) out.push({ id: art.id, title: art.title ?? 'My page', uri: fileUri(art.thumbPath) });
+        const rel = aiPagePath(kidId, r.id);
+        if (fileExists(rel)) out.push({ id: r.id, title: (await getMeta(aiIdeaKey(r.id))) ?? 'My page', uri: fileUri(rel) });
       }
       setMine(out);
     })().catch((e: unknown) => console.warn('[coloring] my pages failed', e));

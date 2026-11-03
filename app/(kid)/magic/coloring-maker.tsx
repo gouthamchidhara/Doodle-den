@@ -1,6 +1,3 @@
-// Coloring Page Maker (T-080). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { ColoringMakerScreen } from '@/screens/kid/ColoringMakerScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Coloring Page Maker" />;
-}
+export default ColoringMakerScreen;

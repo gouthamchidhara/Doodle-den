@@ -4,9 +4,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { hexToRgb } from '@/canvas/color';
 import { coloringSource, getColoringPage } from '@/content/coloringPages';
-import { getArtwork } from '@/db/repositories/artworkRepo';
 import { fileUri, readBase64, writeBase64 } from '@/services/files';
+import { useSessionStore } from '@/state/sessionStore';
 
+import { aiPagePath } from './aiPages';
 import { buildWallMask, emptyLayer, tapFill, WORK_SIZE } from './floodFill';
 import { imageFromRgba, readScaledPixels, rgbaFromPngBase64, rgbaToPngBase64 } from './skiaPixels';
 
@@ -15,11 +16,11 @@ const FILL_UNDO = 5;
 // Fill layer file next to the artwork (A5 Coloring step 5).
 export const fillPath = (kidId: string, artworkId: string) => `art/${kidId}/${artworkId}.fill.png`;
 
-// Line art source for bundled ('cat') or AI ('ai-<artworkId>') pages.
+// Line art source for bundled ('cat') or AI ('ai-<resultId>') pages.
 async function resolveSource(pageId: string): Promise<number | string | null> {
   if (pageId.startsWith('ai-')) {
-    const art = await getArtwork(pageId.slice(3));
-    return art ? fileUri(art.pngPath) : null;
+    const kidId = useSessionStore.getState().activeKidId;
+    return kidId ? fileUri(aiPagePath(kidId, pageId.slice(3))) : null;
   }
   const page = getColoringPage(pageId);
   const src = page ? coloringSource(page) : undefined;

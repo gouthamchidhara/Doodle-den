@@ -237,3 +237,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-079 · Mascot Guess + Idea
 - Files: `src/games/mascot/mascotAi.ts`, `src/components/kid/MascotHelper.tsx` (Free Draw, Coloring, world-draw), `__tests__/games/mascotAi.test.ts`.
 - Works: with Magic on and online, tapping the mascot shows "Guess my drawing!", "Give me an idea!" and (Free Draw, 10+ strokes) "Magic!". Guess: 5+ strokes, once per 30 s, mascot thinks 2 s, speaks "Is it… a giraffe? A banana? A rocket?" with a giggle → Yes! (cheer, `mascot_friend` sticker once) / No! ("Silly me!"). Idea: once per 60 s via `ai-coach`, then the local text + voice for the returned id. Errors use the A7 mascot lines. Without Magic the mascot offers a local drawing idea. Images sent are 512 px PNGs on white.
+
+## T-080 · Coloring Page Maker
+- Files: `src/screens/kid/ColoringMakerScreen.tsx` + `app/(kid)/magic/coloring-maker.tsx`, `src/content/aiIdeaTiles.json` (40 / 12 / 10, same as the server copy), `src/games/coloring/{aiPages,aiPagePost}.ts`, picker "My Pages" now reads `ai_result` + `art/<kidId>/pages/<id>.png`, `__tests__/screens/coloringMaker.test.tsx`.
+- Works: WHO (required) / DOING / WHERE word tiles spoken on tap; Big mode "Say your idea" (on-device speech, blocklist, 80 chars) with "Use it" / "Try again"; "Make my page!" → waiting overlay (Cancel) → `ai-coloring-page` → Skia threshold to pure black/white → `art/<kidId>/pages/<id>.png` + `ai_result` (`coloring_page`) → opens in the coloring screen (tap-fill works on it like bundled pages) and appears under "My Pages". Errors show the mascot line (gate button for consent/plan).
+- Tile pictures are words for now (picture art: T-103).
