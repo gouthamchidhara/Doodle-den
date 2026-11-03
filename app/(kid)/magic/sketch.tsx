@@ -1,6 +1,3 @@
-// Magic Sketch (T-081). Placeholder until its ticket builds it.
-import { PlaceholderScreen } from '@/screens/PlaceholderScreen';
+import { MagicSketchScreen } from '@/screens/kid/MagicSketchScreen';
 
-export default function Route() {
-  return <PlaceholderScreen title="Magic Sketch" />;
-}
+export default MagicSketchScreen;
