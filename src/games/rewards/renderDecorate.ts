@@ -2,6 +2,7 @@
 import { ImageFormat, PaintStyle, Skia, type SkCanvas } from '@shopify/react-native-skia';
 
 import { exportSize } from '@/canvas/exportPng';
+import { getStampImage, isArtStamp } from '@/canvas/imageStamps';
 import type { StampShape } from '@/canvas/stamps';
 import { colors } from '@/theme/tokens';
 
@@ -14,6 +15,7 @@ export interface Placement {
   x: number; // 0..1 of the scene width (center)
   y: number; // 0..1 of the scene height
   size: number; // fraction of the scene width
+  uri?: string; // art stickers ('art:<id>')
 }
 
 // Fills shapes (optionally with the ink outline) in the current canvas transform.
@@ -47,8 +49,14 @@ export function renderDecoratePng(sceneId: string, placements: Placement[], long
   fillShapes(c, getScene(sceneId).shapes, false);
   c.restore();
   for (const pl of placements) {
-    const art = stickerArt(pl.stickerId);
     const size = pl.size * width;
+    const img = isArtStamp(pl.stickerId) ? getStampImage(pl.stickerId) : undefined;
+    if (img) {
+      const k = size / Math.max(img.width(), img.height());
+      c.drawImageRect(img, Skia.XYWHRect(0, 0, img.width(), img.height()), Skia.XYWHRect(pl.x * width - (img.width() * k) / 2, pl.y * height - (img.height() * k) / 2, img.width() * k, img.height() * k), Skia.Paint());
+      continue;
+    }
+    const art = stickerArt(pl.stickerId);
     c.save();
     c.translate(pl.x * width - size / 2, pl.y * height - size / 2);
     c.scale(size / 120, size / 120);

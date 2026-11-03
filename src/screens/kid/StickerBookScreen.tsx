@@ -11,6 +11,7 @@ import { KidHeader } from '@/components/kid/KidHeader';
 import { StickerView } from '@/components/kid/StickerView';
 import { getReward, REWARDS } from '@/content/rewards';
 import { listRewards } from '@/db/repositories/rewardRepo';
+import { loadArtStickers, type ArtSticker } from '@/games/stickers/artStickers';
 import { useSessionStore } from '@/state/sessionStore';
 import { border, colors, fonts, fontSize, radius, space } from '@/theme/tokens';
 import { useLayout } from '@/theme/useLayout';
@@ -33,9 +34,13 @@ export function StickerBookScreen() {
   const [tab, setTab] = useState<'book' | 'decorate'>('book');
   const [earned, setEarned] = useState<string[]>([]);
   const [page, setPage] = useState(0);
+  const [art, setArt] = useState<ArtSticker[]>([]);
 
   useEffect(() => {
     if (!kidId) return;
+    loadArtStickers(kidId)
+      .then(setArt)
+      .catch(() => undefined);
     listRewards(kidId)
       .then((r) => setEarned(r.map((x) => x.rewardId)))
       .catch((e: unknown) => console.warn('[stickers] load failed', e));
@@ -79,7 +84,7 @@ export function StickerBookScreen() {
             </View>
           </>
         ) : (
-          <DecoratePage kidId={kidId} earned={earned} width={Math.min(width - space.xl * 2, 900)} onSaved={() => setTab('book')} />
+          <DecoratePage kidId={kidId} earned={earned} art={art} width={Math.min(width - space.xl * 2, 900)} onSaved={() => setTab('book')} />
         )}
       </ScrollView>
     </SafeAreaView>

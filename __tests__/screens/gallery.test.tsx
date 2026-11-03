@@ -53,14 +53,14 @@ describe('Gallery', () => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/gallery/[artworkId]', params: { artworkId: 'art-1' } });
   });
 
-  it('detail: favorite, keep drawing, hold to trash; future buttons hidden', async () => {
+  it('detail: favorite, keep drawing, hold to trash; sticker button shown, Magic hidden', async () => {
     await seed();
     jest.mocked(useLocalSearchParams).mockReturnValue({ artworkId: 'art-1' });
     await render(<GalleryDetailScreen />);
     await fireEvent.press(await screen.findByLabelText('Favorite'));
     await waitFor(async () => expect((await getArtwork('art-1'))?.isFavorite).toBe(true));
     expect(screen.queryByLabelText('Replay')).toBeNull();
-    expect(screen.queryByLabelText('Make a sticker')).toBeNull();
+    expect(screen.getByLabelText('Make a sticker')).toBeTruthy();
     expect(screen.queryByLabelText('Magic')).toBeNull();
     await fireEvent.press(screen.getByLabelText('Keep drawing'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/draw', params: { artworkId: 'art-1' } });

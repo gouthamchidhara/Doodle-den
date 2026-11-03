@@ -6,6 +6,7 @@ import { parseStrokeDoc } from '@/canvas/saveArtwork';
 import { useAutosave } from '@/canvas/useAutosave';
 import { listCustomColors } from '@/db/repositories/colorRepo';
 import { listRewards } from '@/db/repositories/rewardRepo';
+import { loadArtStickers, type ArtSticker } from '@/games/stickers/artStickers';
 import { REWARDS } from '@/content/rewards';
 import { getArtwork } from '@/db/repositories/artworkRepo';
 import { readText } from '@/services/files';
@@ -45,6 +46,7 @@ export function useDrawingSession(o: DrawingSessionOpts) {
   const [history, setHistory] = useState({ canUndo: false, canRedo: false });
   const [custom, setCustom] = useState<CustomColor[]>([]);
   const [bonusStamps, setBonusStamps] = useState<string[]>([]);
+  const [artStickers, setArtStickers] = useState<ArtSticker[]>([]);
   const autosave = useAutosave({
     kidId,
     activity: o.activity,
@@ -63,6 +65,9 @@ export function useDrawingSession(o: DrawingSessionOpts) {
     listCustomColors(kidId)
       .then(setCustom)
       .catch((e: unknown) => console.warn('[draw] colors failed', e));
+    loadArtStickers(kidId)
+      .then(setArtStickers)
+      .catch((e: unknown) => console.warn('[draw] stickers failed', e));
     listRewards(kidId)
       .then((earned) => {
         const ids = new Set(earned.map((r) => r.rewardId));
@@ -128,6 +133,7 @@ export function useDrawingSession(o: DrawingSessionOpts) {
     setHistory,
     custom,
     bonusStamps,
+    artStickers,
     onCanvasSize,
     clear,
     finish,

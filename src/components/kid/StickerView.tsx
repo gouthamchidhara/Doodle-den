@@ -1,11 +1,13 @@
 // One sticker: round badge + shape; unearned stickers are soft gray silhouettes (no "locked" text).
+import { Image } from 'react-native';
 import Svg, { Circle, G, Path } from 'react-native-svg';
 
 import { stickerArt } from '@/games/rewards/stickerArt';
 import { colors } from '@/theme/tokens';
 
 // Sticker art at a size.
-export function StickerView({ id, size, earned = true }: { id: string; size: number; earned?: boolean }) {
+export function StickerView({ id, size, earned = true, uri }: { id: string; size: number; earned?: boolean; uri?: string }) {
+  if (uri) return <Image source={{ uri }} style={{ width: size, height: size }} resizeMode="contain" accessibilityLabel="My sticker" />;
   const art = stickerArt(id);
   return (
     <Svg width={size} height={size} viewBox="0 0 120 120" accessibilityLabel={earned ? 'Sticker' : 'Sticker to find'}>

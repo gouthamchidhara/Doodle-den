@@ -22,6 +22,7 @@ import { getMusic } from '@/db/repositories/musicRepo';
 import { loadArtDetail, type ArtDetail } from '@/games/gallery/loadDetail';
 import { parseNotes, scheduleNotes } from '@/games/music/noteEvents';
 import { playNote } from '@/games/music/notes';
+import { makeSticker } from '@/games/stickers/artStickers';
 import { playVoiceClip } from '@/games/voice/playVoice';
 import { voiceForArtwork } from '@/games/voice/voiceStore';
 import { VoiceSheet } from '@/games/voice/VoiceSheet';
@@ -85,6 +86,13 @@ export function GalleryDetailScreen() {
     router.back();
   };
 
+  const sticker = async () => {
+    if (await makeSticker(a)) {
+      playSound('sticker-earned');
+      setD({ ...d, art: { ...a, isSticker: true } });
+    } else playSound('bubble');
+  };
+
   const startReplay = async () => {
     setReplay((n) => n + 1);
     if (a.activity !== 'music' || !d.doc) return;
@@ -125,7 +133,7 @@ export function GalleryDetailScreen() {
           <DetailAction icon={<HeartIcon color={a.isFavorite ? colors.tomato : colors.ink} />} label="Favorite" selected={a.isFavorite} onPress={() => void favorite()} />
           {keepDrawing ? <DetailAction icon={<CrayonIcon />} label="Keep drawing" onPress={keepDrawing} /> : null}
           {isFeatureOn('magicSketch') ? <DetailAction icon={<WandIcon />} label="Magic" onPress={() => router.push({ pathname: '/magic/sketch', params: { artworkId: a.id } })} /> : null}
-          {isFeatureOn('stickers') ? <DetailAction icon={<StampIcon />} label="Make a sticker" /> : null}
+          {isFeatureOn('stickers') && !d.flipbook ? <DetailAction icon={<StampIcon />} label={a.isSticker ? 'Sticker made!' : 'Make a sticker'} selected={a.isSticker} onPress={() => void sticker()} /> : null}
           {isFeatureOn('voices') ? <DetailAction icon={<MicIcon />} label="Give it a voice" onPress={() => setVoiceOpen(true)} /> : null}
           {voiceId ? <DetailAction icon={<SpeakerIcon />} label="Hear it" onPress={() => void playVoiceClip(voiceId)} /> : null}
           {isFeatureOn('worlds') && !d.flipbook ? <DetailAction icon={<AquariumArt size={30} />} label="Put in a world" onPress={() => setWorldPick(true)} /> : null}

@@ -32,7 +32,7 @@ export function PlacedSticker({ placement: p, width, height, onMove }: PlacedSti
   return (
     <GestureDetector gesture={pan}>
       <Animated.View style={[{ position: 'absolute', left: p.x * width - size / 2, top: p.y * height - size / 2 }, style]}>
-        <StickerView id={p.stickerId} size={size} />
+        <StickerView id={p.stickerId} size={size} uri={p.uri} />
       </Animated.View>
     </GestureDetector>
   );

@@ -208,3 +208,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 ## T-058 · My Art Jigsaw
 - Files: `src/games/jigsaw/{pieces.ts,JigsawPiece.tsx,JigsawBoard.tsx}`, `src/screens/kid/JigsawScreen.tsx`, `app/(kid)/jigsaw.tsx`, `__tests__/games/jigsaw.test.ts`, `__tests__/screens/jigsaw.test.tsx`.
 - Works: pick a drawing → 4 / 9 / 16 / 24 pieces (Little: 4 and 9) → board left (wide) or top (tall), 15 % guide picture in Little mode, seeded tray scatter. Tab/blank edges seeded by artwork id + count (neighbours always fit, borders flat — tested), Skia paths clip the picture; drag, snap within 24 px with a click, touched piece comes to the front. Done → confetti, `star`, "You did it!", `jigsaw_result` best time, `jigsaw_<n>` sticker once.
+
+## T-059 · Stickers From My Art
+- Files: `src/games/stickers/artStickers.ts`, `src/canvas/imageStamps.ts` (art stamps `art:<artworkId>` drawn as images by the stroke renderer), `keyEncodedImage` split out of `src/games/paper/processPhoto.ts`, gallery detail "Make a sticker" (`features.stickers` on), "My stickers" in the Free Draw stamp tray and the Sticker Book decorate tray, `__tests__/games/artStickers.test.ts`.
+- Works: drawings with strokes → transparent export trimmed to the strokes; others (coloring pages, paper, decorate pages) → white-paper keying of the PNG; saved to `art/<kidId>/<artworkId>.sticker.png`, `is_sticker = 1`, `sticker_path`. Both paths tested. Printing sticker sheets lands with T-095.

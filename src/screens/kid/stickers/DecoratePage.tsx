@@ -18,6 +18,7 @@ import { PlacedSticker } from './PlacedSticker';
 export interface DecoratePageProps {
   kidId: string | null;
   earned: string[];
+  art?: { stampId: string; uri: string }[];
   width: number;
   onSaved: () => void;
 }
@@ -26,15 +27,15 @@ const STICKER_SIZE = 0.16;
 const MAX_ON_PAGE = 30;
 
 // The decorate editor.
-export function DecoratePage({ kidId, earned, width, onSaved }: DecoratePageProps) {
+export function DecoratePage({ kidId, earned, art = [], width, onSaved }: DecoratePageProps) {
   const [scene, setScene] = useState<Scene['id']>('meadow');
   const [placed, setPlaced] = useState<Placement[]>([]);
   const height = (width * SCENE_H) / SCENE_W;
 
-  const add = (stickerId: string) => {
+  const add = (stickerId: string, uri?: string) => {
     if (placed.length >= MAX_ON_PAGE) return;
     const n = placed.length;
-    setPlaced((p) => [...p, { key: `${stickerId}-${n}`, stickerId, x: 0.3 + ((n * 0.13) % 0.4), y: 0.35 + ((n * 0.17) % 0.3), size: STICKER_SIZE }]);
+    setPlaced((p) => [...p, { key: `${stickerId}-${n}`, stickerId, x: 0.3 + ((n * 0.13) % 0.4), y: 0.35 + ((n * 0.17) % 0.3), size: STICKER_SIZE, uri }]);
     playSound('click');
   };
 
@@ -66,6 +67,11 @@ export function DecoratePage({ kidId, earned, width, onSaved }: DecoratePageProp
         {earned.map((id) => (
           <PressableScale key={id} accessibilityLabel={`Add ${id}`} onPress={() => add(id)}>
             <StickerView id={id} size={64} />
+          </PressableScale>
+        ))}
+        {art.map((a) => (
+          <PressableScale key={a.stampId} accessibilityLabel="Add my sticker" onPress={() => add(a.stampId, a.uri)}>
+            <StickerView id={a.stampId} size={64} uri={a.uri} />
           </PressableScale>
         ))}
       </ScrollView>

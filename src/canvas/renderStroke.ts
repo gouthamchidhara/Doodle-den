@@ -15,6 +15,7 @@ import type { Stroke } from '@/types/models';
 
 import { BRUSHES, GLITTER_SPACING, NEON_CORE_WHITE_MIX, NEON_GLOW_OPACITY, STAMP_SPACING_FACTOR, brushWidth } from './brushes/brushSpecs';
 import { hslToHex, mixWithWhite, resolveColor } from './color';
+import { getStampImage, isArtStamp } from './imageStamps';
 import { getStamp } from './stamps';
 import { rotationAngles } from './symmetry';
 import { denormalize, polylineLength, pressureWidth, rainbowHue, samplesAlong, seededRandom, smoothPath, type Pt } from './strokeModel';
@@ -103,6 +104,15 @@ function drawStar(canvas: SkCanvas, x: number, y: number, r: number, angle: numb
 
 // Draws one stamp centered at (x, y) with the given box size.
 function drawStampAt(canvas: SkCanvas, stampId: string | undefined, x: number, y: number, size: number): void {
+  if (isArtStamp(stampId)) {
+    const img = getStampImage(stampId);
+    if (!img) return;
+    const k = size / Math.max(img.width(), img.height());
+    const w = img.width() * k;
+    const h = img.height() * k;
+    canvas.drawImageRect(img, Skia.XYWHRect(0, 0, img.width(), img.height()), Skia.XYWHRect(x - w / 2, y - h / 2, w, h), Skia.Paint());
+    return;
+  }
   const stamp = getStamp(stampId);
   canvas.save();
   canvas.translate(x - size / 2, y - size / 2);
