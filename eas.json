@@ -18,7 +18,7 @@
   },
   "submit": {
     "production": {
-      "ios": { "ascAppId": "REPLACE_WITH_APP_STORE_CONNECT_APP_ID", "appleTeamId": "KSD8FCH7C9" },
+      "ios": { "ascAppId": "6819075440", "appleTeamId": "KSD8FCH7C9" },
       "android": { "track": "internal" }
     }
   }

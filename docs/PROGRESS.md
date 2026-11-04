@@ -119,7 +119,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 
 ## T-035 · Lock screen + parent unlock
 - Files: `app/locked.tsx`, `src/screens/LockScreen.tsx`, `src/screens/lock/{lockText.ts,UnlockSheet.tsx}`, `src/components/kid/{NightSky,OffScreenIdeaCard}.tsx`, `src/content/offScreenIdeas.ts`, `canvasStore.lastAutosaveAt`, `__tests__/screens/lockScreen.test.tsx`.
-- Works: night sky + moon + sleeping mascot, headline per reason, "Great art today, {nickname}!", "saved in My Gallery" chip when an autosave ran in the last 60 s, 3 rotating off-screen ideas (hourly), "Back in n minutes / Back tomorrow / Back at 7:00 AM", lullaby at 0.3 for 60 s, Android back blocked. Hold 1 s on "Grown-ups: hold to unlock" → Parent Gate → unlock sheet (+15, +30, End for today) → `parentUnlock` → Kid Home.
+- Works: night sky + moon + sleeping mascot, headline per reason, "Great art today, {nickname}!", "saved in My Gallery" chip when an autosave ran in the last 60 s, 3 rotating off-screen ideas (hourly), "Back in n minutes / Back tomorrow / Back at 7:00 AM", lullaby at 0.3 for 60 s, Android back blocked. Visible 64 pt "Grown-ups: unlock play" button opens Parent Gate (2 s hold + PIN); current parent authorization plus the return route opens the +15, +30, End for today sheet. Direct route parameters alone cannot grant time; authorization is re-checked at confirmation and rapid repeat taps grant once. Focused LockScreen tests pass; device expiry and layout checks remain.
 - Off-screen idea icons reuse existing icons until custom art arrives (T-103).
 
 ## T-036 · Device lock parent screen
@@ -180,8 +180,8 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 - Works: water, wave band, sand, seaweed, pebbles, looping bubbles; fish swim 20–60 px/s, flip at the edges, bob 10–30 px with seeded frequency/phase (tested); Feed sprinkles food dots and the 3 nearest fish steer to them for 5 s with a smooth ease in/out (tested). Max 20 on screen, the rest in the Album. 60 fps on a budget tablet is a device check.
 
 ## T-052 · Racetrack
-- Files: `src/games/worlds/racetrack/{track.ts,carMotion.ts,RacetrackBackground.tsx}`, `src/screens/kid/RacetrackScreen.tsx`, `app/(kid)/racetrack.tsx`, `__tests__/games/carMotion.test.ts`.
-- Works: top-down grass, gray stadium oval with white dashes, checkered start line, stands; cars follow the center line at 80–160 px/s, rotated to the direction (kept upright on the left-going straight), one lane each. Go!: 1 s countdown, 3 laps from the start line at 120–160 px/s, each car parks at the line after its 3rd lap so every car finishes; when the slowest arrives: confetti, cheer, "Great job!" — no winner shown; then everyone cruises on. Tests: closed continuous track, all 8 cars finish and park, lanes do not overlap.
+- Files: `src/games/worlds/racetrack/{track.ts,carMotion.ts,RacetrackBackground.tsx,SampleCar.tsx}`, `src/games/worlds/{WorldScene.tsx}`, `src/screens/kid/RacetrackScreen.tsx`, `app/(kid)/racetrack.tsx`, `__tests__/{games/carMotion.test.ts,screens/racetrack.test.tsx}`.
+- Works: top-down grass, gray stadium oval with white dashes, checkered start line, stands; cars follow the center line at 80–160 px/s, rotated to the direction (kept upright on the left-going straight), one lane each. Go!: 1 s countdown, 3 laps from the start line at 120–160 px/s, each car parks at the line after its 3rd lap so every car finishes; when the slowest arrives: confetti, cheer, "Great job!" — no winner shown; then everyone cruises on. A fresh profile gets a locally rendered, tappable sample car and can race without saving demo content. The sample is replaced by the child's saved on-screen cars. Tests: closed continuous track, all 8 cars finish and park, lanes do not overlap, and fresh-profile race starts without persisting a sample entity.
 
 ## T-053 · Zoo
 - Files: `src/games/worlds/zoo/{animalMotion.ts,ZooBackground.tsx}`, `src/screens/kid/ZooScreen.tsx`, `app/(kid)/zoo.tsx`, `__tests__/games/animalMotion.test.ts`; world engine gained a back-to-front `drawOrder`.
@@ -271,7 +271,7 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 - T-101: `docs/PERFORMANCE.md` — targets + table to fill on real devices (none available in this container).
 - T-102: `docs/COMPLIANCE.md` + `ios.privacyManifests` in `app.config.ts`; dependency scan clean (no ads/analytics). Owner sign-off line at the bottom.
 - T-103: `docs/CONTENT_TODO.md` — every placeholder with file names and counts.
-- T-104: `eas.json` (development / preview / production + submit). Builds and store uploads need the owner's EAS + store accounts.
+- T-104: `eas.json` (development / preview / production + submit). EAS project `@gchid/doodle-den` linked; iOS build 4 (version 1.0.0) uploaded to App Store Connect TestFlight and processing (build ID `c4ae9686-887c-4ca7-93d3-54cef6f81ce1`, submission ID `55e763c5-2a4f-4bfd-b044-c4ee29923cdc`). Build 3 remains in TestFlight processing history (build ID `9ce1dfc7-5b76-4f43-ba5d-61e4019e5721`).
 - T-105: `docs/SUBMISSION.md` — beta loop, screenshots list, age rating answers, review notes (parental gate + Screen Time).
 - Removed the temporary `dev-components` route and screen.
 
@@ -280,3 +280,5 @@ One entry per ticket (A1 rule 5): ticket ID, files changed, what works, anything
 
 ## Supabase setup
 - Live project `oagidmdqcnwiuaavssie`: migrations 0001–0003 applied (tables, RLS, private `art` bucket + policies, AI tables, hardening). Added `supabase/functions/ai` router (app now invokes `ai/<name>`), default text model `claude-haiku-5-5`. Edge functions deployed via connector: `ai` (JWT), `delete-account` (JWT), `family-gallery` and `rc-webhook` (no JWT; own checks). Smoke-tested: bad gallery token → "This link is turned off.", unauthenticated ai/webhook → 401. Security advisor: only INFO (app_config has RLS without policies — intended, server-only). Secrets AI_TEXT_API_KEY, AI_IMAGE_API_KEY, RC_WEBHOOK_SECRET still to be entered by the owner.
+- Xiaomi MiMo text provider added (`supabase/functions/_shared/providers/mimo.ts`, OpenAI-compatible chat completions with vision): set `AI_TEXT_PROVIDER=mimo`, `AI_TEXT_API_KEY=<MiMo key>`, optional `AI_MIMO_BASE_URL` (default `https://token-plan-sgp.xiaomimimo.com/v1`) and `AI_TEXT_MODEL` (ids from `GET <base>/v1/models`). Image + moderation stay on OpenAI. Deno tests 6/6 pass.
+- Google Gemini image provider added (`supabase/functions/_shared/providers/gemini.ts`): `AI_IMAGE_PROVIDER=gemini` (now default), `AI_IMAGE_MODEL=gemini-2.5-flash-image` (generate + edit via `generateContent`, 1:1). Moderation: `AI_MODERATION_PROVIDER=openai` (free endpoint, default) or `gemini` (`gemini-2.5-flash-lite` judge, `AI_MODERATION_MODEL`). `AI_MODERATION_API_KEY` falls back to `AI_IMAGE_API_KEY`. Deno tests 6/6, deno check clean.

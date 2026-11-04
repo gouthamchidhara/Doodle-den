@@ -1,6 +1,6 @@
 // Lock screen (A5, mockup "Lock screen · iPad"): night sky, sleeping crayons, ideas, parent hold-to-unlock.
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BackHandler, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -17,7 +17,7 @@ import { useLockStore } from '@/lock/lockStore';
 import { loopSound } from '@/services/audio';
 import { say } from '@/services/voice';
 import { useCanvasStore } from '@/state/canvasStore';
-import { isParentUnlocked } from '@/state/parentStore';
+import { isParentUnlocked, useParentStore } from '@/state/parentStore';
 import { useActiveKid } from '@/state/useActiveKid';
 import { border, colors, fonts, fontSize, radius, space } from '@/theme/tokens';
 import { useLayout } from '@/theme/useLayout';
@@ -27,7 +27,6 @@ import { UnlockSheet } from './lock/UnlockSheet';
 
 export const LULLABY_MS = 60_000;
 const SAVED_CHIP_MS = 60_000;
-const HOLD_MS = 1000;
 
 // The screen a locked kid sees.
 export function LockScreen() {
@@ -37,10 +36,13 @@ export function LockScreen() {
   const state = useLockStore((s) => s.state);
   const rules = useLockStore((s) => s.rules);
   const lastSave = useCanvasStore((s) => s.lastAutosaveAt);
+  const parentUnlockedUntil = useParentStore((s) => s.unlockedUntil);
   const [now, setNow] = useState(() => Date.now());
-  const [sheet, setSheet] = useState(() => params.unlock === '1' && isParentUnlocked());
+  const [dismissedUnlockUntil, setDismissedUnlockUntil] = useState<number | null>(null);
   const [ideas] = useState(() => pickOffScreenIdeas(Math.floor(Date.now() / 3_600_000)));
+  const unlocking = useRef(false);
   const reason = state?.lock.reason ?? 'daily';
+  const sheet = params.unlock === '1' && isParentUnlocked() && dismissedUnlockUntil !== parentUnlockedUntil;
 
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => true);
@@ -60,9 +62,19 @@ export function LockScreen() {
   }, [reason]);
 
   const pick = async (option: ParentUnlockOption) => {
-    setSheet(false);
-    await lockController.parentUnlock(option);
-    if (option === 'plus15' || option === 'plus30') router.replace('/home');
+    if (unlocking.current) return;
+    unlocking.current = true;
+    setDismissedUnlockUntil(parentUnlockedUntil);
+    try {
+      if (!isParentUnlocked()) {
+        router.replace({ pathname: '/parent/gate', params: { next: '/locked?unlock=1' } });
+        return;
+      }
+      await lockController.parentUnlock(option);
+      if (option === 'plus15' || option === 'plus30') router.replace('/home');
+    } finally {
+      unlocking.current = false;
+    }
   };
 
   const saved = lastSave !== null && now - lastSave < SAVED_CHIP_MS;
@@ -93,17 +105,16 @@ export function LockScreen() {
         <View style={[styles.bottom, !isTablet && styles.bottomPhone]}>
           <Text style={styles.back}>{state ? backText(state, rules, now) : ''}</Text>
           <PressableScale
-            accessibilityLabel="Grown-ups: hold to unlock"
-            delayLongPress={HOLD_MS}
-            onLongPress={() => router.push({ pathname: '/parent/gate', params: { next: '/locked?unlock=1' } })}
+            accessibilityLabel="Grown-ups: unlock play"
+            onPress={() => router.push({ pathname: '/parent/gate', params: { next: '/locked?unlock=1' } })}
             style={styles.unlock}
           >
             <PadlockIcon color={colors.nightText} size={20} />
-            <Text style={styles.unlockText}>Grown-ups: hold to unlock</Text>
+            <Text style={styles.unlockText}>Grown-ups: unlock play</Text>
           </PressableScale>
         </View>
       </SafeAreaView>
-      {sheet ? <UnlockSheet onPick={(o) => void pick(o)} onClose={() => setSheet(false)} /> : null}
+      {sheet ? <UnlockSheet onPick={(o) => void pick(o)} onClose={() => setDismissedUnlockUntil(parentUnlockedUntil)} /> : null}
     </View>
   );
 }
@@ -122,6 +133,6 @@ const styles = StyleSheet.create({
   bottom: { marginTop: 'auto', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: space.md },
   bottomPhone: { flexDirection: 'column' },
   back: { fontFamily: fonts.body, fontSize: fontSize.body - 2, color: colors.nightMuted },
-  unlock: { flexDirection: 'row', alignItems: 'center', gap: space.sm, height: 52, paddingHorizontal: space.lg, borderRadius: radius.pill, borderWidth: border.thin + 1, borderColor: colors.nightBorder },
+  unlock: { flexDirection: 'row', alignItems: 'center', gap: space.sm, minHeight: 64, paddingHorizontal: space.lg, borderRadius: radius.pill, borderWidth: border.thin + 1, borderColor: colors.nightBorder },
   unlockText: { fontFamily: fonts.bodyHeavy, fontSize: fontSize.label, color: colors.nightText },
 });

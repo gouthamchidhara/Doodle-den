@@ -52,7 +52,12 @@ describe('lock text', () => {
 });
 
 describe('LockScreen', () => {
-  beforeEach(() => useLockStore.getState().set(locked('daily', Date.now() + 3_600_000), rules));
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.mocked(useLocalSearchParams).mockReturnValue({});
+    useParentStore.getState().clear();
+    useLockStore.getState().set(locked('daily', Date.now() + 3_600_000), rules);
+  });
 
   it('shows the headline and blocks the Android back button', async () => {
     const spy = jest.spyOn(BackHandler, 'addEventListener');
@@ -60,7 +65,7 @@ describe('LockScreen', () => {
     expect(screen.getByText('The crayons are sleeping now')).toBeTruthy();
     expect(screen.getByText('Back tomorrow')).toBeTruthy();
     expect(spy).toHaveBeenCalledWith('hardwareBackPress', expect.any(Function));
-    await fireEvent(screen.getByLabelText('Grown-ups: hold to unlock'), 'longPress');
+    await fireEvent.press(screen.getByLabelText('Grown-ups: unlock play'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/parent/gate', params: { next: '/locked?unlock=1' } });
   });
 
@@ -71,5 +76,28 @@ describe('LockScreen', () => {
     await fireEvent.press(screen.getByText('+15 min'));
     await waitFor(() => expect(lockController.parentUnlock).toHaveBeenCalledWith('plus15'));
     expect(router.replace).toHaveBeenCalledWith('/home');
+  });
+
+  it('does not show extension choices for a direct link without parent authorization', async () => {
+    jest.mocked(useLocalSearchParams).mockReturnValue({ unlock: '1' });
+    await render(<LockScreen />);
+    expect(screen.queryByText('+15 min')).toBeNull();
+    expect(lockController.parentUnlock).not.toHaveBeenCalled();
+  });
+
+  it('applies only one extension when the parent confirms repeatedly', async () => {
+    jest.mocked(useLocalSearchParams).mockReturnValue({ unlock: '1' });
+    useParentStore.getState().unlock();
+    let finishGrant!: () => void;
+    jest.mocked(lockController.parentUnlock).mockImplementationOnce(
+      () => new Promise<void>((resolve) => { finishGrant = resolve; }),
+    );
+    await render(<LockScreen />);
+    const option = screen.getByText('+15 min');
+    await fireEvent.press(option);
+    await fireEvent.press(option);
+    expect(lockController.parentUnlock).toHaveBeenCalledTimes(1);
+    finishGrant();
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/home'));
   });
 });

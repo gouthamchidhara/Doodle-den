@@ -87,7 +87,7 @@ Acceptance: all tiles reachable; Little mode hides Big-only tiles; shelf choice 
 - Green check chip "Your drawing is saved in My Gallery" (only if an AUTOSAVE happened in the last 60 s).
 - Three suggestion cards (rotate from 12 in `src/content/offScreenIdeas.json`): e.g. Draw on paper, Build a fort, Play outside.
 - Bottom-left: when play returns — cooldown: "Back in {n} minutes"; daily: "Back tomorrow"; bedtime: "Back at {bedtimeEnd}".
-- Bottom-right: "Grown-ups: hold to unlock" → Parent Gate → unlock sheet with `+15 min`, `+30 min`, `End for today` (A4 `parentUnlock`).
+- Bottom-right: visible, 64 pt minimum "Grown-ups: unlock play" button opens Parent Gate (2 s hold + PIN); successful gate return opens the unlock sheet with `+15 min`, `+30 min`, `End for today` (A4 `parentUnlock`). The sheet requires a current parent-unlock window; direct route parameters alone never authorize an extension. Repeated confirmation taps apply at most one grant.
 - `lullaby-loop.m4a` at volume 0.3 for 60 s, then silence.
 - Android back button does nothing.
 
@@ -223,6 +223,8 @@ Paper Comes Alive results enter the same way (skip step 1–2).
 | --- | --- | --- | --- | --- |
 | Aquarium | Water `colors.water`, light wave band on top, sand, seaweed, rising bubbles | Each fish: horizontal speed 20–60 px/s, flips at edges, vertical bob `sin(t·f)·amp` (amp 10–30 px); values from a generator seeded with the entity id | Feed: food dots fall; the 3 nearest fish steer toward them for 5 s | 20 |
 | Racetrack | Top-down grass + gray oval track with white dashes, start line, stands | Cars follow the track's center path at 80–160 px/s, rotated to the path direction, each in its own lane offset | Go!: 3-lap race, every car finishes, confetti for all, no winner shown | 8 |
+
+On a fresh profile with no saved car, show one locally rendered sample car cruising the track. Go! starts a race immediately; tapping the sample gives the usual wiggle and vroom response. The sample is demonstration content only: do not create an artwork, world entity, reward, or album entry for it. “Draw a new car” stays available so the child can make their own car at any time. Once the child has a saved on-screen car, show those cars instead of the sample.
 | Zoo | Grass field, pond, trees, fence; three ground lines at different depths | Animals walk left/right along a ground line (scale 0.7 / 0.85 / 1.0 by depth), random 1–3 s idle stops with a little hop | Snack: animals hop toward a dropped treat | 16 |
 
 Older creatures beyond the max move to an "Album" drawer (button top-right) and can be brought back (swapping out the oldest on screen). Nothing is ever deleted by the world.

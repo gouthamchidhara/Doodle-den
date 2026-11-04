@@ -60,6 +60,7 @@ export function WorldScene({
 
   return (
     <View
+      testID="world-scene"
       style={styles.scene}
       onLayout={(e) => {
         const { width, height } = e.nativeEvent.layout;

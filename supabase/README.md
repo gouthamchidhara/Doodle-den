@@ -28,13 +28,16 @@ Deploy `family-gallery` and `rc-webhook` with `--no-verify-jwt`.
 
 | Secret | Default | Notes |
 | --- | --- | --- |
-| `AI_TEXT_PROVIDER` | `anthropic` | text + vision |
-| `AI_TEXT_MODEL` | `claude-haiku-5-5` | |
-| `AI_TEXT_API_KEY` | — | required for AI |
-| `AI_IMAGE_PROVIDER` | `openai` | image generate + edit |
-| `AI_IMAGE_MODEL` | `gpt-image-1` | owner confirms the current model name before launch |
-| `AI_IMAGE_API_KEY` | — | also used for moderation |
-| `AI_MODERATION_PROVIDER` | `openai` | |
+| `AI_TEXT_PROVIDER` | `anthropic` | text + vision; set `mimo` for Xiaomi MiMo |
+| `AI_TEXT_MODEL` | `claude-haiku-5-5` (anthropic) / `mimo-v2.6-flash` (mimo) | MiMo ids: `GET <base>/v1/models` |
+| `AI_MIMO_BASE_URL` | `https://token-plan-sgp.xiaomimimo.com/v1` | MiMo dedicated endpoint |
+| `AI_TEXT_API_KEY` | — | required for AI (Anthropic or MiMo key) |
+| `AI_IMAGE_PROVIDER` | `gemini` | image generate + edit; `openai` for gpt-image-1 |
+| `AI_IMAGE_MODEL` | `gemini-2.5-flash-image` (gemini) / `gpt-image-1` (openai) | |
+| `AI_IMAGE_API_KEY` | — | Google AI Studio key (gemini) or OpenAI key (openai) |
+| `AI_MODERATION_PROVIDER` | `openai` | free dedicated endpoint; `gemini` = flash-lite judge |
+| `AI_MODERATION_API_KEY` | falls back to `AI_IMAGE_API_KEY` | set separately if moderating with another account |
+| `AI_MODERATION_MODEL` | `gemini-2.5-flash-lite` | only for `AI_MODERATION_PROVIDER=gemini` |
 | `RC_WEBHOOK_SECRET` | random string | same value in the RevenueCat dashboard |
 | `COST_COLORING_PAGE`, `COST_MAGIC_SKETCH`, `COST_STORY`, `COST_GUESS`, `COST_COACH`, `COST_DIGEST` | 0 | estimated USD per call |
 

@@ -44,6 +44,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       requireFullScreen: true,
       icon: './assets/expo.icon',
       infoPlist: {
+        NSPhotoLibraryUsageDescription:
+          "Sleepy Crayons uses your photo library so a parent can choose pictures for creative activities and save your child's artwork.",
         UISupportedInterfaceOrientations: ['UIInterfaceOrientationPortrait'],
         'UISupportedInterfaceOrientations~ipad': [
           'UIInterfaceOrientationLandscapeLeft',
@@ -128,6 +130,10 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ...screenTimePlugins,
     ],
     experiments: { typedRoutes: true, reactCompiler: true },
+    extra: {
+      ...config.extra,
+      eas: { projectId: '6813e97e-1c7f-4d91-b9c0-e980bbeb757a' },
+    },
   };
   return withAndroidMinSdk(expoConfig, 26);
 };

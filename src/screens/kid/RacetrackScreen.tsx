@@ -7,6 +7,7 @@ import { PrimaryButton } from "@/components/kid/PrimaryButton";
 import { SparkleBurst } from "@/components/kid/SparkleBurst";
 import { carMotion, raceSeconds } from "@/games/worlds/racetrack/carMotion";
 import { RacetrackBackground } from "@/games/worlds/racetrack/RacetrackBackground";
+import { SAMPLE_CAR_ID, SampleCar } from "@/games/worlds/racetrack/SampleCar";
 import { spriteParams } from "@/games/worlds/spriteParams";
 import { useWorldCreatures } from "@/games/worlds/useWorldCreatures";
 import { WORLDS } from "@/games/worlds/worldConfig";
@@ -51,9 +52,9 @@ export function RacetrackScreen() {
   );
 
   const go = () => {
-    if (racing || size.w === 0 || onScreen.length === 0) return;
+    if (racing || size.w === 0) return;
     const len = raceLength(
-      onScreen.map((c) => c.entity.id),
+      onScreen.length > 0 ? onScreen.map((c) => c.entity.id) : [SAMPLE_CAR_ID],
       size.w,
       size.h,
     );
@@ -80,17 +81,20 @@ export function RacetrackScreen() {
       clock={clock}
       onSize={(w, h) => setSize({ w, h })}
       background={(w, h) => <RacetrackBackground width={w} height={h} />}
-      foreground={() =>
-        party > 0 ? (
-          <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-            <SparkleBurst key={party} radius={size.w * 0.4} />
-          </View>
-        ) : null
-      }
+      foreground={(w, h) => (
+        <>
+          {onScreen.length === 0 ? <SampleCar width={w} height={h} clock={clock} ext={ext} /> : null}
+          {party > 0 ? (
+            <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+              <SparkleBurst key={party} radius={size.w * 0.4} />
+            </View>
+          ) : null}
+        </>
+      )}
       extraButton={
         <PrimaryButton
           label="Go!"
-          disabled={racing || onScreen.length === 0}
+          disabled={racing || size.w === 0}
           onPress={go}
         />
       }
